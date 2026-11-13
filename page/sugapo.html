@@ -1,1 +1,503 @@
-<?require_once rtrim(getenv("DOCUMENT_ROOT"),"/")."/header.php"?><meta name="keywords" content=""><p><img src="/skin/upload/&#37;EC&#37;BA&#37;A1&#37;EC&#37;B2&#37;98_2025_05_08_14_29_00_708.jpg" title="&#37;EC&#37;BA&#37;A1&#37;EC&#37;B2&#37;98_2025_05_08_14_29_00_708.jpg" class="img-responsive" style="display:inline;"><br style="clear:both;">&nbsp;</p><?require_once $footer?>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비급여 진료비용 안내 | 수마취 통증의학과의원</title>
+    <link rel="shortcut icon" href="../로고1.jpg">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --navy-dark: #1d3566;
+            --blue-accent: #0e76bc;
+            --green-accent: #2ca94f;
+            --border-gray: #dce1e7;
+            --bg-tint: #f5f7fa;
+        }
+
+        body { font-family: 'Noto Sans KR', sans-serif; color: #333; background: #fff; margin: 0; padding: 0; }
+        a, a:hover, a:focus { text-decoration: none; }
+
+        /* 상단 헤더 (연세바른정형외과 스타일의 화이트 슬림 헤더 + 수마취 로고) */
+        .sub-header { border-bottom: 1px solid #e5e8eb; background: #fff; position: sticky; top: 0; z-index: 999; }
+        .header-wrap { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .brand-logo { display: flex; align-items: center; gap: 11px; }
+        .brand-logo img { height: 46px; width: auto; border-radius: 6px; }
+        .brand-logo .title-grp { display: flex; flex-direction: column; }
+        .brand-logo .kor { font-size: 21px; font-weight: 900; color: #111; letter-spacing: -0.8px; line-height: 1.15; }
+        .brand-logo .kor em { font-style: normal; color: var(--blue-accent); }
+        .brand-logo .eng { font-size: 10.5px; font-weight: 700; color: var(--green-accent); letter-spacing: 1.1px; margin-top: 2px; }
+
+        .nav-menu { display: flex; gap: 32px; margin: 0; padding: 0; list-style: none; }
+        .nav-menu li a { font-size: 16px; font-weight: 700; color: #222; padding: 28px 4px; display: inline-block; position: relative; }
+        .nav-menu li a:hover, .nav-menu li a.active { color: var(--navy-dark); }
+        .nav-menu li a.active::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--navy-dark); }
+
+        /* 페이지 상단 타이틀 배너 */
+        .page-hero { background: linear-gradient(135deg, #f3f6fb 0%, #e9eff8 100%); padding: 52px 0 46px; text-align: center; border-bottom: 1px solid #e1e6ef; margin-bottom: 45px; }
+        .page-hero span { display: inline-block; font-size: 12.5px; font-weight: 700; color: var(--blue-accent); letter-spacing: 1.5px; margin-bottom: 8px; }
+        .page-hero h2 { font-size: 32px; font-weight: 900; color: #111; margin: 0 0 12px 0; letter-spacing: -0.8px; }
+        .page-hero p { font-size: 15px; color: #555; margin: 0; line-height: 1.6; }
+
+        /* 빠른 카테고리 이동 앵커 바 */
+        .cat-jump-bar { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 50px; }
+        .cat-jump-bar a { padding: 9px 20px; border: 1px solid #d5dce4; border-radius: 25px; font-size: 14px; font-weight: 600; color: #444; background: #fff; transition: 0.2s; }
+        .cat-jump-bar a:hover { background: var(--navy-dark); color: #fff; border-color: var(--navy-dark); }
+
+        /* 레퍼런스 스타일 섹션 블록 (상단 둥근 네이비 탭 + 하단 가로줄 + 4열 테이블) */
+        .fee-section { margin-bottom: 60px; scroll-margin-top: 100px; }
+        .fee-tab-header { border-bottom: 2px solid var(--navy-dark); margin-bottom: 22px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .fee-tab-pill { display: inline-block; background-color: var(--navy-dark); color: #fff; font-size: 19px; font-weight: 700; padding: 12px 42px; border-radius: 14px 14px 0 0; letter-spacing: -0.4px; }
+        .fee-tab-sub { font-size: 13px; color: #777; padding-bottom: 8px; }
+
+        .fee-table { width: 100%; border-collapse: collapse; border-top: 1px solid var(--border-gray); table-layout: fixed; }
+        .fee-table thead th { background-color: var(--bg-tint); color: #333; font-size: 15px; font-weight: 700; text-align: center; padding: 16px 12px; border-bottom: 1px solid var(--border-gray); border-right: 1px solid var(--border-gray); }
+        .fee-table thead th:last-child { border-right: none; }
+        
+        .fee-table tbody td { padding: 16px 14px; font-size: 15px; color: #333; text-align: center; border-bottom: 1px solid var(--border-gray); border-right: 1px solid var(--border-gray); vertical-align: middle; word-break: keep-all; }
+        .fee-table tbody td:last-child { border-right: none; }
+        .fee-table tbody tr:hover { background-color: #fafcfe; }
+
+        .col-name { width: 34%; font-weight: 500; color: #222; }
+        .col-code { width: 20%; font-weight: 700; color: var(--navy-dark); font-family: 'Noto Sans KR', sans-serif; letter-spacing: 0.3px; }
+        .col-price { width: 22%; font-weight: 700; color: var(--navy-dark); }
+        .col-note { width: 24%; font-size: 13.5px; color: #555; }
+
+        /* 안내 문구 박스 */
+        .notice-footer-box { background: #f8f9fb; border: 1px solid #e2e6ec; border-radius: 8px; padding: 22px 26px; margin-top: 20px; margin-bottom: 70px; font-size: 14px; color: #555; line-height: 1.75; }
+        .notice-footer-box strong { color: var(--navy-dark); }
+
+        /* 우측 플로팅 퀵바 (레퍼런스 우측 사이드바 재현) */
+        .floating-quick { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); z-index: 990; background: #fff; border: 1px solid #d0d7e2; border-radius: 6px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.08); width: 76px; }
+        .floating-quick a { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 13px 6px; border-bottom: 1px solid #e8ecf2; color: #333; font-size: 11.5px; font-weight: 600; transition: 0.2s; }
+        .floating-quick a:hover { background: #f2f6fc; color: var(--navy-dark); }
+        .floating-quick a i { font-size: 19px; color: #4a7ec7; margin-bottom: 5px; }
+        .floating-quick a.top-btn { background: #5a94e6; color: #fff; border-bottom: none; padding: 10px 6px; }
+        .floating-quick a.top-btn i { color: #fff; font-size: 12px; margin-bottom: 2px; }
+
+        /* 하단 푸터 */
+        footer { background: #1e2229; color: #9aa0a6; padding: 42px 0; font-size: 13px; border-top: 3px solid var(--navy-dark); }
+        .footer-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+
+        @media (max-width: 767px) {
+            .nav-menu { display: none; }
+            .fee-tab-pill { font-size: 16px; padding: 10px 26px; }
+            .fee-table thead th, .fee-table tbody td { font-size: 13px; padding: 12px 6px; }
+            .floating-quick { display: none; }
+        }
+    </style>
+</head>
+<body id="top">
+
+    <!-- 상단 헤더 -->
+    <header class="sub-header">
+        <div class="container header-wrap">
+            <a href="../index.html" class="brand-logo">
+                <img src="../로고1.jpg" alt="수마취 통증의학과의원 로고">
+                <div class="title-grp">
+                    <span class="kor"><em>수</em>마취 통증의학과의원</span>
+                    <span class="eng">SOO PAIN CLINIC</span>
+                </div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="ceo.html">병원소개</a></li>
+                <li><a href="disease.html">통증클리닉</a></li>
+                <li><a href="c-arm.html">특수비수술치료</a></li>
+                <li><a href="eswt.html">체외충격파·물리치료</a></li>
+                <li><a href="sugapo.html" class="active">비급여안내</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 타이틀 배너 -->
+    <div class="page-hero">
+        <div class="container">
+            <span>NON-COVERED MEDICAL EXPENSES</span>
+            <h2>비급여 진료비용 안내</h2>
+            <p>의료법 제45조 및 동법 시행규칙 제42조의2에 의거하여 수마취 통증의학과의원의 비급여 진료비용을 고지합니다.</p>
+        </div>
+    </div>
+
+    <!-- 본문 컨테이너 -->
+    <div class="container">
+        
+        <!-- 카테고리 빠른 이동 버튼 -->
+        <div class="cat-jump-bar">
+            <a href="#sec-eswt">이학요법 (체외충격파)</a>
+            <a href="#sec-injection">행위비급여 (주사·재생치료)</a>
+            <a href="#sec-vaccine">예방접종 (대상포진·독감)</a>
+            <a href="#sec-ultrasound">초음파 검사료</a>
+            <a href="#sec-docs">제증명 서류 발급비</a>
+            <a href="#sec-supplies">치료재료 및 비급여처방</a>
+        </div>
+
+        <!-- 1. 이학요법 -->
+        <section class="fee-section" id="sec-eswt">
+            <div class="fee-tab-header">
+                <span class="fee-tab-pill">이학요법</span>
+                <span class="fee-tab-sub">기준일 : 2026.08.19</span>
+            </div>
+            <table class="fee-table">
+                <thead>
+                    <tr>
+                        <th class="col-name">명칭</th>
+                        <th class="col-code">코드</th>
+                        <th class="col-price">비급여</th>
+                        <th class="col-note">비고</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-name">체외충격파 2,000타</td>
+                        <td class="col-code">SZ084</td>
+                        <td class="col-price">50,000원</td>
+                        <td class="col-note">1회 기준</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">체외충격파 3,000타</td>
+                        <td class="col-code">SZ084</td>
+                        <td class="col-price">70,000원</td>
+                        <td class="col-note">1회 기준</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">체외충격파 4,000타</td>
+                        <td class="col-code">SZ084</td>
+                        <td class="col-price">90,000원</td>
+                        <td class="col-note">1회 기준</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">체외충격파 5,000타</td>
+                        <td class="col-code">SZ084</td>
+                        <td class="col-price">110,000원</td>
+                        <td class="col-note">1회 기준</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 2. 행위비급여 -->
+        <section class="fee-section" id="sec-injection">
+            <div class="fee-tab-header">
+                <span class="fee-tab-pill">행위비급여</span>
+                <span class="fee-tab-sub">부위 및 약제 용량에 따라 상이할 수 있습니다</span>
+            </div>
+            <table class="fee-table">
+                <thead>
+                    <tr>
+                        <th class="col-name">명칭</th>
+                        <th class="col-code">코드</th>
+                        <th class="col-price">비급여</th>
+                        <th class="col-note">비고</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-name">인대강화주사 (프롤로)</td>
+                        <td class="col-code">MY142</td>
+                        <td class="col-price">30,000 ~ 200,000원</td>
+                        <td class="col-note">부위 및 용량에 따라 다름</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">자가 혈소판 풍부 혈장 치료술 (PRP) 무릎</td>
+                        <td class="col-code">4Z0E00026</td>
+                        <td class="col-price">200,000원</td>
+                        <td class="col-note">1회 기준</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">PDRN (DNA주사)</td>
+                        <td class="col-code">56200011</td>
+                        <td class="col-price">40,000 ~ 200,000원</td>
+                        <td class="col-note">용량에 따라 다름</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">GCWB 콜라필 (콜라겐조직보충제)</td>
+                        <td class="col-code">BM2600VT</td>
+                        <td class="col-price">150,000원</td>
+                        <td class="col-note">1회 기준</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">리포라제주</td>
+                        <td class="col-code">669904601</td>
+                        <td class="col-price">30,000 ~ 100,000원</td>
+                        <td class="col-note">용량에 따라 다름</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">액상하이랙스주 (주사)</td>
+                        <td class="col-code">654802111</td>
+                        <td class="col-price">50,000 ~ 200,000원</td>
+                        <td class="col-note">용량에 따라 다름</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 3. 예방접종료 (대상포진 백신 / 독감 백신) -->
+        <section class="fee-section" id="sec-vaccine">
+            <div class="fee-tab-header">
+                <span class="fee-tab-pill">예방접종료</span>
+                <span class="fee-tab-sub">백신 수급 상황에 따라 재고 확인 후 접종 가능</span>
+            </div>
+            <table class="fee-table">
+                <thead>
+                    <tr>
+                        <th class="col-name">명칭</th>
+                        <th class="col-code">코드</th>
+                        <th class="col-price">비급여</th>
+                        <th class="col-note">비고</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-name">대상포진 백신 (스카이조스터)</td>
+                        <td class="col-code">3Z5200301</td>
+                        <td class="col-price">140,000원</td>
+                        <td class="col-note">1회 접종</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">대상포진 백신 (싱그릭스주)</td>
+                        <td class="col-code">650003220</td>
+                        <td class="col-price">220,000원</td>
+                        <td class="col-note">1회 기준 (총 2회 접종)</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">독감 백신 (지씨플루프리필드시린지주)</td>
+                        <td class="col-code">643603630</td>
+                        <td class="col-price">30,000원</td>
+                        <td class="col-note">1회 접종</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 4. 초음파 검사료 -->
+        <section class="fee-section" id="sec-ultrasound">
+            <div class="fee-tab-header">
+                <span class="fee-tab-pill">검사료 (초음파)</span>
+                <span class="fee-tab-sub">부위별 근골격계 정밀 초음파</span>
+            </div>
+            <table class="fee-table">
+                <thead>
+                    <tr>
+                        <th class="col-name">명칭</th>
+                        <th class="col-code">코드</th>
+                        <th class="col-price">비급여</th>
+                        <th class="col-note">비고</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-name">손가락 초음파</td>
+                        <td class="col-code">EB461</td>
+                        <td class="col-price">30,000원</td>
+                        <td class="col-note">-</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">발가락 초음파</td>
+                        <td class="col-code">EB462</td>
+                        <td class="col-price">30,000원</td>
+                        <td class="col-note">-</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">팔꿈치 초음파</td>
+                        <td class="col-code">EB463</td>
+                        <td class="col-price">30,000원</td>
+                        <td class="col-note">-</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">무릎 초음파</td>
+                        <td class="col-code">EB464</td>
+                        <td class="col-price">30,000원</td>
+                        <td class="col-note">-</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">어깨 초음파</td>
+                        <td class="col-code">EB466</td>
+                        <td class="col-price">30,000원</td>
+                        <td class="col-note">-</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">고관절 초음파</td>
+                        <td class="col-code">EB467</td>
+                        <td class="col-price">30,000원</td>
+                        <td class="col-note">-</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">발목 초음파</td>
+                        <td class="col-code">EB468</td>
+                        <td class="col-price">30,000원</td>
+                        <td class="col-note">-</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">연부조직 초음파</td>
+                        <td class="col-code">EB470</td>
+                        <td class="col-price">30,000원</td>
+                        <td class="col-note">-</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">근골격, 연부조직 초음파 - 정밀</td>
+                        <td class="col-code">EB471</td>
+                        <td class="col-price">50,000원</td>
+                        <td class="col-note">정밀 진단</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">가이드 초음파 (초음파 유도료)</td>
+                        <td class="col-code">EB402</td>
+                        <td class="col-price">20,000원</td>
+                        <td class="col-note">시술 시 적용</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">단순 초음파</td>
+                        <td class="col-code">-</td>
+                        <td class="col-price">10,000원</td>
+                        <td class="col-note">-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 5. 제증명 수수료 (서류) -->
+        <section class="fee-section" id="sec-docs">
+            <div class="fee-tab-header">
+                <span class="fee-tab-pill">제증명 수수료</span>
+                <span class="fee-tab-sub">보건복지부 의료기관 제증명수수료 항목 및 금액에 관한 기준 준수</span>
+            </div>
+            <table class="fee-table">
+                <thead>
+                    <tr>
+                        <th class="col-name">명칭</th>
+                        <th class="col-code">코드</th>
+                        <th class="col-price">비급여</th>
+                        <th class="col-note">비고</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-name">일반진단서 (병명 기재)</td>
+                        <td class="col-code">PDZ010000</td>
+                        <td class="col-price">15,000원</td>
+                        <td class="col-note">-</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">소견서</td>
+                        <td class="col-code">-</td>
+                        <td class="col-price">5,000원</td>
+                        <td class="col-note">-</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">초진차트 사본</td>
+                        <td class="col-code">PDZ110101</td>
+                        <td class="col-price">1,000원</td>
+                        <td class="col-note">-</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">통원확인서 (병명 미포함)</td>
+                        <td class="col-code">PDZ090004</td>
+                        <td class="col-price">1,000원</td>
+                        <td class="col-note">-</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">진료확인서</td>
+                        <td class="col-code">PDZ090007</td>
+                        <td class="col-price">3,000원</td>
+                        <td class="col-note">-</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">진료기록지 사본 (기본)</td>
+                        <td class="col-code">PDZ110101</td>
+                        <td class="col-price">1,000원</td>
+                        <td class="col-note">5장 이하</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">진료기록지 사본 (추가)</td>
+                        <td class="col-code">PDZ110102</td>
+                        <td class="col-price">장당 100원</td>
+                        <td class="col-note">5장 초과 시 매당</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">영상 CD 복사</td>
+                        <td class="col-code">PDZ110004</td>
+                        <td class="col-price">10,000원</td>
+                        <td class="col-note">-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 6. 치료재료 및 비급여 처방 -->
+        <section class="fee-section" id="sec-supplies">
+            <div class="fee-tab-header">
+                <span class="fee-tab-pill">치료재료 · 처방</span>
+                <span class="fee-tab-sub">보조기 및 비급여 원외처방</span>
+            </div>
+            <table class="fee-table">
+                <thead>
+                    <tr>
+                        <th class="col-name">명칭</th>
+                        <th class="col-code">코드</th>
+                        <th class="col-price">비급여</th>
+                        <th class="col-note">비고</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-name">관절·척추 보호대 (보조기)</td>
+                        <td class="col-code">-</td>
+                        <td class="col-price">5,000 ~ 50,000원</td>
+                        <td class="col-note">종류에 따라 다름</td>
+                    </tr>
+                    <tr>
+                        <td class="col-name">비급여 처방전</td>
+                        <td class="col-code">-</td>
+                        <td class="col-price">10,000 ~ 50,000원</td>
+                        <td class="col-note">1회 / 종류 및 기간에 따라 다름</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div class="notice-footer-box">
+            <strong>※ 비급여 진료비용 안내 유의사항</strong><br>
+            1. 상기 비급여 항목 및 금액은 환자의 증상, 시술 부위, 투여 약제의 용량 및 치료 횟수에 따라 다소 차이가 발생할 수 있습니다.<br>
+            2. 제증명서 발급 시 의료법 규정에 따라 신분증(대리인 발급 시 위임장 및 동의서 등 구비서류) 지참이 필요합니다.
+        </div>
+
+    </div>
+
+    <!-- 우측 플로팅 퀵 메뉴 -->
+    <div class="floating-quick">
+        <a href="../index.html#clinic-hours">
+            <i class="fa-solid fa-phone-volume"></i>
+            진료안내
+        </a>
+        <a href="../index.html#location">
+            <i class="fa-solid fa-location-dot"></i>
+            오시는길
+        </a>
+        <a href="../index.html">
+            <i class="fa-solid fa-house"></i>
+            메인홈
+        </a>
+        <a href="#top" class="top-btn">
+            <i class="fa-solid fa-caret-up"></i>
+            TOP
+        </a>
+    </div>
+
+    <!-- 하단 푸터 -->
+    <footer>
+        <div class="container footer-flex">
+            <div>
+                <strong style="color:#fff;">수마취 통증의학과의원</strong> &nbsp;|&nbsp; 대표원장 : 박현준 &nbsp;|&nbsp; 충청남도 아산시
+            </div>
+            <div>
+                Copyright &copy; 2021-2026 수마취 통증의학과의원. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
