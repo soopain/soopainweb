@@ -112,27 +112,52 @@
             .navbar-nav > li:hover > .dropdown-menu { display: block; }
         }
 
-        /* 3. 메인 비주얼 슬라이더 */
-        .hero-slider { position: relative; width: 100%; height: 500px; background: #16222f; overflow: hidden; }
-        .hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 0.9s ease-in-out; display: flex; align-items: center; }
-        .hero-slide.active { opacity: 1; z-index: 2; }
-        .hero-slide.dark-overlay::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(16,28,45,0.8) 0%, rgba(16,28,45,0.4) 60%, rgba(16,28,45,0.15) 100%); }
-        
-        .hero-content { position: relative; z-index: 3; color: #fff; max-width: 680px; padding: 0 20px; }
-        .hero-badge { display: inline-block; background: var(--logo-green); color: #fff; font-size: 13px; font-weight: 700; padding: 5px 14px; border-radius: 20px; margin-bottom: 16px; letter-spacing: 0.5px; }
-        .hero-content h2 { font-size: 42px; font-weight: 900; line-height: 1.28; margin: 0 0 18px 0; letter-spacing: -1px; text-shadow: 0 2px 8px rgba(0,0,0,0.35); }
-        .hero-content p { font-size: 17px; font-weight: 300; line-height: 1.75; color: #e8eef5; margin-bottom: 28px; word-break: keep-all; }
-        .hero-btn { display: inline-block; padding: 12px 28px; background: #fff; color: var(--primary-navy); font-weight: 700; font-size: 14.5px; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-        .hero-btn:hover { background: var(--primary-blue); color: #fff; }
+        /* <!-- 3. 메인 비주얼 슬라이더 (신규 제작 통증클리닉 전용 배너 3종 적용) -->
+    <div class="hero-slider">
+        <!-- 슬라이드 1: C-arm 신경차단술 -->
+        <div class="hero-slide active dark-overlay" style="background-image: url('img/slide/slide1_pain.jpg');">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-badge">NON-SURGICAL SPINE & PAIN CARE</span>
+                    <h2>대학병원급 고화질 C-arm<br>투시 신경차단술 클리닉</h2>
+                    <p>실시간 영상증폭장치(C-arm)를 통해 통증의 원인이 되는 신경 부위를 정밀하게 확인하여, 수술 없이 염증과 부종을 안전하게 치료합니다.</p>
+                    <a href="page/c-arm.html" class="hero-btn">신경차단술 자세히 보기 <i class="fa-solid fa-angle-right"></i></a>
+                </div>
+            </div>
+        </div>
 
-        .slider-ctrl { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; width: 48px; height: 48px; background: rgba(0,0,0,0.3); color: #fff; border: none; font-size: 20px; border-radius: 50%; transition: 0.2s; }
-        .slider-ctrl:hover { background: var(--primary-blue); }
-        .slider-ctrl.prev { left: 25px; }
-        .slider-ctrl.next { right: 25px; }
-        .slider-indicators { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; gap: 10px; }
-        .slider-indicators span { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.45); cursor: pointer; transition: 0.3s; border: 1px solid rgba(0,0,0,0.2); }
-        .slider-indicators span.active { width: 32px; border-radius: 10px; background: var(--logo-green); }
+        <!-- 슬라이드 2: 초음파 유도 주사치료 -->
+        <div class="hero-slide dark-overlay" style="background-image: url('img/slide/slide2_pain.jpg');">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-badge">HIGH-RESOLUTION ULTRASOUND</span>
+                    <h2>고해상도 초음파 유도하<br>관절·인대 정밀 주사클리닉</h2>
+                    <p>방사선 노출 걱정 없는 정밀 초음파로 손상된 힘줄, 인대, 신경 병변을 실시간 확인하며 프롤로·PRP·PDRN 재생치료를 시행합니다.</p>
+                    <a href="page/usg.html" class="hero-btn">초음파 주사치료 안내 <i class="fa-solid fa-angle-right"></i></a>
+                </div>
+            </div>
+        </div>
 
+        <!-- 슬라이드 3: 체외충격파(ESWT) 클리닉 -->
+        <div class="hero-slide dark-overlay" style="background-image: url('img/slide/slide3_pain.jpg');">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-badge">ESWT & PHYSICAL THERAPY</span>
+                    <h2>체외충격파(ESWT) 및<br>1:1 프라이빗 통증치료 클리닉</h2>
+                    <p>병변 부위에 고에너지 충격파를 전달하여 석회질을 분해하고 혈류 개선 및 조직 재생을 촉진하여 근본적인 통증 완화를 돕습니다.</p>
+                    <a href="page/eswt.html" class="hero-btn">체외충격파 클리닉 안내 <i class="fa-solid fa-angle-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <button class="slider-ctrl prev" onclick="moveHero(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="slider-ctrl next" onclick="moveHero(1)"><i class="fa-solid fa-chevron-right"></i></button>
+        <div class="slider-indicators">
+            <span class="active" onclick="setHero(0)"></span>
+            <span onclick="setHero(1)"></span>
+            <span onclick="setHero(2)"></span>
+        </div>
+    </div>
         /* 4. 5대 중점 클리닉 그린 바 (도수치료 제거 -> 전문 물리치료 클리닉으로 변경) */
         .green-clinic-bar { background-color: #7cc142; padding: 35px 0; text-align: center; border-bottom: 1px solid #6eb036; }
         .green-circle-grid { display: flex; justify-content: center; align-items: center; gap: 28px; flex-wrap: wrap; }
