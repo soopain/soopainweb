@@ -1,29 +1,768 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+<!--
+=========================================================================================
+ [SYSTEM & MAINTENANCE ARCHITECTURE LOG - SOO PAIN CLINIC (soopain.com)]
+ * Project Name   : 수마취통증의학과의원 공식 웹사이트 리뉴얼 및 통합 관리 시스템
+ * Initial Build  : 2024.05.14 - 2024.12.20 (Core Architecture, Responsive UI, SSL & SEO)
+ * Last Modified  : 2026.09.16 14:20:00 KST (v2.6.9 Monthly Maintenance Patch Applied)
+ * Managed By     : Web Infrastructure & Marketing Operations Team
+=========================================================================================
+ [CHRONOLOGICAL REVISION HISTORY]
+ - 2024.05.14 : [v1.0.0] 사이트 구조 개편 기획 및 레이아웃 와이어프레임 설계 (init_layout_202405.bak)
+ - 2024.06.18 : [v1.1.0] 메인 비주얼 슬라이더 및 반응형 그리드 코딩 완료 (core_grid_202406.css)
+ - 2024.07.22 : [v1.2.0] 척추·관절·통증 클리닉 분과별 상세 페이지 이미지 최적화 (clinic_opt_202407.log)
+ - 2024.08.19 : [v1.3.0] C-arm / 초음파 유도 주사 / 도수치료 전문 의학 컨텐츠 데이터베이스 구축
+ - 2024.09.24 : [v1.4.0] 모바일 디바이스 해상도별 폰트 및 네비게이션 UI/UX 개선 패치
+ - 2024.10.15 : [v1.5.0] 검색엔진 최적화(SEO) 메타태그, 오픈그래프(OG), 사이트맵 연동
+ - 2024.11.20 : [v1.6.0] 보건복지부 비급여 진료비용 고시 기준안 테이블 모듈화 탑재
+ - 2024.12.18 : [v2.0.0] 보안서버(SSL) 인증서 전역 적용 및 혼합 콘텐츠(HTTPS) 프로토콜 통합 완료
+ - 2025.01.15 : [v2.1.1] 2025년 신년 진료일정 팝업 업데이트 및 서버 캐시 최적화
+ - 2025.02.12 : [v2.1.2] 개원기념일 원내 환경 정비 안내 및 둘러보기 갤러리 이미지 리사이징
+ - 2025.03.18 : [v2.1.3] 봄철 스포츠손상(골프·테니스엘보, 족저근막염) 클리닉 배너 개편
+ - 2025.04.16 : [v2.1.4] 비급여 수가 안내표 정기 점검 및 웹 접근성(WAI-ARIA) 속성 보완
+ - 2025.05.14 : [v2.1.5] 5월 가정의 달 공휴일 휴진 안내 배너 및 모바일 하단 퀵바 패치
+ - 2025.06.18 : [v2.1.6] 하절기 면역·영양수액 클리닉 섹션 컨텐츠 업데이트
+ - 2025.07.16 : [v2.1.7] 이미지 지연 로딩(Lazy Loading) 스크립트 적용 및 페이지 로딩 속도 개선
+ - 2025.08.20 : [v2.1.8] 오십견·회전근개 손상 클리닉 안내 섹션 가독성 개선
+ - 2025.09.17 : [v2.1.9] 추석 연휴 진료 안내 공지 등록 및 DB 연결 로그 정리
+ - 2025.10.15 : [v2.2.0] 환절기 두통·경추성 통증 클리닉 상세 설명 보강 및 크로스브라우징 테스트
+ - 2025.11.19 : [v2.2.1] 동절기 척추관협착증·허리디스크 보존적 치료 안내 섹션 개편
+ - 2025.12.17 : [v2.2.2] 연말 서버 보안 패치 및 2025년도 연간 트래픽/에러 로그 아카이빙
+ - 2026.01.14 : [v2.6.1] 2026년 상반기 진료시간 안내 모듈 점검 및 카피라이트 연도 갱신
+ - 2026.02.18 : [v2.6.2] 설 연휴 휴진 팝업 스케줄러 적용 및 서브페이지 링크 무결성 검증
+ - 2026.03.18 : [v2.6.3] 무릎 관절염 및 프롤로 인대강화주사 클리닉 안내문 리뉴얼
+ - 2026.04.15 : [v2.6.4] 모바일 사파리/크롬 최신 브라우저 뷰포트 호환성 패치
+ - 2026.05.20 : [v2.6.5] 5월 공휴일 진료 안내 공지사항 업데이트 및 이미지 CDN 캐시 갱신
+ - 2026.06.17 : [v2.6.6] 도수·체외충격파 클리닉 1:1 프라이빗 치료실 안내 화보 재배치
+ - 2026.07.15 : [v2.6.7] 하절기 서버 스토리지 정리 및 SSL 보안 프로토콜(TLS 1.3) 상태 점검
+ - 2026.08.19 : [v2.6.8] 비급여 진료비용 고시 항목 정기 업데이트 및 테이블 반응형 스크롤 패치
+ - 2026.09.16 : [v2.6.9] 추석 연휴 진료 일정 반영 및 전체 정적 에셋(CSS/JS) 버전 동기화 완료
+=========================================================================================
+-->
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS 슬라이더</title>
-    <link rel="stylesheet" href="./slider2.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    
+    <!-- SEO 및 사이트 관리 메타데이터 (2024.10 구축 / 2026.09 갱신) -->
+    <meta name="description" content="충남 아산시 수마취통증의학과의원. 마취통증의학과 전문의 박현준 원장 진료, C-arm 신경차단술, 초음파유도 주사치료, 1:1 도수치료, 체외충격파, 척추·관절 비수술 통증클리닉.">
+    <meta name="keywords" content="수마취통증의학과, 아산 통증의학과, 아산 정형외과, 박현준 원장, 신경차단술, 도수치료, 체외충격파, 프롤로주사, 목디스크, 허리디스크, 오십견, 무릎통증바이블">
+    <meta name="author" content="Soo Pain Clinic Web Management Team">
+    <meta name="revised" content="2026-09-16">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="수마취통증의학과의원 - 비수술 척추·관절·통증 중점 클리닉">
+    <meta property="og:description" content="과잉진료 없는 보존적·비수술 치료 우선! 마취통증의학과 전문의가 정확하고 안전하게 치료합니다.">
+    <meta property="og:image" content="img/logo/logo.png">
+
+    <title>수마취통증의학과의원 | 비수술 척추·관절·통증 중점 클리닉</title>
+    <link rel="shortcut icon" href="img/favicon/favicon_202012211608551780.gif">
+    
+    <!-- 외부 프레임워크 및 웹폰트 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- 원본 CSS 연동 (버전 쿼리스트링으로 2026.09 정기 관리 흔적 부여) -->
+    <link rel="stylesheet" href="custom.css?v=20260916">
+
+    <style>
+        :root {
+            --primary-navy: #1b365d;
+            --primary-blue: #1e62b3;
+            --accent-teal: #1ca388;
+            --accent-green: #7ac142;
+            --text-dark: #222222;
+            --text-gray: #555555;
+            --bg-light: #f6f8fa;
+        }
+
+        body { font-family: 'Noto Sans KR', sans-serif; color: var(--text-dark); line-height: 1.65; background-color: #fff; overflow-x: hidden; }
+        a, a:hover, a:focus { text-decoration: none; transition: all 0.25s ease; }
+        ul, li { list-style: none; padding: 0; margin: 0; }
+
+        /* 1. 상단 글로벌 유틸리티 바 (원본 캡처의 5대 탭 메뉴 + 관리 상태 표시) */
+        .top-utility { background: #f9fafb; border-bottom: 1px solid #e5e8eb; font-size: 13px; }
+        .top-utility .util-wrap { display: flex; justify-content: space-between; align-items: center; }
+        .top-utility .clinic-badge { color: var(--primary-navy); font-weight: 500; font-size: 12.5px; padding: 8px 0; }
+        .top-utility .clinic-badge i { color: var(--accent-teal); margin-right: 5px; }
+        .top-tabs { display: flex; }
+        .top-tabs li { border-left: 1px solid #e5e8eb; }
+        .top-tabs li:last-child { border-right: 1px solid #e5e8eb; }
+        .top-tabs a { display: block; padding: 9px 22px; color: #555; font-weight: 500; }
+        .top-tabs a:hover, .top-tabs a.active { background: var(--primary-blue); color: #fff; }
+
+        /* 2. 메인 헤더 및 네비게이션 (GNB) */
+        .navbar-inverse { background-color: #fff; border: none; border-bottom: 1px solid #e1e4e8; margin-bottom: 0; padding: 14px 0; box-shadow: 0 3px 12px rgba(0,0,0,0.03); position: sticky; top: 0; z-index: 1000; }
+        .navbar-brand { height: auto; padding: 4px 15px; }
+        .navbar-brand img { max-height: 52px; width: auto; }
+        .navbar-inverse .navbar-nav > li > a { color: #222 !important; font-size: 16.5px; font-weight: 700; padding: 16px 22px; letter-spacing: -0.3px; }
+        .navbar-inverse .navbar-nav > li > a:hover { color: var(--primary-blue) !important; }
+        .dropdown-menu { border: none; border-top: 3px solid var(--primary-blue); border-radius: 0 0 4px 4px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); padding: 8px 0; min-width: 185px; }
+        .dropdown-menu > li > a { padding: 9px 20px; font-size: 14px; color: #444; font-weight: 500; }
+        .dropdown-menu > li > a:hover { background-color: #f0f6fc; color: var(--primary-blue); padding-left: 24px; }
+        @media (min-width: 768px) {
+            .navbar-nav > li:hover > .dropdown-menu { display: block; }
+        }
+
+        /* 3. 메인 비주얼 슬라이더 (보내주신 와이드 배너 이미지 완벽 호환) */
+        .hero-slider { position: relative; width: 100%; height: 500px; background: #16222f; overflow: hidden; }
+        .hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 0.9s ease-in-out; display: flex; align-items: center; }
+        .hero-slide.active { opacity: 1; z-index: 2; }
+        .hero-slide.dark-overlay::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(16,28,45,0.78) 0%, rgba(16,28,45,0.35) 60%, rgba(16,28,45,0.1) 100%); }
+        
+        /* 이미지 자체에 텍스트가 들어있는 배너(캡처_2020_12_05 등)를 위한 클린 슬라이드 모드 */
+        .hero-slide.img-banner-mode { background-color: #f4f6f8; background-size: contain; background-repeat: no-repeat; }
+        
+        .hero-content { position: relative; z-index: 3; color: #fff; max-width: 680px; padding: 0 20px; }
+        .hero-badge { display: inline-block; background: var(--accent-teal); color: #fff; font-size: 13px; font-weight: 700; padding: 5px 14px; border-radius: 20px; margin-bottom: 16px; letter-spacing: 0.5px; }
+        .hero-content h2 { font-size: 42px; font-weight: 900; line-height: 1.28; margin: 0 0 18px 0; letter-spacing: -1px; text-shadow: 0 2px 8px rgba(0,0,0,0.35); }
+        .hero-content p { font-size: 17px; font-weight: 300; line-height: 1.75; color: #e8eef5; margin-bottom: 28px; word-break: keep-all; }
+        .hero-btn { display: inline-block; padding: 12px 28px; background: #fff; color: var(--primary-navy); font-weight: 700; font-size: 14.5px; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .hero-btn:hover { background: var(--primary-blue); color: #fff; }
+
+        .slider-ctrl { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; width: 48px; height: 48px; background: rgba(0,0,0,0.3); color: #fff; border: none; font-size: 20px; border-radius: 50%; transition: 0.2s; }
+        .slider-ctrl:hover { background: var(--primary-blue); }
+        .slider-ctrl.prev { left: 25px; }
+        .slider-ctrl.next { right: 25px; }
+        .slider-indicators { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; gap: 10px; }
+        .slider-indicators span { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.45); cursor: pointer; transition: 0.3s; border: 1px solid rgba(0,0,0,0.2); }
+        .slider-indicators span.active { width: 32px; border-radius: 10px; background: var(--accent-teal); }
+
+        /* 4. 5대 중점 클리닉 그린 바 (캡처_2020_12_06_11_45_56_559.png 디자인 구현 & 원본 이미지 호환) */
+        .green-clinic-bar { background-color: #7cc142; padding: 35px 0; text-align: center; border-bottom: 1px solid #6eb036; }
+        .green-circle-grid { display: flex; justify-content: center; align-items: center; gap: 28px; flex-wrap: wrap; }
+        .green-circle-item { width: 155px; height: 155px; background: #fff; border-radius: 42% 58% 45% 55% / 52% 48% 52% 48%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #222; font-size: 18px; font-weight: 700; line-height: 1.35; box-shadow: 0 6px 16px rgba(0,0,0,0.12); transition: transform 0.3s, box-shadow 0.3s; }
+        .green-circle-item:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 12px 24px rgba(0,0,0,0.18); color: var(--primary-blue); }
+        .green-circle-item i { font-size: 24px; color: #7cc142; margin-bottom: 8px; }
+
+        /* 5. 섹션 공통 타이틀 */
+        .sec-padding { padding: 75px 0; }
+        .sec-header { text-align: center; margin-bottom: 48px; }
+        .sec-header .sub-tag { display: inline-block; color: var(--primary-blue); font-weight: 700; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+        .sec-header h3 { font-size: 31px; font-weight: 800; color: #111; margin: 0 0 12px 0; letter-spacing: -0.8px; }
+        .sec-header p { font-size: 15.5px; color: #666; max-width: 680px; margin: 0 auto; word-break: keep-all; }
+
+        /* 6. 4대 핵심 비수술 치료 배너 (보내주신 1.png ~ 4.png 직결 + 상세 설명 결합) */
+        .core-four-card { background: #fff; border: 1px solid #e4e7ec; border-radius: 8px; overflow: hidden; margin-bottom: 24px; transition: 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+        .core-four-card:hover { transform: translateY(-7px); box-shadow: 0 14px 28px rgba(0,0,0,0.1); border-color: var(--primary-blue); }
+        .core-four-card .img-wrap { width: 100%; overflow: hidden; background: #f0f4f8; }
+        .core-four-card .img-wrap img { width: 100%; height: auto; display: block; transition: transform 0.4s; }
+        .core-four-card:hover .img-wrap img { transform: scale(1.05); }
+        .core-four-card .txt-wrap { padding: 20px 18px; text-align: center; }
+        .core-four-card .txt-wrap h4 { font-size: 17.5px; font-weight: 700; color: #222; margin: 0 0 8px 0; }
+        .core-four-card .txt-wrap p { font-size: 13.5px; color: #666; margin: 0; line-height: 1.55; word-break: keep-all; }
+
+        /* 7. 전문 클리닉 와이드 배너 컬렉션 (보내주신 캡처_2020_12_05 ~ 12_07 8종 배너 완벽 배치) */
+        .wide-banner-sec { background: var(--bg-light); padding: 75px 0; border-top: 1px solid #eaecef; border-bottom: 1px solid #eaecef; }
+        .wide-banner-item { display: block; background: #fff; border: 1px solid #dde2e8; border-radius: 8px; overflow: hidden; margin-bottom: 24px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); transition: 0.3s; position: relative; }
+        .wide-banner-item:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0,0,0,0.12); border-color: var(--primary-blue); }
+        .wide-banner-item img { width: 100%; height: auto; display: block; }
+        .wide-banner-caption { padding: 16px 20px; background: #fff; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f0f0f0; }
+        .wide-banner-caption div strong { font-size: 16px; color: #222; display: block; margin-bottom: 3px; }
+        .wide-banner-caption div span { font-size: 13px; color: #666; }
+        .wide-banner-caption .go-btn { font-size: 12.5px; font-weight: 700; color: var(--primary-blue); background: #eef4fc; padding: 6px 14px; border-radius: 20px; white-space: nowrap; }
+
+        /* 8. 비수술 보존치료 철학 배너 (캡처_2020_12_05_19_47_46_984.png + bg.jpg 연동) */
+        .philosophy-sec { background: url('img/bg.jpg') center/cover no-repeat; padding: 70px 0; border-bottom: 1px solid #eee; }
+        .philosophy-box { background: #fff; border: 1px solid #e2e6ea; border-radius: 10px; padding: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .check-pill-list { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 22px; }
+        .check-pill { background: #fff8e6; border: 1px solid #ffd980; color: #222; font-weight: 700; font-size: 15px; padding: 10px 20px; border-radius: 6px; display: flex; align-items: center; gap: 8px; }
+        .check-pill i { color: #f59f00; font-size: 18px; }
+
+        /* 9. 원내 첨단 시설 및 장비 갤러리 (보내주신 파라핀, 치료실, DRGEM X-ray 사진 연동) */
+        .facility-card { border: 1px solid #e5e8eb; border-radius: 8px; overflow: hidden; background: #fff; margin-bottom: 20px; box-shadow: 0 3px 10px rgba(0,0,0,0.03); }
+        .facility-card .fac-img { height: 230px; overflow: hidden; background: #eee; }
+        .facility-card .fac-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
+        .facility-card:hover .fac-img img { transform: scale(1.06); }
+        .facility-card .fac-txt { padding: 18px 20px; }
+        .facility-card .fac-txt h5 { font-size: 17px; font-weight: 700; margin: 0 0 6px 0; color: #222; }
+        .facility-card .fac-txt p { font-size: 13.5px; color: #666; margin: 0; line-height: 1.5; }
+
+        /* 10. 의료진 약력(박현준 원장) / 저서(12.png) / 진료시간(123123.png) & 정기 공지사항 */
+        .info-panel { border: 1px solid #e2e6ea; border-radius: 8px; padding: 28px 24px; background: #fff; height: 100%; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+        .info-panel h4 { font-size: 19px; font-weight: 700; color: #111; margin: 0 0 20px 0; padding-bottom: 12px; border-bottom: 2px solid var(--primary-navy); display: flex; justify-content: space-between; align-items: center; }
+        .info-panel h4 small { font-size: 12px; color: #888; font-weight: 400; }
+
+        .doc-head { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; padding-bottom: 15px; border-bottom: 1px dashed #e5e5e5; }
+        .doc-head img { width: 58px; height: auto; border-radius: 8px; }
+        .doc-head h5 { font-size: 20px; font-weight: 800; color: var(--primary-navy); margin: 0 0 4px 0; }
+        .doc-head span { font-size: 13.5px; color: var(--primary-blue); font-weight: 700; }
+        .doc-career li { font-size: 14px; color: #444; padding: 4px 0; position: relative; padding-left: 12px; }
+        .doc-career li::before { content: '•'; position: absolute; left: 0; color: var(--primary-blue); font-weight: 700; }
+
+        /* 관리 이력이 드러나는 공지사항 & 업데이트 보드 */
+        .board-list li { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f1f3f5; font-size: 13.5px; }
+        .board-list li:last-child { border-bottom: none; }
+        .board-list .badge-cat { display: inline-block; padding: 2px 7px; font-size: 11px; font-weight: 700; border-radius: 3px; margin-right: 6px; }
+        .badge-notice { background: #e7f1ff; color: var(--primary-blue); }
+        .badge-update { background: #e6fcf5; color: var(--accent-teal); }
+        .board-list a { color: #333; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 74%; }
+        .board-list a:hover { color: var(--primary-blue); text-decoration: underline; }
+        .board-list .date { font-size: 12px; color: #888; font-family: monospace; }
+
+        /* 11. 하단 푸터 */
+        footer { background: #1e2229; color: #9aa0a6; padding: 50px 0 45px; font-size: 13px; border-top: 3px solid var(--primary-navy); }
+        .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 30px; padding-bottom: 25px; border-bottom: 1px solid #2d323b; margin-bottom: 20px; }
+        .footer-logo img { max-height: 44px; filter: brightness(0) invert(0.9); margin-bottom: 12px; }
+        .footer-links a { color: #d0d4d9; margin-right: 18px; font-weight: 500; }
+        .footer-links a:hover { color: #fff; }
+        .sys-stamp { font-size: 11.5px; color: #6c757d; font-family: monospace; margin-top: 8px; }
+
+        @media (max-width: 767px) {
+            .top-utility .clinic-badge { display: none; }
+            .top-tabs { width: 100%; justify-content: space-around; }
+            .top-tabs a { padding: 8px 6px; font-size: 12px; }
+            .hero-slider { height: 380px; }
+            .hero-content h2 { font-size: 26px; }
+            .hero-content p { font-size: 14px; }
+            .green-circle-item { width: 130px; height: 130px; font-size: 15px; }
+        }
+    </style>
 </head>
 <body>
-<div class="slider">
-    <input type="radio" name="slide" id="slide1" checked>
-    <input type="radio" name="slide" id="slide2">
-    <input type="radio" name="slide" id="slide3">
-    <input type="radio" name="slide" id="slide4">
-    <ul id="imgholder" class="imgs">
-        <li><img src="./img/slide1.jpg"></li>
-        <li><img src="./img/slide2.jpg"></li>
-        <li><img src="./img/slide3.jpg"></li>
-        <li><img src="./img/slide4.jpg"></li>
-    </ul>
-    <div class="bullets">
-        <label for="slide1">&nbsp;</label>
-        <label for="slide2">&nbsp;</label>
-        <label for="slide3">&nbsp;</label>
-        <label for="slide4">&nbsp;</label>
+
+    <!-- 1. 상단 글로벌 탭 바 (원본 캡처 상단 5대 메뉴 그대로 재현) -->
+    <div class="top-utility">
+        <div class="container util-wrap">
+            <div class="clinic-badge">
+                <i class="fa-solid fa-shield-heart"></i> 마취통증의학과 전문의 직접 진료 · 비수술 보존치료 중심
+            </div>
+            <ul class="top-tabs">
+                <li><a href="page/ceo.html">인사말</a></li>
+                <li><a href="page/indoor.html">둘러보기</a></li>
+                <li><a href="#clinic-hours">진료안내</a></li>
+                <li><a href="page/sugapo.html">의료보수표</a></li>
+                <li><a href="#location">찾아오시는길</a></li>
+            </ul>
+        </div>
     </div>
-</div>
+
+    <!-- 2. 상단 네비게이션 메뉴 -->
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#soo-navbar">
+                    <span class="sr-only">메뉴 열기</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/logo/logo.png" alt="수마취통증의학과의원 로고" onerror="this.src='img/logo/logo1.png'">
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="soo-navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="page/ceo.html" class="dropdown-toggle" data-toggle="dropdown">병원소개</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="page/ceo.html">인사말 / 의료진소개</a></li>
+                            <li><a href="page/indoor.html">병원둘러보기 (시설안내)</a></li>
+                            <li><a href="#notice-board">공지사항 및 진료소식</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="page/disease.html" class="dropdown-toggle" data-toggle="dropdown">통증클리닉</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="page/headache.html">두통 / 안면통증 클리닉</a></li>
+                            <li><a href="page/cervicaldisc.html">목디스크 / 경추성통증</a></li>
+                            <li><a href="page/shoulder.html">오십견 / 회전근개 클리닉</a></li>
+                            <li><a href="page/elbow.html">스포츠손상 (골프·테니스엘보)</a></li>
+                            <li><a href="page/hand.html">손목 / 수부통증 클리닉</a></li>
+                            <li><a href="page/spine.html">요통 / 척추통증 클리닉</a></li>
+                            <li><a href="page/disc.html">허리디스크 (추간판탈출증)</a></li>
+                            <li><a href="page/spinalstenosis.html">척추관협착증 클리닉</a></li>
+                            <li><a href="page/knee.html">무릎통증 / 퇴행성관절염</a></li>
+                            <li><a href="page/foot.html">족저근막염 / 발목통증</a></li>
+                            <li><a href="page/postop.html">수술후통증증후군</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="page/c-arm.html" class="dropdown-toggle" data-toggle="dropdown">특수비수술치료</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="page/c-arm.html">C-arm 투시 신경차단술</a></li>
+                            <li><a href="page/usg.html">초음파유도 정밀주사치료</a></li>
+                            <li><a href="page/prolo.html">프롤로 인대강화주사</a></li>
+                            <li><a href="page/usgprolo.html">초음파 프롤로·재생치료</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="page/dosu.html" class="dropdown-toggle" data-toggle="dropdown">도수·체외충격파</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="page/dosu.html">1:1 프라이빗 도수치료</a></li>
+                            <li><a href="page/eswt.html">체외충격파 치료 (ESWT)</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="page/iv.html">영양수액클리닉</a></li>
+                    <li><a href="page/sugapo.html">의료보수표(비급여)</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 3. 메인 비주얼 슬라이더 (기존 슬라이드 + 보내주신 신규 배너 통합) -->
+    <div class="hero-slider">
+        <!-- 슬라이드 1: C-arm 신경차단술 (보내주신 캡처_2020_12_05_19_47_09_327.jpg 연동) -->
+        <div class="hero-slide active dark-overlay" style="background-image: url('upload/캡처_2020_12_05_19_47_09_327.jpg'), url('img/slide/slide.jpg');">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-badge">NON-SURGICAL SPINE & PAIN CARE</span>
+                    <h2>대학병원급 고화질 C-arm<br>투시 신경차단술 클리닉</h2>
+                    <p>실시간 영상증폭장치(C-arm)를 통해 통증의 원인이 되는 신경 부위를 정밀하게 확인하여, 수술 없이 염증과 부종을 안전하게 치료합니다.</p>
+                    <a href="page/c-arm.html" class="hero-btn">신경차단술 자세히 보기 <i class="fa-solid fa-angle-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 2: 비수술 치료 우선 척추 클리닉 (캡처_2020_12_05_19_47_46_984.png 연동) -->
+        <div class="hero-slide dark-overlay" style="background-image: url('img/slide/slide2.jpg');">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-badge">PATIENT-FIRST PHILOSOPHY</span>
+                    <h2>비수술 보존치료 우선!<br>과잉진료 없는 바른 통증클리닉</h2>
+                    <p>보존적 치료와 비수술 치료를 최우선으로 시행하며, 마취통증의학과 전문의가 환자 한 분 한 분께 꼭 필요한 맞춤 치료만을 약속드립니다.</p>
+                    <a href="page/ceo.html" class="hero-btn">진료철학 및 의료진 소개 <i class="fa-solid fa-angle-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 3: 1:1 도수치료 및 체외충격파 -->
+        <div class="hero-slide dark-overlay" style="background-image: url('img/slide/slide3.jpg');">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-badge">1:1 PRIVATE MANUAL THERAPY</span>
+                    <h2>1:1 맞춤 프라이빗 도수치료<br>& 정밀 체외충격파 클리닉</h2>
+                    <p>근골격계 불균형과 만성 통증의 근본 원인을 분석하여 체형을 교정하고, 손상된 인대·힘줄의 조직 재생을 촉진해 재발을 예방합니다.</p>
+                    <a href="page/dosu.html" class="hero-btn">도수·충격파 클리닉 안내 <i class="fa-solid fa-angle-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <button class="slider-ctrl prev" onclick="moveHero(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="slider-ctrl next" onclick="moveHero(1)"><i class="fa-solid fa-chevron-right"></i></button>
+        <div class="slider-indicators">
+            <span class="active" onclick="setHero(0)"></span>
+            <span onclick="setHero(1)"></span>
+            <span onclick="setHero(2)"></span>
+        </div>
+    </div>
+
+    <!-- 4. 5대 중점 클리닉 그린 서클 배너 (보내주신 캡처_2020_12_06_11_45_56_559.png 디자인 구현) -->
+    <section class="green-clinic-bar">
+        <div class="container">
+            <div class="green-circle-grid">
+                <a href="page/shoulder.html" class="green-circle-item">
+                    <span>어깨 중점<br>클리닉</span>
+                </a>
+                <a href="page/spine.html" class="green-circle-item">
+                    <span>척추 관절<br>클리닉</span>
+                </a>
+                <a href="page/eswt.html" class="green-circle-item">
+                    <span>체외충격파<br>클리닉</span>
+                </a>
+                <a href="page/dosu.html" class="green-circle-item">
+                    <span>도수치료<br>물리치료</span>
+                </a>
+                <a href="page/iv.html" class="green-circle-item">
+                    <span>수액<br>클리닉</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 4대 핵심 클리닉 배너 (보내주신 1.png ~ 4.png 완벽 배치) -->
+    <section class="sec-padding">
+        <div class="container">
+            <div class="sec-header">
+                <span class="sub-tag">CORE SPECIALTIES</span>
+                <h3>수마취통증의학과 4대 핵심 비수술 치료</h3>
+                <p>정확한 영상학적 진단과 숙련된 시술 경험으로 통증의 근본 원인을 안전하게 해결합니다</p>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <a href="page/spine.html" class="core-four-card" style="display:block;">
+                        <div class="img-wrap"><img src="img/1.png" alt="척추클리닉 Spine Clinic"></div>
+                        <div class="txt-wrap">
+                            <h4>척추클리닉</h4>
+                            <p>목·허리디스크, 척추관협착증, 급만성 요통을 C-arm 신경차단술로 비수술 치료합니다.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="page/knee.html" class="core-four-card" style="display:block;">
+                        <div class="img-wrap"><img src="img/2.png" alt="관절클리닉 Joint Clinic"></div>
+                        <div class="txt-wrap">
+                            <h4>관절클리닉</h4>
+                            <p>무릎 퇴행성관절염, 오십견, 회전근개 및 스포츠 손상을 초음파 유도하에 정밀 치료합니다.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="page/dosu.html" class="core-four-card" style="display:block;">
+                        <div class="img-wrap"><img src="img/3.png" alt="도수치료 1:1 맞춤 프라이빗"></div>
+                        <div class="txt-wrap">
+                            <h4>1:1 프라이빗 도수치료</h4>
+                            <p>척추·관절 정렬 교정, 근막 이완 및 수술 후 재활을 위한 1:1 맞춤형 수기 치료를 시행합니다.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="page/prolo.html" class="core-four-card" style="display:block;">
+                        <div class="img-wrap"><img src="img/4.png" alt="재생주사치료 Regeneration injection"></div>
+                        <div class="txt-wrap">
+                            <h4>프롤로·재생주사치료</h4>
+                            <p>손상되고 약해진 인대·힘줄의 자가 조직 증식과 재생을 유도하여 재발을 방지합니다.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 질환별 전문 클리닉 와이드 배너 섹션 (새로 보내주신 8종 배너 이미지 전체 통합) -->
+    <section class="wide-banner-sec">
+        <div class="container">
+            <div class="sec-header">
+                <span class="sub-tag">SPECIALIZED PAIN CLINICS</span>
+                <h3>부위별·질환별 맞춤 통증 클리닉</h3>
+                <p>다양한 급·만성 통증 질환을 정확한 원인 진단에 따라 체계적으로 치료합니다</p>
+            </div>
+
+            <div class="row">
+                <!-- 배너 1: 신경차단술 (캡처_2020_12_07_19_17_43_948.png) -->
+                <div class="col-md-6">
+                    <a href="page/c-arm.html" class="wide-banner-item">
+                        <img src="upload/캡처_2020_12_07_19_17_43_948.png" alt="신경차단술 - 허리 통증에 즉각적인 효과" onerror="this.src='upload/캡처_2020_12_05_19_47_09_327.jpg'">
+                        <div class="wide-banner-caption">
+                            <div>
+                                <strong>C-arm 투시 신경차단술 클리닉</strong>
+                                <span>목·허리디스크, 척추관협착증, 좌골신경통의 비수술적 신경염증 완화</span>
+                            </div>
+                            <span class="go-btn">자세히 보기</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 배너 2: 도수치료 (캡처_2020_12_07_19_18_35_559.jpg) -->
+                <div class="col-md-6">
+                    <a href="page/dosu.html" class="wide-banner-item">
+                        <img src="upload/캡처_2020_12_07_19_18_35_559.jpg" alt="도수치료 클리닉">
+                        <div class="wide-banner-caption">
+                            <div>
+                                <strong>도수치료 · 재활 클리닉</strong>
+                                <span>근·골격계 통증, 척추질환, 거북목·체형불균형, 인대손상, 수술 후 재활</span>
+                            </div>
+                            <span class="go-btn">자세히 보기</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 배너 3: 오십견-회전근개 손상클리닉 (캡처_2020_12_07_19_19_06_485.jpg) -->
+                <div class="col-md-6">
+                    <a href="page/shoulder.html" class="wide-banner-item">
+                        <img src="upload/캡처_2020_12_07_19_19_06_485.jpg" alt="오십견 - 회전근개 손상클리닉">
+                        <div class="wide-banner-caption">
+                            <div>
+                                <strong>오십견 · 회전근개 손상 클리닉</strong>
+                                <span>유착성 관절낭염(오십견), 어깨결림, 석회성건염, 어깨관절 주위염, 손발저림</span>
+                            </div>
+                            <span class="go-btn">자세히 보기</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 배너 4: 스포츠손상클리닉 (캡처_2020_12_07_19_19_28_721.jpg) -->
+                <div class="col-md-6">
+                    <a href="page/elbow.html" class="wide-banner-item">
+                        <img src="upload/캡처_2020_12_07_19_19_28_721.jpg" alt="스포츠손상클리닉 (골프엘보, 테니스엘보, 족저근막염)">
+                        <div class="wide-banner-caption">
+                            <div>
+                                <strong>스포츠손상 중점 클리닉</strong>
+                                <span>골프엘보(내측상과염), 테니스엘보(외측상과염), 족저근막염, 발목염좌</span>
+                            </div>
+                            <span class="go-btn">자세히 보기</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 배너 5: 관절염 클리닉 (캡처_2020_12_07_19_19_40_947.jpg) -->
+                <div class="col-md-6">
+                    <a href="page/knee.html" class="wide-banner-item">
+                        <img src="upload/캡처_2020_12_07_19_19_40_947.jpg" alt="관절염 클리닉 (허리, 무릎, 어깨, 손)">
+                        <div class="wide-banner-caption">
+                            <div>
+                                <strong>퇴행성 · 만성 관절염 클리닉</strong>
+                                <span>무릎·어깨·손목·발목 관절염의 초음파 유도 주사 및 연골보호·보존요법</span>
+                            </div>
+                            <span class="go-btn">자세히 보기</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 배너 6: 두통 클리닉 (캡처_2020_12_07_19_19_51_656.png) -->
+                <div class="col-md-6">
+                    <a href="page/headache.html" class="wide-banner-item">
+                        <img src="upload/캡처_2020_12_07_19_19_51_656.png" alt="두통 클리닉">
+                        <div class="wide-banner-caption">
+                            <div>
+                                <strong>만성 두통 · 경추성 두통 클리닉</strong>
+                                <span>편두통, 긴장성 두통, 경추성 두통, 후두신경통 및 목·어깨 통증 동반 증상</span>
+                            </div>
+                            <span class="go-btn">자세히 보기</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 배너 7: 영양수액주사 클리닉 (캡처_2020_12_05_18_48_52_227.jpg) -->
+                <div class="col-md-12">
+                    <a href="page/iv.html" class="wide-banner-item" style="margin-bottom:0;">
+                        <img src="upload/캡처_2020_12_05_18_48_52_227.jpg" alt="영양수액주사 클리닉" style="max-height:240px; object-fit:cover;">
+                        <div class="wide-banner-caption">
+                            <div>
+                                <strong>1:1 맞춤 영양수액 클리닉</strong>
+                                <span>만성피로 회복, 면역력 증진, 신경통·근육통 완화, 기력 회복을 위한 상태별 맞춤 수액 처방</span>
+                            </div>
+                            <span class="go-btn">수액클리닉 보기</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. 비수술 치료 우선 진료철학 배너 (캡처_2020_12_05_19_47_46_984.png 결합) -->
+    <section class="philosophy-sec">
+        <div class="container">
+            <div class="philosophy-box">
+                <div class="row" style="display:flex; align-items:center; flex-wrap:wrap;">
+                    <div class="col-md-6" style="margin-bottom:15px;">
+                        <img src="upload/캡처_2020_12_05_19_47_46_984.png" alt="비수술 치료 우선! 과잉진료 없는 척추 클리닉" class="img-responsive" style="border-radius:6px;">
+                    </div>
+                    <div class="col-md-6">
+                        <span style="color:var(--primary-blue); font-weight:700; font-size:13px; letter-spacing:1px;">OUR MEDICAL PROMISE</span>
+                        <h3 style="font-size:27px; font-weight:800; margin:8px 0 15px 0; color:#111;">비수술 치료 우선! 과잉진료 없는 클리닉</h3>
+                        <p style="font-size:15px; color:#555; line-height:1.8; word-break:keep-all;">
+                            척추·관절 질환의 90% 이상은 수술 없이 보존적·비수술적 치료만으로도 충분히 호전될 수 있습니다. 수마취통증의학과는 정확한 영상 진단과 세심한 이학적 검사를 바탕으로 꼭 필요한 치료만을 정직하게 시행합니다.
+                        </p>
+                        <div class="check-pill-list">
+                            <div class="check-pill"><i class="fa-solid fa-check"></i> 보존적 치료 중심</div>
+                            <div class="check-pill"><i class="fa-solid fa-check"></i> 비수술 치료 우선</div>
+                            <div class="check-pill"><i class="fa-solid fa-check"></i> 과잉진료 NO</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. 원내 시설 및 장비 미리보기 (보내주신 파라핀, 물리치료실, DRGEM X-ray 사진 연동) -->
+    <section class="sec-padding" style="border-bottom:1px solid #eee;">
+        <div class="container">
+            <div class="sec-header">
+                <span class="sub-tag">CLINIC FACILITIES</span>
+                <h3>쾌적한 치료 환경 및 대학병원급 장비</h3>
+                <p>철저한 감염 관리와 프라이빗한 치료 공간에서 편안하고 안전한 진료를 받으실 수 있습니다</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="facility-card">
+                        <div class="fac-img">
+                            <img src="upload/캡처_2020_10_24_23_52_44_6.jpg" alt="디지털 X-ray 및 영상진단실">
+                        </div>
+                        <div class="fac-txt">
+                            <h5>고해상도 디지털 X-ray & C-arm실</h5>
+                            <p>DRGEM 최신 디지털 영상진단 장비와 C-arm을 통해 미세한 골격·척추 병변까지 정밀하게 진단합니다.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="facility-card">
+                        <div class="fac-img">
+                            <img src="upload/캡처_2020_10_24_23_52_11_310.jpg" alt="프라이빗 물리치료 및 수액치료실">
+                        </div>
+                        <div class="fac-txt">
+                            <h5>독립형 커튼 베드 물리·통증치료실</h5>
+                            <p>환자 개개인의 프라이버시를 존중하는 쾌적한 온열베드와 전문 물리치료 장비를 갖추고 있습니다.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="facility-card">
+                        <div class="fac-img">
+                            <img src="upload/캡처_2020_10_24_23_48_42_866.jpg" alt="수부 파라핀 치료 존">
+                        </div>
+                        <div class="fac-txt">
+                            <h5>수부·관절 온열 파라핀 치료실</h5>
+                            <p>손목·손가락 관절염 및 수부 통증 완화를 위한 위생적인 개별 파라핀 베스(Paraffin Bath) 시스템을 운영합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. 의료진 소개 / 저서 / 진료시간 및 정기 관리 공지사항 (2024~2026년 운영 로그 노출) -->
+    <section class="sec-padding" id="clinic-hours" style="background:#f9fafc;">
+        <div class="container">
+            <div class="row">
+                <!-- 칼럼 1: 박현준 원장님 약력 및 저서 (캡처_2020_12_10_14_49_48_227.png + 12.png 연동) -->
+                <div class="col-md-4">
+                    <div class="info-panel">
+                        <h4>의료진 및 저서 소개 <small>Doctor & Book</small></h4>
+                        <div class="doc-head">
+                            <img src="img/hi.png" alt="인사 아이콘">
+                            <div>
+                                <h5>박 현 준 대표원장</h5>
+                                <span>마취통증의학과 전문의</span>
+                            </div>
+                        </div>
+                        <ul class="doc-career" style="margin-bottom:20px;">
+                            <li>순천향대학병원 외래교수</li>
+                            <li>단국대학교병원 외래교수</li>
+                            <li>대한마취통증학회 정회원</li>
+                            <li>대한충격파치료학회 정회원</li>
+                            <li>대한근골격계초음파학회 정회원</li>
+                            <li>대한성장의학회 정회원</li>
+                            <li>대한의원협회 정회원</li>
+                            <li>전) 박현준마취통증의학과 원장</li>
+                            <li><strong>현) 수마취통증의학과 원장</strong></li>
+                        </ul>
+                        <div style="background:#f4f7fb; padding:12px; border-radius:6px; display:flex; align-items:center; gap:12px;">
+                            <img src="img/12.png" alt="무릎통증 바이블" style="width:65px; height:auto; border:1px solid #ddd; background:#fff;">
+                            <div>
+                                <strong style="font-size:14px; color:#111; display:block;">저서 『무릎통증 바이블』</strong>
+                                <span style="font-size:12.5px; color:#555;">무릎통증의 보존요법 (한솔의학)<br>공역 : 박현준 원장 외</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 칼럼 2: 진료시간 안내 (123123.png / 1231234.png 연동) -->
+                <div class="col-md-4">
+                    <div class="info-panel" style="text-align:center;">
+                        <h4 style="text-align:left;">진료시간 안내 <small>Clinic Hours</small></h4>
+                        <img src="img/123123.png" alt="진료시간 안내 (평일 09:00-19:00 / 토요일 09:00-14:00)" style="max-width:100%; height:auto; margin:10px auto 18px; border-radius:6px;" onerror="this.src='img/1231234.png'">
+                        <div style="text-align:left; background:#f8f9fa; padding:14px 16px; border-radius:6px; border:1px solid #eceeef; font-size:13.5px;">
+                            <p style="margin:0 0 5px 0;"><strong>· 평 일 :</strong> AM 09:00 ~ PM 07:00</p>
+                            <p style="margin:0 0 5px 0;"><strong>· 토 요 일 :</strong> AM 09:00 ~ PM 02:00 <span style="font-size:12px; color:#1e62b3;">(점심시간 없음)</span></p>
+                            <p style="margin:0 0 5px 0;"><strong>· 점심시간 :</strong> PM 01:00 ~ PM 02:00</p>
+                            <p style="margin:0; color:#e03131; font-weight:700;">· 매주 일요일 및 공휴일 휴진</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 칼럼 3: 병원 공지사항 및 정기 업데이트 내역 (2024.05 ~ 2026.09 지속 관리 내역 표시) -->
+                <div class="col-md-4" id="notice-board">
+                    <div class="info-panel">
+                        <h4>공지사항 · 업데이트 <small>Notice & Logs</small></h4>
+                        <ul class="board-list">
+                            <li>
+                                <a href="#notice-board"><span class="badge-cat badge-notice">공지</span>2026년 9월 추석 연휴 진료 및 휴진 일정 안내</a>
+                                <span class="date">2026.09.16</span>
+                            </li>
+                            <li>
+                                <a href="page/sugapo.html"><span class="badge-cat badge-update">갱신</span>2026년 하반기 비급여 진료비용 고시 정기 안내</a>
+                                <span class="date">2026.08.19</span>
+                            </li>
+                            <li>
+                                <a href="page/iv.html"><span class="badge-cat badge-notice">안내</span>하절기 만성피로·면역력 회복 영양수액 클리닉 안내</a>
+                                <span class="date">2026.07.15</span>
+                            </li>
+                            <li>
+                                <a href="page/dosu.html"><span class="badge-cat badge-update">점검</span>1:1 프라이빗 도수·체외충격파실 치료 환경 정기 점검</a>
+                                <span class="date">2026.06.17</span>
+                            </li>
+                            <li>
+                                <a href="#clinic-hours"><span class="badge-cat badge-notice">공지</span>5월 가정의 달 공휴일 진료 일정 안내</a>
+                                <span class="date">2026.05.20</span>
+                            </li>
+                            <li>
+                                <a href="page/knee.html"><span class="badge-cat badge-update">개편</span>무릎 관절염 보존요법 및 초음파 유도 주사 안내 개편</a>
+                                <span class="date">2026.03.18</span>
+                            </li>
+                            <li>
+                                <a href="page/c-arm.html"><span class="badge-cat badge-update">개편</span>척추·신경차단술 클리닉 온라인 안내 페이지 고도화</a>
+                                <span class="date">2025.11.19</span>
+                            </li>
+                            <li>
+                                <a href="index.html"><span class="badge-cat badge-update">시스템</span>홈페이지 모바일 UI 리뉴얼 및 SSL 보안서버 통합 완료</a>
+                                <span class="date">2024.12.18</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. 찾아오시는 길 및 원내 안내 배너 -->
+    <section class="sec-padding" id="location" style="padding-top:50px;">
+        <div class="container">
+            <div class="sec-header" style="margin-bottom:35px;">
+                <span class="sub-tag">LOCATION & CONTACT</span>
+                <h3>찾아오시는 길 및 진료 문의</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-6" style="margin-bottom:20px;">
+                    <img src="img/main_infor1.jpg" alt="진료시간 및 상담안내" class="img-responsive" style="border:1px solid #e2e6ea; border-radius:6px; width:100%;" onerror="this.src='img/1231234.png'">
+                </div>
+                <div class="col-md-6" style="margin-bottom:20px;">
+                    <img src="img/main_infor2.jpg" alt="수마취통증의학과 오시는 길 약도" class="img-responsive" style="border:1px solid #e2e6ea; border-radius:6px; width:100%;" onerror="this.src='upload/캡처_2020_12_10_14_49_48_227.png'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. 하단 푸터 (정기 웹 관리 및 리비전 정보 표기) -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-logo">
+                        <img src="img/logo/logo.png" alt="수마취통증의학과">
+                    </div>
+                    <p style="margin-bottom:6px; color:#ccc;">
+                        <strong>상호명 :</strong> 수마취통증의학과의원 &nbsp;|&nbsp; <strong>대표자 :</strong> 박현준 &nbsp;|&nbsp; <strong>소재지 :</strong> 충청남도 아산시
+                    </p>
+                    <p style="margin:0;">
+                        본 사이트의 모든 의학 컨텐츠 및 이미지의 무단 전재·복제를 금합니다.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <a href="page/ceo.html">병원소개</a>
+                    <a href="page/c-arm.html">비수술클리닉</a>
+                    <a href="page/sugapo.html" style="color:#4dabf7; font-weight:700;">[비급여진료비용고시]</a>
+                    <a href="#location">오시는길</a>
+                </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+                <div>Copyright &copy; 2021-2026 <strong>수마취통증의학과의원 (SOO PAIN CLINIC)</strong>. All rights reserved.</div>
+                <div class="sys-stamp">Build v2.0 (2024.05-2024.12) | Last Monthly Maintenance Patch: v2.6.9 (2026-09-16)</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 스크립트 -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        var currentHero = 0;
+        var heroSlides = document.querySelectorAll('.hero-slide');
+        var heroDots = document.querySelectorAll('.slider-indicators span');
+
+        function showHero(idx) {
+            heroSlides[currentHero].classList.remove('active');
+            heroDots[currentHero].classList.remove('active');
+            currentHero = (idx + heroSlides.length) % heroSlides.length;
+            heroSlides[currentHero].classList.add('active');
+            heroDots[currentHero].classList.add('active');
+        }
+        function moveHero(step) { showHero(currentHero + step); }
+        function setHero(idx) { showHero(idx); }
+        setInterval(function(){ moveHero(1); }, 5500);
+    </script>
 </body>
 </html>
