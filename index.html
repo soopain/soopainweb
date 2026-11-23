@@ -753,44 +753,12 @@
         </div>
     </section>
 
-    <!-- 9. 의료진 소개 / 진료시간 / 공지사항 -->
+    <!-- 9. 진료시간 및 공지사항 (대문 의료진 소개 카드 삭제 -> 2단 구성) -->
     <section class="sec-padding" id="clinic-hours" style="background:#f9fafc;">
         <div class="container">
             <div class="row">
-                <!-- 칼럼 1: 박현준 원장님 약력 및 저서 -->
-                <div class="col-md-4">
-                    <div class="info-panel">
-                        <h4>의료진 및 저서 소개 <small>Doctor & Book</small></h4>
-                        <div class="doc-head">
-                            <img src="로고1.jpg" alt="수마취통증의학과 로고" onerror="this.src='img/hi.png'">
-                            <div>
-                                <h5>박 현 준 대표원장</h5>
-                                <span>마취통증의학과 전문의</span>
-                            </div>
-                        </div>
-                        <ul class="doc-career" style="margin-bottom:20px;">
-                            <li>순천향대학병원 외래교수</li>
-                            <li>단국대학교병원 외래교수</li>
-                            <li>대한마취통증학회 정회원</li>
-                            <li>대한충격파치료학회 정회원</li>
-                            <li>대한근골격계초음파학회 정회원</li>
-                            <li>대한성장의학회 정회원</li>
-                            <li>대한의원협회 정회원</li>
-                            <li>전) 박현준마취통증의학과 원장</li>
-                            <li><strong>현) 수마취통증의학과 원장</strong></li>
-                        </ul>
-                        <div style="background:#f4f7fb; padding:12px; border-radius:6px; display:flex; align-items:center; gap:12px;">
-                            <img src="img/12.png" alt="무릎통증 바이블" style="width:65px; height:auto; border:1px solid #ddd; background:#fff;">
-                            <div>
-                                <strong style="font-size:14px; color:#111; display:block;">저서 『무릎통증 바이블』</strong>
-                                <span style="font-size:12.5px; color:#555;">무릎통증의 보존요법 (한솔의학)<br>공역 : 박현준 원장 외</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 칼럼 2: 진료시간 안내 (토요일 PM 02:30 / 전화번호 041-427-7711 통일) -->
-                <div class="col-md-4">
+                <!-- 좌측: 진료시간 안내 -->
+                <div class="col-md-6">
                     <div class="info-panel">
                         <h4>진료시간 안내 <small>Clinic Hours</small></h4>
                         <table class="hours-table">
@@ -821,8 +789,8 @@
                     </div>
                 </div>
 
-                <!-- 칼럼 3: 병원 공지사항 및 정기 업데이트 내역 -->
-                <div class="col-md-4" id="notice-board">
+                <!-- 우측: 병원 공지사항 및 정기 업데이트 내역 -->
+                <div class="col-md-6" id="notice-board">
                     <div class="info-panel">
                         <h4>공지사항 · 업데이트 <small>Notice & Logs</small></h4>
                         <ul class="board-list">
