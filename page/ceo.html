@@ -1,1 +1,512 @@
-<?require_once rtrim(getenv("DOCUMENT_ROOT"),"/")."/header.php"?><meta name="keywords" content=""><img src="/skin/upload/KakaoTalk_20210217_203211481_1.jpg" title="KakaoTalk_20210217_203211481_1.jpg" class="img-responsive" style="display:inline;"><br style="clear:both;"><br style="clear:both;"><br style="clear:both;"><br style="clear:both;"><br style="clear:both;"><p>&nbsp;</p><?require_once $footer?>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>병원소개 및 의료진 | 수마취통증의학과</title>
+    <link rel="shortcut icon" href="../로고1.jpg">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --navy-dark: #1d3566;
+            --blue-ribbon: #1d63b8;
+            --green-ribbon: #52a648;
+            --blue-accent: #0e76bc;
+            --green-accent: #2ca94f;
+        }
+
+        body { font-family: 'Noto Sans KR', sans-serif; color: #333; background: #f7f9fb; margin: 0; padding: 0; }
+        a, a:hover, a:focus { text-decoration: none; }
+
+        /* 상단 헤더 (비급여 페이지와 동일 디자인 통일) */
+        .sub-header { border-bottom: 1px solid #e5e8eb; background: #fff; position: sticky; top: 0; z-index: 999; }
+        .header-wrap { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .brand-logo { display: flex; align-items: center; gap: 11px; }
+        .brand-logo img { height: 46px; width: auto; border-radius: 6px; }
+        .brand-logo .title-grp { display: flex; flex-direction: column; }
+        .brand-logo .kor { font-size: 21px; font-weight: 900; color: #111; letter-spacing: -0.8px; line-height: 1.15; }
+        .brand-logo .kor em { font-style: normal; color: var(--blue-accent); }
+        .brand-logo .eng { font-size: 10.5px; font-weight: 700; color: var(--green-accent); letter-spacing: 1.1px; margin-top: 2px; }
+
+        .nav-menu { display: flex; gap: 32px; margin: 0; padding: 0; list-style: none; }
+        .nav-menu li a { font-size: 16px; font-weight: 700; color: #222; padding: 28px 4px; display: inline-block; position: relative; }
+        .nav-menu li a:hover, .nav-menu li a.active { color: var(--navy-dark); }
+        .nav-menu li a.active::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--navy-dark); }
+
+        /* 본문 2단 브로슈어 래퍼 */
+        .intro-wrapper { max-width: 1160px; margin: 40px auto 75px; padding: 0 15px; }
+        .brochure-card {
+            background: #fff;
+            border: 1px solid #e1e6ec;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 28px rgba(27, 54, 93, 0.06);
+        }
+        .brochure-grid {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .brochure-left {
+            width: 50%;
+            border-right: 1px solid #e6ebf0;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+        .brochure-right {
+            width: 50%;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 좌측 상단 타이틀 배너 */
+        .left-hero-banner {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e4ebf2 100%);
+            padding: 46px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            border-bottom: 1px solid #dce3ea;
+        }
+        .left-hero-banner img {
+            height: 64px;
+            width: auto;
+            border-radius: 8px;
+        }
+        .left-hero-title h2 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 900;
+            color: #111;
+            letter-spacing: -1px;
+            line-height: 1.15;
+        }
+        .left-hero-title p {
+            margin: 4px 0 0 0;
+            font-size: 13px;
+            font-weight: 700;
+            color: #4a5c6d;
+            letter-spacing: 1.5px;
+        }
+
+        /* 좌측 진료안내 리본 블록 */
+        .treat-list-wrap {
+            padding: 24px 0 28px;
+            flex: 1;
+        }
+        .treat-block {
+            margin-bottom: 24px;
+        }
+        .treat-block:last-child {
+            margin-bottom: 0;
+        }
+        .ribbon-bar {
+            display: flex;
+            align-items: center;
+            background: #eceff2;
+            height: 36px;
+            margin-bottom: 14px;
+        }
+        .ribbon-tag {
+            padding: 0 18px 0 24px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #555;
+            white-space: nowrap;
+        }
+        .ribbon-title {
+            position: relative;
+            height: 36px;
+            line-height: 36px;
+            padding: 0 26px 0 22px;
+            color: #fff;
+            font-size: 16.5px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+        }
+        .ribbon-blue { background-color: var(--blue-ribbon); }
+        .ribbon-green { background-color: var(--green-ribbon); }
+
+        .treat-body {
+            display: flex;
+            gap: 18px;
+            padding: 0 26px;
+            align-items: flex-start;
+        }
+        .treat-thumb {
+            width: 130px;
+            height: 92px;
+            border-radius: 6px;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1px solid #e4e8ec;
+            background: #f4f7fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blue-accent);
+            font-size: 28px;
+        }
+        .treat-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .treat-desc h4 {
+            margin: 0 0 6px 0;
+            font-size: 14.5px;
+            font-weight: 800;
+            color: #1b365d;
+            line-height: 1.4;
+        }
+        .treat-desc h4 span {
+            color: var(--blue-ribbon);
+        }
+        .treat-desc p {
+            margin: 0;
+            font-size: 13.5px;
+            color: #555;
+            line-height: 1.65;
+            word-break: keep-all;
+        }
+
+        /* 우측 상단 원장님 프로필 배너 */
+        .doctor-hero-banner {
+            background: linear-gradient(135deg, #8b8d92 0%, #6f7278 100%);
+            min-height: 310px;
+            padding: 36px 34px 0 38px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .doctor-hero-text {
+            padding-bottom: 42px;
+            z-index: 2;
+        }
+        .doctor-hero-text .clinic-sub {
+            font-size: 17px;
+            font-weight: 700;
+            color: #f1f3f5;
+            margin-bottom: 2px;
+            letter-spacing: -0.3px;
+        }
+        .doctor-hero-text .clinic-eng {
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 16px;
+        }
+        .doctor-hero-text .doc-name {
+            font-size: 40px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin: 0 0 6px 0;
+            line-height: 1.1;
+        }
+        .doctor-hero-text .doc-role {
+            font-size: 19px;
+            font-weight: 700;
+            color: #e9ecef;
+        }
+        .doctor-portrait {
+            width: 240px;
+            max-width: 52%;
+            align-self: flex-end;
+            text-align: right;
+            z-index: 2;
+        }
+        .doctor-portrait img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px 6px 0 0;
+        }
+
+        /* 우측 하단 약력 및 저서 */
+        .doctor-career-body {
+            padding: 34px 38px 38px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .career-watermark {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 27px;
+            letter-spacing: 3px;
+            color: #d4d8dd;
+            text-align: center;
+            margin-bottom: 26px;
+            font-weight: 400;
+        }
+        .career-book-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .career-ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 14.5px;
+            color: #222;
+            font-weight: 700;
+            line-height: 2.0;
+        }
+        .career-ul li::before {
+            content: '· ';
+            color: var(--navy-dark);
+            font-weight: 900;
+        }
+        .book-thumb-box {
+            width: 135px;
+            flex-shrink: 0;
+            text-align: center;
+        }
+        .book-thumb-box img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #e2e6ec;
+            border-radius: 4px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+        }
+        .book-caption-line {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px dashed #e2e6ec;
+            font-size: 14.5px;
+            font-weight: 700;
+            color: #222;
+        }
+        .book-caption-line::before {
+            content: '· ';
+            color: var(--navy-dark);
+        }
+
+        /* 우측 플로팅 퀵바 */
+        .floating-quick { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); z-index: 990; background: #fff; border: 1px solid #d0d7e2; border-radius: 6px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.08); width: 76px; }
+        .floating-quick a { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 13px 6px; border-bottom: 1px solid #e8ecf2; color: #333; font-size: 11.5px; font-weight: 600; transition: 0.2s; }
+        .floating-quick a:hover { background: #f2f6fc; color: var(--navy-dark); }
+        .floating-quick a i { font-size: 19px; color: #4a7ec7; margin-bottom: 5px; }
+        .floating-quick a.top-btn { background: #5a94e6; color: #fff; border-bottom: none; padding: 10px 6px; }
+        .floating-quick a.top-btn i { color: #fff; font-size: 12px; margin-bottom: 2px; }
+
+        /* 푸터 */
+        footer { background: #1e2229; color: #9aa0a6; padding: 42px 0; font-size: 13px; border-top: 3px solid var(--navy-dark); }
+        .footer-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+
+        @media (max-width: 991px) {
+            .brochure-left, .brochure-right { width: 100%; border-right: none; }
+            .brochure-left { border-bottom: 1px solid #e6ebf0; }
+            .floating-quick { display: none; }
+        }
+        @media (max-width: 767px) {
+            .nav-menu { display: none; }
+            .treat-body { flex-direction: column; }
+            .treat-thumb { width: 100%; height: 150px; }
+            .doctor-hero-banner { padding: 28px 20px 0; min-height: 240px; }
+            .doctor-hero-text .doc-name { font-size: 32px; }
+            .doctor-career-body { padding: 24px 20px; }
+            .career-book-flex { flex-direction: column; }
+            .book-thumb-box { margin-top: 15px; }
+        }
+    </style>
+</head>
+<body id="top">
+
+    <!-- 상단 헤더 -->
+    <header class="sub-header">
+        <div class="container header-wrap">
+            <a href="../index.html" class="brand-logo">
+                <img src="../로고1.jpg" alt="수마취통증의학과 로고" onerror="this.onerror=null; this.src='../img/logo/로고1.jpg';">
+                <div class="title-grp">
+                    <span class="kor"><em>수</em>마취통증의학과</span>
+                    <span class="eng">SOO PAIN CLINIC</span>
+                </div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="ceo.html" class="active">병원소개</a></li>
+                <li><a href="disease.html">통증클리닉</a></li>
+                <li><a href="c-arm.html">특수비수술치료</a></li>
+                <li><a href="eswt.html">체외충격파·물리치료</a></li>
+                <li><a href="sugapo.html">비급여안내</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 메인 2단 병원소개 브로슈어 -->
+    <div class="intro-wrapper">
+        <div class="brochure-card">
+            <div class="brochure-grid">
+
+                <!-- 좌측: 병원 로고 & 핵심 진료안내 (도수치료 제외) -->
+                <div class="brochure-left">
+                    <div class="left-hero-banner">
+                        <img src="../로고1.jpg" alt="수마취통증의학과 심볼" onerror="this.onerror=null; this.src='../img/logo/로고1.jpg';">
+                        <div class="left-hero-title">
+                            <h2>수마취통증의학과</h2>
+                            <p>SOO ANESTHESIOLOGY &amp; PAIN MEDICINE</p>
+                        </div>
+                    </div>
+
+                    <div class="treat-list-wrap">
+                        <!-- 1. 영상장치 유도하 신경차단술 -->
+                        <div class="treat-block">
+                            <div class="ribbon-bar">
+                                <span class="ribbon-tag">진료안내</span>
+                                <span class="ribbon-title ribbon-blue">영상장치 유도하 신경차단술</span>
+                            </div>
+                            <div class="treat-body">
+                                <div class="treat-thumb">
+                                    <img src="../img/slide/slide1_pain.jpg" alt="디지털 C-arm 신경차단술" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fa-solid fa-x-ray\'></i>';">
+                                </div>
+                                <div class="treat-desc">
+                                    <h4>저희 병원에서는 정확한 진단을 위해<br><span>영상진단의료기기 디지털 C-Arm</span>을 사용합니다.</h4>
+                                    <p>목, 허리디스크, 척추관협착증 등의 질환이 있을 경우 신경이 압박되어 통증이 발생합니다. 신경의 염증과 주위 근육조직의 통증을 줄이기 위해서 영상장치를 사용하여 압박된 신경을 정확하게 찾아내어 신경차단 주사치료를 시행합니다.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. 인대강화(프롤로 주사) & DNA 주사 -->
+                        <div class="treat-block">
+                            <div class="ribbon-bar">
+                                <span class="ribbon-tag">진료안내</span>
+                                <span class="ribbon-title ribbon-green">인대강화(프롤로 주사) &amp; DNA 주사</span>
+                            </div>
+                            <div class="treat-body">
+                                <div class="treat-thumb">
+                                    <img src="../img/4.png" alt="인대강화 프롤로 및 DNA 주사" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fa-solid fa-syringe\'></i>';">
+                                </div>
+                                <div class="treat-desc">
+                                    <p>손상된 인대, 힘줄에 약물을 주사하여 새로운 세포증식을 촉진하고 약해진 인대와 관절을 튼튼하게 강화하는 근본적인 비수술 재생 치료법입니다.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. 초음파 유도하 정밀 주사치료 -->
+                        <div class="treat-block">
+                            <div class="ribbon-bar">
+                                <span class="ribbon-tag">진료안내</span>
+                                <span class="ribbon-title ribbon-blue">초음파 유도하 정밀 주사치료</span>
+                            </div>
+                            <div class="treat-body">
+                                <div class="treat-thumb">
+                                    <img src="../img/slide/slide2_pain.jpg" alt="고해상도 초음파 유도 주사치료" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fa-solid fa-laptop-medical\'></i>';">
+                                </div>
+                                <div class="treat-desc">
+                                    <p>방사선 노출 걱정 없는 고해상도 근골격계 초음파를 통해 근육, 인대, 신경 및 관절 병변을 실시간으로 확인하며 안전하고 정확하게 약물을 주입합니다.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. 체외충격파 -->
+                        <div class="treat-block">
+                            <div class="ribbon-bar">
+                                <span class="ribbon-tag">진료안내</span>
+                                <span class="ribbon-title ribbon-green">체외충격파 (ESWT)</span>
+                            </div>
+                            <div class="treat-body">
+                                <div class="treat-thumb">
+                                    <img src="../img/slide/slide3_pain.jpg" alt="체외충격파 치료" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fa-solid fa-wave-square\'></i>';">
+                                </div>
+                                <div class="treat-desc">
+                                    <p>통증과 염증이 있는 인대, 힘줄 부위에 충격파의 기계적 에너지를 전달하여 손상된 부위의 혈액공급을 증가시켜 염증 및 통증을 감소시키고, 조직의 세포 재생과 회복력이 증가되면서 통증이 완화됩니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 우측: 박현준 원장님 프로필 + 약력 + 저서 -->
+                <div class="brochure-right">
+                    <div class="doctor-hero-banner">
+                        <div class="doctor-hero-text">
+                            <div class="clinic-sub">수마취통증의학과</div>
+                            <div class="clinic-eng">SOO PAIN MEDICINE</div>
+                            <h1 class="doc-name">박현준</h1>
+                            <div class="doc-role">대표원장</div>
+                        </div>
+                        <div class="doctor-portrait">
+                            <!-- 원장님 사진을 img/doctor.jpg 로 저장하면 자동 표시됩니다 -->
+                            <img src="../img/doctor.jpg" alt="박현준 원장" onerror="this.style.display='none';">
+                        </div>
+                    </div>
+
+                    <div class="doctor-career-body">
+                        <div>
+                            <div class="career-watermark">SOO PAIN MEDICINE</div>
+                            <div class="career-book-flex">
+                                <ul class="career-ul">
+                                    <li>순천향의과대학 졸업</li>
+                                    <li>순천향대학병원 전공의</li>
+                                    <li>마취통증의학과 전문의</li>
+                                    <li>순천향대학병원 외래교수</li>
+                                    <li>대한마취통증학회 정회원</li>
+                                    <li>대한충격파치료학회 정회원</li>
+                                    <li>대한근골격계초음파학회 정회원</li>
+                                    <li>대한성장의학회 정회원</li>
+                                    <li>대한의원협회 정회원</li>
+                                    <li>전) 박현준마취통증의학과 원장</li>
+                                    <li style="color:var(--blue-accent);">현) 수마취통증의학과의원 원장</li>
+                                </ul>
+                                <div class="book-thumb-box">
+                                    <img src="../img/12.png" alt="무릎통증 바이블" onerror="this.onerror=null; this.src='../upload/저서.png';">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="book-caption-line">
+                            저서 : 무릎통증 바이블, 무릎통증의 보존요법(한솔출판사)
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 우측 플로팅 퀵 메뉴 -->
+    <div class="floating-quick">
+        <a href="tel:041-427-7711">
+            <i class="fa-solid fa-phone-volume"></i>
+            전화상담
+        </a>
+        <a href="../index.html#location">
+            <i class="fa-solid fa-location-dot"></i>
+            오시는길
+        </a>
+        <a href="../index.html">
+            <i class="fa-solid fa-house"></i>
+            메인홈
+        </a>
+        <a href="#top" class="top-btn">
+            <i class="fa-solid fa-caret-up"></i>
+            TOP
+        </a>
+    </div>
+
+    <!-- 하단 푸터 -->
+    <footer>
+        <div class="container footer-flex">
+            <div>
+                <strong style="color:#fff;">수마취통증의학과</strong> &nbsp;|&nbsp; 대표원장 : 박현준 &nbsp;|&nbsp; 전화 : 041-427-7711 &nbsp;|&nbsp; 충남 아산시 배방읍 배방로14번길 9 J,S 메디컬 2층
+            </div>
+            <div>
+                Copyright &copy; 2021-2026 수마취통증의학과. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
