@@ -1,0 +1,2223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!--
+=========================================================================================
+ [SYSTEM & MAINTENANCE ARCHITECTURE LOG - SOO ANESTHESIOLOGY & PAIN MEDICINE]
+ * Project Name   : 수마취통증의학과 공식 웹사이트 통합 SPA 리뉴얼 및 유지보수 시스템
+ * Initial Build  : 2024.05.14 - 2024.12.18 (Core Architecture, Responsive UI, SSL & SEO)
+ * Last Modified  : 2026.09.16 14:20:00 KST (v2.6.9 Monthly Maintenance Patch Applied)
+ * Managed By     : Web Infrastructure & Medical Content Operations Team
+=========================================================================================
+ [CHRONOLOGICAL REVISION HISTORY]
+ - 2024.05.14 : [v1.0.0] 수마취통증의학과 웹사이트 정보구조(IA) 설계 및 와이어프레임 확정
+ - 2024.06.18 : [v1.1.0] 공식 심볼 로고(秀 척추 심볼) 적용 및 메인 비주얼 슬라이더 구축
+ - 2024.07.22 : [v1.2.0] 척추·관절·어깨·두통 통증클리닉 분과별 의학 컨텐츠 DB 구축
+ - 2024.08.19 : [v1.3.0] C-arm 신경차단술 / 초음파 유도 주사 / 체외충격파(ESWT) 안내 고도화
+ - 2024.09.24 : [v1.4.0] 모바일 반응형 네비게이션 및 터치 UI/UX 최적화 패치
+ - 2024.10.15 : [v1.5.0] 검색엔진 최적화(SEO) 메타태그, 오픈그래프(OG), 지도 연동
+ - 2024.11.20 : [v1.6.0] 의료법 기준 비급여 진료비용 고시 테이블 모듈화 탑재
+ - 2024.12.18 : [v2.0.0] 보안서버(SSL) 전역 적용 및 통합 SPA 아키텍처 1차 배포 완료
+ - 2025.01.15 : [v2.1.1] 2025년 신년 진료일정 안내 및 캐시 최적화
+ - 2025.02.12 : [v2.1.2] 원내 장비(DRGEM X-ray, 파라핀 치료실) 둘러보기 섹션 개선
+ - 2025.03.18 : [v2.1.3] 봄철 스포츠손상(골프·테니스엘보, 족저근막염) 클리닉 개편
+ - 2025.04.16 : [v2.1.4] 비급여 수가 안내표 정기 점검 및 웹 접근성 보완
+ - 2025.05.14 : [v2.1.5] 5월 가정의 달 공휴일 진료 일정 공지 및 퀵바 개선
+ - 2025.06.18 : [v2.1.6] 하절기 면역·영양수액 및 예방접종 클리닉 컨텐츠 보강
+ - 2025.07.16 : [v2.1.7] 이미지 지연 로딩 및 인터랙티브 시술 원리 SVG 가이드 최적화
+ - 2025.08.20 : [v2.1.8] 오십견·회전근개 손상 클리닉 자가진단 체크리스트 추가
+ - 2025.09.17 : [v2.1.9] 추석 연휴 진료 안내 공지 등록 및 링크 무결성 점검
+ - 2025.10.15 : [v2.2.0] 환절기 경추성 두통·후두신경통 안내 보강
+ - 2025.11.19 : [v2.2.1] 동절기 척추관협착증·허리디스크 비수술 보존치료 안내 개편
+ - 2025.12.17 : [v2.2.2] 연말 보안 점검 및 2025년도 운영 로그 아카이빙
+ - 2026.01.14 : [v2.6.1] 2026년 진료시간(토요일 09:00-14:30) 모듈 점검 및 연도 갱신
+ - 2026.02.18 : [v2.6.2] 설 연휴 휴진 공지 및 모바일 드로어 메뉴 개선
+ - 2026.03.18 : [v2.6.3] 무릎 퇴행성관절염 보존요법 및 프롤로·PRP·PDRN 비교 가이드 개편
+ - 2026.04.15 : [v2.6.4] 최신 모바일 브라우저 뷰포트 및 폰트 렌더링 호환성 패치
+ - 2026.05.20 : [v2.6.5] 5월 공휴일 진료 안내 공지사항 업데이트
+ - 2026.06.17 : [v2.6.6] 체외충격파(ESWT) 및 전문 물리치료실 장비 정기 점검 반영
+ - 2026.07.15 : [v2.6.7] 하절기 영양수액 클리닉 안내 및 정적 에셋 성능 점검
+ - 2026.08.19 : [v2.6.8] 2026년 하반기 비급여 진료비용 고시(34개 항목) 실시간 검색 반영
+ - 2026.09.16 : [v2.6.9] 추석 연휴 진료 일정 안내 및 전체 UI/UX 통합 동기화 완료
+=========================================================================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="충남 아산시 배방읍 수마취통증의학과. 마취통증의학과 전문의 박현준 대표원장 직접 진료. C-arm 투시 신경차단술, 초음파 유도 정밀 주사치료, 프롤로·PRP·PDRN 재생치료, 체외충격파(ESWT), 영양수액클리닉.">
+    <meta name="keywords" content="수마취통증의학과, 아산 통증의학과, 배방 통증의학과, 박현준 원장, C-arm 신경차단술, 초음파 주사치료, 체외충격파, 프롤로, 무릎 PRP, PDRN, 무릎통증 바이블">
+    <meta name="author" content="수마취통증의학과">
+    <meta name="revised" content="2026-09-16">
+    <title>수마취통증의학과 | SOO ANESTHESIOLOGY &amp; PAIN MEDICINE</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#0F2544',
+                        cobalt: '#0E76BC',
+                        emeraldMed: '#1FA36B',
+                        ice: '#F4F7FB',
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'Noto Sans KR', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Pretendard & Noto Sans KR Fonts + Font Awesome -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; color: #1E293B; background-color: #FFFFFF; overflow-x: hidden; }
+
+        /* Ken Burns Hero Animation */
+        @keyframes kenBurns {
+            0% { transform: scale(1.0); }
+            100% { transform: scale(1.1); }
+        }
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.9s ease-in-out;
+        }
+        .hero-slide.active {
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 2;
+        }
+        .hero-slide.active .hero-bg-img {
+            animation: kenBurns 7s ease-out forwards;
+        }
+
+        /* Progress Bar Animation */
+        @keyframes progressFill {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+        .hero-progress-fill {
+            animation: progressFill 6s linear forwards;
+        }
+
+        /* Page View Transitions */
+        .page-view {
+            display: none;
+            animation: fadeInPage 0.35s ease-out;
+        }
+        .page-view.active {
+            display: block;
+        }
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Dropdown Hover on Desktop */
+        .nav-dropdown:hover .nav-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .nav-dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: all 0.2s ease;
+        }
+
+        /* Interactive Treatment SVG Animations */
+        @keyframes scanBeam {
+            0%, 100% { transform: translateY(-28px); opacity: 0.35; }
+            50% { transform: translateY(28px); opacity: 0.85; }
+        }
+        .svg-scan-beam { animation: scanBeam 3s ease-in-out infinite; }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.35); opacity: 0.2; }
+        }
+        .svg-pulse { transform-box: fill-box; transform-origin: center; animation: pulseGlow 2s ease-in-out infinite; }
+
+        @keyframes shockWave {
+            0% { transform: scale(0.4); opacity: 0.95; }
+            100% { transform: scale(2.3); opacity: 0; }
+        }
+        .svg-wave-1 { transform-box: fill-box; transform-origin: center; animation: shockWave 2.1s ease-out infinite; }
+        .svg-wave-2 { transform-box: fill-box; transform-origin: center; animation: shockWave 2.1s ease-out 0.7s infinite; }
+        .svg-wave-3 { transform-box: fill-box; transform-origin: center; animation: shockWave 2.1s ease-out 1.4s infinite; }
+
+        @keyframes needleSlide {
+            0%, 100% { transform: translate(16px, -16px); }
+            45%, 70% { transform: translate(0px, 0px); }
+        }
+        .svg-needle-move { animation: needleSlide 3.6s ease-in-out infinite; }
+
+        /* Custom Scrollbar for Tables */
+        .custom-scroll::-webkit-scrollbar { height: 6px; width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #F1F5F9; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 999px; }
+
+        /* Ribbon Clip for About Page Brochure */
+        .ribbon-clip {
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cobalt selection:text-white">
+
+    <!-- =========================================================================
+         1. TOP UTILITY BAR & GLASSMORPHIC STICKY HEADER
+    ========================================================================= -->
+    <div class="hidden lg:block bg-navy text-slate-200 text-xs border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-9 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <span class="flex items-center gap-1.5 text-emerald-300 font-medium">
+                    <i class="fa-solid fa-shield-heart"></i> 마취통증의학과 전문의 직접 진료
+                </span>
+                <span class="text-slate-500">|</span>
+                <span>충남 아산시 배방읍 배방로14번길 9, J,S 메디컬 2층</span>
+            </div>
+            <div class="flex items-center gap-5">
+                <span>평일 09:00–19:00 · 토요일 09:00–14:30 (점심없음)</span>
+                <button onclick="navigateTo('fee')" class="hover:text-white transition font-medium">비급여수가안내</button>
+                <button onclick="navigateTo('location')" class="hover:text-white transition font-medium">오시는길</button>
+            </div>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+            <!-- Clinic Signature Logo (로고1.jpg with seamless inline SVG fallback) -->
+            <button onclick="navigateTo('home')" class="flex items-center gap-3 text-left group focus:outline-none">
+                <div class="relative w-12 h-12 flex items-center justify-center shrink-0">
+                    <img src="로고1.jpg" alt="수마취통증의학과 심볼" class="w-12 h-12 object-contain rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                    <!-- Inline SVG Recreation of Green-Blue Diamond Spine + '秀' Logo -->
+                    <svg class="hidden w-12 h-12 drop-shadow-sm" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="수마취통증의학과 심볼 로고">
+                        <defs>
+                            <clipPath id="diamondClip">
+                                <rect x="16" y="16" width="68" height="68" rx="14" transform="rotate(45 50 50)" />
+                            </clipPath>
+                        </defs>
+                        <g clip-path="url(#diamondClip)">
+                            <!-- Left Healing Green Half -->
+                            <rect x="0" y="0" width="52" height="100" fill="#2CA94F" />
+                            <!-- Right Medical Blue Half -->
+                            <rect x="48" y="0" width="52" height="100" fill="#0E76BC" />
+                            <!-- Stylized White Vertebrae Spine Column -->
+                            <g fill="#FFFFFF">
+                                <rect x="36" y="14" width="16" height="7" rx="3.5" transform="rotate(-8 44 17)" />
+                                <rect x="34" y="25" width="18" height="7.5" rx="3.5" transform="rotate(-4 43 28)" />
+                                <rect x="33" y="36" width="19" height="8" rx="4" />
+                                <rect x="33" y="47" width="19" height="8" rx="4" />
+                                <rect x="34" y="58" width="18" height="7.5" rx="3.5" transform="rotate(4 43 61)" />
+                                <rect x="36" y="69" width="16" height="7.5" rx="3.5" transform="rotate(7 44 72)" />
+                                <rect x="39" y="80" width="13" height="6.5" rx="3" transform="rotate(10 45 83)" />
+                            </g>
+                            <!-- Accent Drop on Left -->
+                            <circle cx="19" cy="50" r="5" fill="#FFFFFF" />
+                            <!-- Chinese Character '秀' on Right -->
+                            <text x="72" y="61" text-anchor="middle" fill="#FFFFFF" font-size="34" font-weight="800" font-family="serif">秀</text>
+                        </g>
+                    </svg>
+                </div>
+                <div>
+                    <div class="text-xl sm:text-2xl font-black tracking-tight text-navy leading-none">
+                        <span class="text-cobalt">수</span>마취통증의학과
+                    </div>
+                    <div class="text-[10px] sm:text-[11px] font-bold tracking-[0.14em] text-emeraldMed mt-1">
+                        SOO ANESTHESIOLOGY &amp; PAIN MEDICINE
+                    </div>
+                </div>
+            </button>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center gap-1" aria-label="메인 메뉴">
+                <button onclick="navigateTo('home')" data-nav="home" class="nav-link px-4 py-2 rounded-lg text-[15px] font-bold text-slate-700 hover:text-cobalt hover:bg-slate-50 transition">홈</button>
+
+                <div class="relative nav-dropdown">
+                    <button onclick="navigateTo('about')" data-nav="about" class="nav-link px-4 py-2 rounded-lg text-[15px] font-bold text-slate-700 hover:text-cobalt hover:bg-slate-50 transition flex items-center gap-1">
+                        병원소개 <i class="fa-solid fa-chevron-down text-[10px] opacity-60"></i>
+                    </button>
+                    <div class="nav-dropdown-menu absolute left-0 top-full pt-2 w-48">
+                        <div class="bg-white rounded-xl shadow-xl border border-slate-100 py-2 overflow-hidden">
+                            <button onclick="navigateTo('about')" class="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-ice hover:text-cobalt transition">의료진 소개 · 저서</button>
+                            <button onclick="navigateTo('about', 'facilities')" class="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-ice hover:text-cobalt transition">원내 시설 · 보유장비</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative nav-dropdown">
+                    <button onclick="navigateTo('clinic', 'spine')" data-nav="clinic" class="nav-link px-4 py-2 rounded-lg text-[15px] font-bold text-slate-700 hover:text-cobalt hover:bg-slate-50 transition flex items-center gap-1">
+                        통증클리닉 <i class="fa-solid fa-chevron-down text-[10px] opacity-60"></i>
+                    </button>
+                    <div class="nav-dropdown-menu absolute left-0 top-full pt-2 w-52">
+                        <div class="bg-white rounded-xl shadow-xl border border-slate-100 py-2 overflow-hidden">
+                            <button onclick="navigateTo('clinic', 'spine')" class="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-ice hover:text-cobalt transition">척추 클리닉 (목·허리)</button>
+                            <button onclick="navigateTo('clinic', 'shoulder')" class="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-ice hover:text-cobalt transition">어깨·상지 클리닉</button>
+                            <button onclick="navigateTo('clinic', 'knee')" class="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-ice hover:text-cobalt transition">무릎·하지 클리닉</button>
+                            <button onclick="navigateTo('clinic', 'headache')" class="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-ice hover:text-cobalt transition">두통·신경통 클리닉</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative nav-dropdown">
+                    <button onclick="navigateTo('treatment', 'carm')" data-nav="treatment" class="nav-link px-4 py-2 rounded-lg text-[15px] font-bold text-slate-700 hover:text-cobalt hover:bg-slate-50 transition flex items-center gap-1">
+                        특수비수술치료 <i class="fa-solid fa-chevron-down text-[10px] opacity-60"></i>
+                    </button>
+                    <div class="nav-dropdown-menu absolute left-0 top-full pt-2 w-56">
+                        <div class="bg-white rounded-xl shadow-xl border border-slate-100 py-2 overflow-hidden">
+                            <button onclick="navigateTo('treatment', 'carm')" class="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-ice hover:text-cobalt transition">C-arm 투시 신경차단술</button>
+                            <button onclick="navigateTo('treatment', 'usg')" class="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-ice hover:text-cobalt transition">초음파 유도 정밀 주사치료</button>
+                            <button onclick="navigateTo('treatment', 'regen')" class="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-ice hover:text-cobalt transition">프롤로·PRP·PDRN 재생치료</button>
+                            <button onclick="navigateTo('treatment', 'eswt')" class="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-ice hover:text-cobalt transition">체외충격파(ESWT) · 물리치료</button>
+                            <button onclick="navigateTo('treatment', 'iv')" class="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-ice hover:text-cobalt transition">영양수액 · 예방접종 클리닉</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="navigateTo('fee')" data-nav="fee" class="nav-link px-4 py-2 rounded-lg text-[15px] font-bold text-slate-700 hover:text-cobalt hover:bg-slate-50 transition">비급여안내</button>
+                <button onclick="navigateTo('location')" data-nav="location" class="nav-link px-4 py-2 rounded-lg text-[15px] font-bold text-slate-700 hover:text-cobalt hover:bg-slate-50 transition">오시는길</button>
+            </nav>
+
+            <!-- Call Button & Mobile Menu Trigger -->
+            <div class="flex items-center gap-3">
+                <a href="tel:041-427-7711" class="hidden sm:inline-flex items-center gap-2 bg-navy hover:bg-cobalt text-white px-4 py-2.5 rounded-full text-sm font-bold shadow-md shadow-navy/15 transition">
+                    <i class="fa-solid fa-phone-volume text-emerald-300"></i>
+                    <span>041-427-7711</span>
+                </a>
+                <button onclick="toggleMobileMenu()" class="lg:hidden w-11 h-11 rounded-xl bg-slate-100 hover:bg-slate-200 text-navy flex items-center justify-center text-xl transition" aria-label="모바일 메뉴 열기">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobileDrawer" class="fixed inset-0 z-[100] hidden">
+        <div onclick="toggleMobileMenu()" class="absolute inset-0 bg-navy/60 backdrop-blur-sm"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl flex flex-col overflow-y-auto">
+            <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-navy text-white">
+                <div>
+                    <div class="font-black text-lg">수마취통증의학과</div>
+                    <div class="text-[11px] text-emerald-300">SOO PAIN MEDICINE</div>
+                </div>
+                <button onclick="toggleMobileMenu()" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="p-4 flex-1 space-y-2">
+                <button onclick="navigateTo('home')" class="w-full text-left px-4 py-3 rounded-xl font-bold text-navy hover:bg-ice flex items-center justify-between">
+                    <span><i class="fa-solid fa-house w-6 text-cobalt"></i>홈</span>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                </button>
+                <button onclick="navigateTo('about')" class="w-full text-left px-4 py-3 rounded-xl font-bold text-navy hover:bg-ice flex items-center justify-between">
+                    <span><i class="fa-solid fa-user-doctor w-6 text-cobalt"></i>병원소개 · 의료진</span>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                </button>
+                <div class="bg-ice/70 rounded-xl p-2 space-y-1">
+                    <div class="px-3 py-1.5 text-xs font-bold text-slate-500">통증클리닉</div>
+                    <button onclick="navigateTo('clinic', 'spine')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-white">척추 클리닉 (목·허리)</button>
+                    <button onclick="navigateTo('clinic', 'shoulder')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-white">어깨·상지 클리닉</button>
+                    <button onclick="navigateTo('clinic', 'knee')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-white">무릎·하지 클리닉</button>
+                    <button onclick="navigateTo('clinic', 'headache')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-white">두통·신경통 클리닉</button>
+                </div>
+                <div class="bg-ice/70 rounded-xl p-2 space-y-1">
+                    <div class="px-3 py-1.5 text-xs font-bold text-slate-500">특수비수술치료</div>
+                    <button onclick="navigateTo('treatment', 'carm')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-white">C-arm 투시 신경차단술</button>
+                    <button onclick="navigateTo('treatment', 'usg')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-white">초음파 유도 정밀 주사</button>
+                    <button onclick="navigateTo('treatment', 'regen')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-white">프롤로·PRP·PDRN 재생</button>
+                    <button onclick="navigateTo('treatment', 'eswt')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-white">체외충격파(ESWT) · 물리치료</button>
+                    <button onclick="navigateTo('treatment', 'iv')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-white">영양수액 · 예방접종</button>
+                </div>
+                <button onclick="navigateTo('fee')" class="w-full text-left px-4 py-3 rounded-xl font-bold text-navy hover:bg-ice flex items-center justify-between">
+                    <span><i class="fa-solid fa-file-invoice-dollar w-6 text-cobalt"></i>비급여 진료비용 안내</span>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                </button>
+                <button onclick="navigateTo('location')" class="w-full text-left px-4 py-3 rounded-xl font-bold text-navy hover:bg-ice flex items-center justify-between">
+                    <span><i class="fa-solid fa-location-dot w-6 text-cobalt"></i>오시는길 · 진료시간</span>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                </button>
+            </div>
+            <div class="p-4 border-t border-slate-100 bg-slate-50">
+                <a href="tel:041-427-7711" class="w-full flex items-center justify-center gap-2 bg-cobalt text-white py-3.5 rounded-xl font-bold shadow-md">
+                    <i class="fa-solid fa-phone-volume"></i> 전화상담 041-427-7711
+                </a>
+                <p class="text-[11px] text-center text-slate-500 mt-2">평일 09:00-19:00 · 토 09:00-14:30 (점심없음)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         FLOATING RIGHT-SIDE QUICK BAR
+    ========================================================================= -->
+    <aside class="hidden xl:flex fixed right-5 top-1/2 -translate-y-1/2 z-40 flex-col bg-white/95 backdrop-blur border border-slate-200 rounded-2xl shadow-xl overflow-hidden w-[78px]">
+        <a href="tel:041-427-7711" class="flex flex-col items-center justify-center py-3.5 px-2 border-b border-slate-100 hover:bg-ice text-navy transition group">
+            <i class="fa-solid fa-phone-volume text-lg text-cobalt group-hover:scale-110 transition mb-1"></i>
+            <span class="text-[11px] font-bold">전화상담</span>
+        </a>
+        <button onclick="navigateTo('location')" class="flex flex-col items-center justify-center py-3.5 px-2 border-b border-slate-100 hover:bg-ice text-navy transition group">
+            <i class="fa-regular fa-clock text-lg text-emeraldMed group-hover:scale-110 transition mb-1"></i>
+            <span class="text-[11px] font-bold">진료시간</span>
+        </button>
+        <button onclick="navigateTo('fee')" class="flex flex-col items-center justify-center py-3.5 px-2 border-b border-slate-100 hover:bg-ice text-navy transition group">
+            <i class="fa-solid fa-clipboard-list text-lg text-cobalt group-hover:scale-110 transition mb-1"></i>
+            <span class="text-[11px] font-bold">비급여안내</span>
+        </button>
+        <button onclick="navigateTo('location')" class="flex flex-col items-center justify-center py-3.5 px-2 border-b border-slate-100 hover:bg-ice text-navy transition group">
+            <i class="fa-solid fa-location-dot text-lg text-emeraldMed group-hover:scale-110 transition mb-1"></i>
+            <span class="text-[11px] font-bold">오시는길</span>
+        </button>
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex flex-col items-center justify-center py-3 px-2 bg-navy hover:bg-cobalt text-white transition">
+            <i class="fa-solid fa-chevron-up text-xs mb-0.5"></i>
+            <span class="text-[10px] font-extrabold tracking-wider">TOP</span>
+        </button>
+    </aside>
+
+    <!-- =========================================================================
+         MAIN CONTENT CONTAINER (6 SPA VIEWS)
+    ========================================================================= -->
+    <main id="appMain">
+
+        <!-- =====================================================================
+             VIEW 1: HOME (#home)
+        ===================================================================== -->
+        <section id="view-home" class="page-view active">
+            <!-- Full-Bleed Animated Hero Slider -->
+            <div class="relative w-full h-[540px] sm:h-[600px] bg-navy overflow-hidden" id="heroContainer">
+                <!-- Slide 1 -->
+                <div class="hero-slide active">
+                    <div class="absolute inset-0 bg-gradient-to-br from-navy via-[#13355c] to-[#0d4f7c]">
+                        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1600&q=80" alt="C-arm 투시 신경차단술 클리닉" class="hero-bg-img w-full h-full object-cover opacity-35" onerror="this.style.opacity='0'">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/70 to-navy/25"></div>
+                    <div class="relative z-10 max-w-7xl mx-auto px-6 h-full flex items-center">
+                        <div class="max-w-2xl text-white">
+                            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emeraldMed/20 border border-emerald-400/40 text-emerald-300 text-xs font-bold tracking-wider mb-5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> NON-SURGICAL SPINE &amp; PAIN CENTER
+                            </span>
+                            <h1 class="text-3xl sm:text-5xl font-black leading-tight tracking-tight mb-5">
+                                대학병원급 고화질 C-arm<br>
+                                <span class="text-sky-300">투시 신경차단술</span> 클리닉
+                            </h1>
+                            <p class="text-slate-200 text-base sm:text-lg font-light leading-relaxed mb-8 break-keep">
+                                실시간 영상증폭장치(C-arm)로 통증의 원인이 되는 신경 부위를 1mm 오차 없이 확인합니다. 마취통증의학과 전문의가 수술 없이 안전하게 염증과 부종을 치료합니다.
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <button onclick="navigateTo('treatment', 'carm')" class="px-7 py-3.5 rounded-xl bg-cobalt hover:bg-sky-500 text-white font-bold text-sm sm:text-base shadow-lg shadow-cobalt/30 transition flex items-center gap-2">
+                                    신경차단술 자세히 보기 <i class="fa-solid fa-arrow-right text-xs"></i>
+                                </button>
+                                <button onclick="navigateTo('clinic', 'spine')" class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur border border-white/25 text-white font-semibold text-sm sm:text-base transition">
+                                    척추 통증 자가진단
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="hero-slide">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#0e2d40] via-[#124559] to-[#176865]">
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1600&q=80" alt="초음파 유도하 관절 인대 재생 클리닉" class="hero-bg-img w-full h-full object-cover opacity-35" onerror="this.style.opacity='0'">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/65 to-transparent"></div>
+                    <div class="relative z-10 max-w-7xl mx-auto px-6 h-full flex items-center">
+                        <div class="max-w-2xl text-white">
+                            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-400/20 border border-sky-300/40 text-sky-200 text-xs font-bold tracking-wider mb-5">
+                                <i class="fa-solid fa-wave-square"></i> HIGH-RESOLUTION ULTRASOUND GUIDED
+                            </span>
+                            <h1 class="text-3xl sm:text-5xl font-black leading-tight tracking-tight mb-5">
+                                고해상도 초음파 유도하<br>
+                                <span class="text-emerald-300">관절·인대 재생</span> 클리닉
+                            </h1>
+                            <p class="text-slate-200 text-base sm:text-lg font-light leading-relaxed mb-8 break-keep">
+                                방사선 노출 걱정 없는 정밀 근골격계 초음파로 손상된 힘줄과 인대를 실시간 확인하며 프롤로 · 무릎 자가혈소판(PRP) · PDRN DNA 재생치료를 시행합니다.
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <button onclick="navigateTo('treatment', 'regen')" class="px-7 py-3.5 rounded-xl bg-emeraldMed hover:bg-emerald-500 text-white font-bold text-sm sm:text-base shadow-lg shadow-emerald-600/30 transition flex items-center gap-2">
+                                    프롤로·PRP·PDRN 보기 <i class="fa-solid fa-arrow-right text-xs"></i>
+                                </button>
+                                <button onclick="navigateTo('fee')" class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur border border-white/25 text-white font-semibold text-sm sm:text-base transition">
+                                    비급여 수가 확인
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="hero-slide">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#162742] via-[#1e3a5f] to-[#235789]">
+                        <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=1600&q=80" alt="체외충격파 및 영양수액 클리닉" class="hero-bg-img w-full h-full object-cover opacity-35" onerror="this.style.opacity='0'">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/65 to-transparent"></div>
+                    <div class="relative z-10 max-w-7xl mx-auto px-6 h-full flex items-center">
+                        <div class="max-w-2xl text-white">
+                            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/20 border border-amber-300/40 text-amber-200 text-xs font-bold tracking-wider mb-5">
+                                <i class="fa-solid fa-award"></i> HONEST CONSERVATIVE CARE
+                            </span>
+                            <h1 class="text-3xl sm:text-5xl font-black leading-tight tracking-tight mb-5">
+                                체외충격파(ESWT) &amp;<br>
+                                <span class="text-sky-300">1:1 맞춤 통증·영양수액</span> 클리닉
+                            </h1>
+                            <p class="text-slate-200 text-base sm:text-lg font-light leading-relaxed mb-8 break-keep">
+                                과잉진료 없는 정직한 보존적 치료를 약속합니다. 고에너지 체외충격파와 전문 물리·파라핀 치료, 만성피로 회복 수액으로 건강한 일상을 되찾아 드립니다.
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <button onclick="navigateTo('treatment', 'eswt')" class="px-7 py-3.5 rounded-xl bg-cobalt hover:bg-sky-500 text-white font-bold text-sm sm:text-base shadow-lg transition flex items-center gap-2">
+                                    체외충격파·수액 안내 <i class="fa-solid fa-arrow-right text-xs"></i>
+                                </button>
+                                <button onclick="navigateTo('about')" class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur border border-white/25 text-white font-semibold text-sm sm:text-base transition">
+                                    의료진 및 병원소개
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slider Controls -->
+                <button onclick="changeHeroSlide(-1)" class="hidden sm:flex absolute left-5 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur text-white items-center justify-center transition" aria-label="이전 슬라이드">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button onclick="changeHeroSlide(1)" class="hidden sm:flex absolute right-5 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur text-white items-center justify-center transition" aria-label="다음 슬라이드">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <!-- Indicators & Progress Bar -->
+                <div class="absolute bottom-8 left-0 right-0 z-20 max-w-7xl mx-auto px-6 flex items-center justify-between">
+                    <div class="flex items-center gap-2.5" id="heroDots">
+                        <button onclick="goToHeroSlide(0)" class="h-2.5 w-9 rounded-full bg-emerald-400 transition-all" aria-label="슬라이드 1"></button>
+                        <button onclick="goToHeroSlide(1)" class="h-2.5 w-2.5 rounded-full bg-white/40 hover:bg-white/70 transition-all" aria-label="슬라이드 2"></button>
+                        <button onclick="goToHeroSlide(2)" class="h-2.5 w-2.5 rounded-full bg-white/40 hover:bg-white/70 transition-all" aria-label="슬라이드 3"></button>
+                    </div>
+                    <div class="text-xs font-mono text-white/80 tracking-widest">
+                        <span id="heroSlideNum">01</span> / 03
+                    </div>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 h-1 bg-white/15 z-20">
+                    <div id="heroProgressBar" class="h-full bg-emerald-400 hero-progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- Floating Quick Info Bar -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 -mt-8 relative z-30">
+                <div class="bg-white rounded-2xl shadow-xl border border-slate-100 grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-100 overflow-hidden">
+                    <div class="p-5 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-ice text-cobalt flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-slate-400">진료시간 안내</div>
+                            <div class="text-sm font-extrabold text-navy mt-0.5">평일 09:00–19:00</div>
+                            <div class="text-xs font-bold text-cobalt">토 09:00–14:30 (점심없음)</div>
+                        </div>
+                    </div>
+                    <a href="tel:041-427-7711" class="p-5 flex items-center gap-4 hover:bg-ice/60 transition">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emeraldMed flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-phone-volume"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-slate-400">진료 및 시술 문의</div>
+                            <div class="text-lg font-black text-navy tracking-tight">041-427-7711</div>
+                            <div class="text-[11px] text-slate-500">클릭 시 바로 전화연결</div>
+                        </div>
+                    </a>
+                    <button onclick="navigateTo('location')" class="p-5 flex items-center gap-4 hover:bg-ice/60 transition text-left">
+                        <div class="w-12 h-12 rounded-xl bg-ice text-cobalt flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-slate-400">아산 배방역 맞은편</div>
+                            <div class="text-sm font-extrabold text-navy mt-0.5">오시는길 · 약도</div>
+                            <div class="text-xs text-slate-500">J,S 메디컬 2층 (다이소 옆)</div>
+                        </div>
+                    </button>
+                    <button onclick="navigateTo('fee')" class="p-5 flex items-center gap-4 hover:bg-ice/60 transition text-left">
+                        <div class="w-12 h-12 rounded-xl bg-navy text-white flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-slate-400">투명한 진료비 고시</div>
+                            <div class="text-sm font-extrabold text-navy mt-0.5">비급여 수가 안내</div>
+                            <div class="text-xs text-cobalt font-semibold">항목별 실시간 검색 <i class="fa-solid fa-angle-right"></i></div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Interactive Body-Part Pain Navigator -->
+            <div class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                    <div class="text-center max-w-2xl mx-auto mb-12">
+                        <span class="text-xs font-extrabold tracking-[0.2em] text-cobalt uppercase">INTERACTIVE PAIN NAVIGATOR</span>
+                        <h2 class="text-3xl sm:text-4xl font-black text-navy mt-2 mb-3 tracking-tight">어디가 아프신가요?</h2>
+                        <p class="text-slate-500 text-sm sm:text-base break-keep">불편한 통증 부위를 선택하시면 대표 질환과 수마취통증의학과의 맞춤형 비수술 치료법을 바로 확인하실 수 있습니다.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                        <!-- 6 Selectable Body Parts -->
+                        <div class="lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-3" id="bodyPartButtons">
+                            <button onclick="selectBodyPart('neck')" data-part="neck" class="body-part-btn p-4 rounded-2xl border-2 border-cobalt bg-ice text-left transition shadow-sm">
+                                <div class="w-10 h-10 rounded-xl bg-cobalt text-white flex items-center justify-center text-lg mb-3"><i class="fa-solid fa-head-side-virus"></i></div>
+                                <div class="font-extrabold text-navy text-base">두통 · 목디스크</div>
+                                <div class="text-xs text-slate-500 mt-0.5">거북목 · 뒷목 뻐근함</div>
+                            </button>
+                            <button onclick="selectBodyPart('shoulder')" data-part="shoulder" class="body-part-btn p-4 rounded-2xl border border-slate-200 bg-white hover:border-cobalt/50 text-left transition">
+                                <div class="w-10 h-10 rounded-xl bg-slate-100 text-navy flex items-center justify-center text-lg mb-3"><i class="fa-solid fa-person-rays"></i></div>
+                                <div class="font-extrabold text-navy text-base">어깨 · 오십견</div>
+                                <div class="text-xs text-slate-500 mt-0.5">회전근개 · 석회성건염</div>
+                            </button>
+                            <button onclick="selectBodyPart('back')" data-part="back" class="body-part-btn p-4 rounded-2xl border border-slate-200 bg-white hover:border-cobalt/50 text-left transition">
+                                <div class="w-10 h-10 rounded-xl bg-slate-100 text-navy flex items-center justify-center text-lg mb-3"><i class="fa-solid fa-bone"></i></div>
+                                <div class="font-extrabold text-navy text-base">허리 · 협착증</div>
+                                <div class="text-xs text-slate-500 mt-0.5">허리디스크 · 다리저림</div>
+                            </button>
+                            <button onclick="selectBodyPart('elbow')" data-part="elbow" class="body-part-btn p-4 rounded-2xl border border-slate-200 bg-white hover:border-cobalt/50 text-left transition">
+                                <div class="w-10 h-10 rounded-xl bg-slate-100 text-navy flex items-center justify-center text-lg mb-3"><i class="fa-solid fa-hand-dots"></i></div>
+                                <div class="font-extrabold text-navy text-base">팔꿈치 · 손목</div>
+                                <div class="text-xs text-slate-500 mt-0.5">골프·테니스엘보 · 손저림</div>
+                            </button>
+                            <button onclick="selectBodyPart('knee')" data-part="knee" class="body-part-btn p-4 rounded-2xl border border-slate-200 bg-white hover:border-cobalt/50 text-left transition">
+                                <div class="w-10 h-10 rounded-xl bg-slate-100 text-navy flex items-center justify-center text-lg mb-3"><i class="fa-solid fa-person-walking"></i></div>
+                                <div class="font-extrabold text-navy text-base">무릎 · 관절염</div>
+                                <div class="text-xs text-slate-500 mt-0.5">퇴행성관절염 · 시큰거림</div>
+                            </button>
+                            <button onclick="selectBodyPart('foot')" data-part="foot" class="body-part-btn p-4 rounded-2xl border border-slate-200 bg-white hover:border-cobalt/50 text-left transition">
+                                <div class="w-10 h-10 rounded-xl bg-slate-100 text-navy flex items-center justify-center text-lg mb-3"><i class="fa-solid fa-shoe-prints"></i></div>
+                                <div class="font-extrabold text-navy text-base">발목 · 족저근막염</div>
+                                <div class="text-xs text-slate-500 mt-0.5">발바닥 통증 · 발목염좌</div>
+                            </button>
+                        </div>
+
+                        <!-- Live Preview Panel -->
+                        <div class="lg:col-span-7 bg-gradient-to-br from-navy to-[#16365e] text-white rounded-3xl p-7 sm:p-9 shadow-xl flex flex-col justify-between relative overflow-hidden">
+                            <div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-cobalt/20 blur-3xl pointer-events-none"></div>
+                            <div id="bodyPartPreview" class="relative z-10">
+                                <!-- Dynamically populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 Core Non-Surgical Treatments Showcase -->
+            <div class="py-20 bg-ice">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                        <div>
+                            <span class="text-xs font-extrabold tracking-[0.2em] text-emeraldMed uppercase">CORE NON-SURGICAL SOLUTIONS</span>
+                            <h2 class="text-3xl sm:text-4xl font-black text-navy mt-2 tracking-tight">수마취통증의학과 4대 핵심 비수술 치료</h2>
+                        </div>
+                        <button onclick="navigateTo('treatment', 'carm')" class="inline-flex items-center gap-2 text-sm font-bold text-cobalt hover:text-navy transition">
+                            전체 특수비수술치료 보기 <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Card 1 -->
+                        <div onclick="navigateTo('treatment', 'carm')" class="cursor-pointer group bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition duration-300 flex flex-col">
+                            <div class="h-48 relative bg-gradient-to-br from-navy to-cobalt overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&q=80" alt="척추 C-arm 신경차단술" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition duration-500" onerror="this.style.opacity='0'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent"></div>
+                                <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 text-navy text-xs font-extrabold">01 SPINE</span>
+                                <div class="absolute bottom-4 left-4 text-white font-black text-lg">척추 C-arm 신경차단술</div>
+                            </div>
+                            <div class="p-5 flex-1 flex flex-col justify-between">
+                                <p class="text-sm text-slate-600 leading-relaxed break-keep mb-4">실시간 영상증폭장치(C-arm)로 병변 신경을 정확히 찾아 염증과 부종을 빠르게 가라앉힙니다.</p>
+                                <span class="text-xs font-bold text-cobalt flex items-center gap-1 group-hover:gap-2 transition-all">자세히 보기 <i class="fa-solid fa-chevron-right"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div onclick="navigateTo('treatment', 'usg')" class="cursor-pointer group bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition duration-300 flex flex-col">
+                            <div class="h-48 relative bg-gradient-to-br from-[#0e4a5c] to-cobalt overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80" alt="초음파 유도 주사치료" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition duration-500" onerror="this.style.opacity='0'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent"></div>
+                                <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 text-navy text-xs font-extrabold">02 ULTRASOUND</span>
+                                <div class="absolute bottom-4 left-4 text-white font-black text-lg">초음파 유도 주사치료</div>
+                            </div>
+                            <div class="p-5 flex-1 flex flex-col justify-between">
+                                <p class="text-sm text-slate-600 leading-relaxed break-keep mb-4">X-ray에 보이지 않는 인대·힘줄·관절을 고해상도 초음파로 보며 방사선 노출 없이 정밀 시술합니다.</p>
+                                <span class="text-xs font-bold text-cobalt flex items-center gap-1 group-hover:gap-2 transition-all">자세히 보기 <i class="fa-solid fa-chevron-right"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div onclick="navigateTo('treatment', 'eswt')" class="cursor-pointer group bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition duration-300 flex flex-col">
+                            <div class="h-48 relative bg-gradient-to-br from-[#165c42] to-emeraldMed overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&w=800&q=80" alt="체외충격파 ESWT" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition duration-500" onerror="this.style.opacity='0'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent"></div>
+                                <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 text-navy text-xs font-extrabold">03 ESWT</span>
+                                <div class="absolute bottom-4 left-4 text-white font-black text-lg">체외충격파(ESWT)</div>
+                            </div>
+                            <div class="p-5 flex-1 flex flex-col justify-between">
+                                <p class="text-sm text-slate-600 leading-relaxed break-keep mb-4">병변 부위에 고에너지 충격파를 전달해 석회질을 분해하고 혈류 개선과 조직 재생을 촉진합니다.</p>
+                                <span class="text-xs font-bold text-cobalt flex items-center gap-1 group-hover:gap-2 transition-all">자세히 보기 <i class="fa-solid fa-chevron-right"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div onclick="navigateTo('treatment', 'regen')" class="cursor-pointer group bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition duration-300 flex flex-col">
+                            <div class="h-48 relative bg-gradient-to-br from-[#1d3557] to-[#2a6f97] overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80" alt="프롤로 PRP PDRN 재생치료" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition duration-500" onerror="this.style.opacity='0'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent"></div>
+                                <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 text-navy text-xs font-extrabold">04 REGENERATION</span>
+                                <div class="absolute bottom-4 left-4 text-white font-black text-lg">프롤로·PRP·PDRN 재생</div>
+                            </div>
+                            <div class="p-5 flex-1 flex flex-col justify-between">
+                                <p class="text-sm text-slate-600 leading-relaxed break-keep mb-4">약해진 인대·연골의 자가 치유력을 극대화하는 프롤로, 무릎 PRP, DNA 주사로 재발을 방지합니다.</p>
+                                <span class="text-xs font-bold text-cobalt flex items-center gap-1 group-hover:gap-2 transition-all">자세히 보기 <i class="fa-solid fa-chevron-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Animated "비수술 시술 원리 비주얼 가이드" -->
+            <div class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                    <div class="text-center max-w-2xl mx-auto mb-10">
+                        <span class="text-xs font-extrabold tracking-[0.2em] text-cobalt uppercase">VISUAL PROCEDURE GUIDE</span>
+                        <h2 class="text-3xl sm:text-4xl font-black text-navy mt-2 mb-3 tracking-tight">한눈에 보는 비수술 시술 원리 가이드</h2>
+                        <p class="text-slate-500 text-sm sm:text-base break-keep">환자분들이 시술 과정을 쉽고 안심하며 이해하실 수 있도록 핵심 비수술 치료의 원리를 시각적으로 안내해 드립니다.</p>
+                    </div>
+
+                    <!-- Guide Mode Switcher -->
+                    <div class="flex flex-wrap justify-center gap-2.5 mb-8" id="visualGuideTabs">
+                        <button onclick="setVisualGuide('carm')" data-guide="carm" class="vg-tab px-5 py-2.5 rounded-full text-sm font-bold bg-navy text-white shadow-md transition">
+                            <i class="fa-solid fa-x-ray mr-1.5"></i> C-arm 투시 신경차단술
+                        </button>
+                        <button onclick="setVisualGuide('usg')" data-guide="usg" class="vg-tab px-5 py-2.5 rounded-full text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
+                            <i class="fa-solid fa-wave-square mr-1.5"></i> 초음파 유도 정밀 주사
+                        </button>
+                        <button onclick="setVisualGuide('eswt')" data-guide="eswt" class="vg-tab px-5 py-2.5 rounded-full text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
+                            <i class="fa-solid fa-bolt mr-1.5"></i> 체외충격파(ESWT) 원리
+                        </button>
+                    </div>
+
+                    <!-- Animated SVG Stage + Explanation -->
+                    <div class="bg-slate-900 rounded-3xl p-6 sm:p-10 shadow-2xl border border-slate-800 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7 bg-[#0B172A] rounded-2xl border border-slate-700/60 p-4 sm:p-6 relative overflow-hidden min-h-[300px] flex items-center justify-center" id="visualGuideStage">
+                            <!-- Dynamically populated animated SVG -->
+                        </div>
+                        <div class="lg:col-span-5 text-white" id="visualGuideInfo">
+                            <!-- Dynamically populated text -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clinic Philosophy & Key Metrics Banner -->
+            <div class="py-16 bg-gradient-to-r from-navy via-[#12325a] to-navy text-white relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                        <div class="lg:col-span-6">
+                            <span class="inline-block px-3 py-1 rounded-full bg-emerald-400/20 text-emerald-300 text-xs font-bold tracking-wider mb-4">OUR MEDICAL PROMISE</span>
+                            <h2 class="text-2xl sm:text-4xl font-black leading-snug mb-4 break-keep">
+                                보존적 치료 우선 · 비수술 치료 중심<br>
+                                <span class="text-sky-300">과잉진료 없는 바른 진료</span>
+                            </h2>
+                            <p class="text-slate-300 text-sm sm:text-base leading-relaxed break-keep mb-6">
+                                척추·관절 통증의 대다수는 수술 없이 정확한 진단과 비수술 보존치료만으로 충분히 호전됩니다. 대학병원 외래교수 역임 마취통증의학과 전문의가 상담부터 시술까지 직접 책임 진료합니다.
+                            </p>
+                            <div class="flex flex-wrap gap-2.5">
+                                <span class="px-4 py-2 rounded-xl bg-white/10 border border-white/15 text-xs sm:text-sm font-bold"><i class="fa-solid fa-check text-emerald-400 mr-1.5"></i>보존적 치료 우선</span>
+                                <span class="px-4 py-2 rounded-xl bg-white/10 border border-white/15 text-xs sm:text-sm font-bold"><i class="fa-solid fa-check text-emerald-400 mr-1.5"></i>비수술 치료 중심</span>
+                                <span class="px-4 py-2 rounded-xl bg-white/10 border border-white/15 text-xs sm:text-sm font-bold"><i class="fa-solid fa-check text-emerald-400 mr-1.5"></i>과잉진료 NO</span>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+                            <div class="bg-white/10 backdrop-blur border border-white/15 rounded-2xl p-5">
+                                <i class="fa-solid fa-user-doctor text-2xl text-sky-300 mb-3"></i>
+                                <div class="text-lg font-black">전문의 직접 시술</div>
+                                <p class="text-xs text-slate-300 mt-1 break-keep">순천향·단국대병원 외래교수 역임 대표원장 책임진료</p>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur border border-white/15 rounded-2xl p-5">
+                                <i class="fa-solid fa-x-ray text-2xl text-emerald-300 mb-3"></i>
+                                <div class="text-lg font-black">디지털 DRGEM &amp; C-arm</div>
+                                <p class="text-xs text-slate-300 mt-1 break-keep">대학병원급 고해상도 영상 진단 및 투시 시술 시스템</p>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur border border-white/15 rounded-2xl p-5">
+                                <i class="fa-solid fa-laptop-medical text-2xl text-sky-300 mb-3"></i>
+                                <div class="text-lg font-black">고해상도 초음파</div>
+                                <p class="text-xs text-slate-300 mt-1 break-keep">방사선 노출 없는 실시간 인대·힘줄·관절 정밀 진단</p>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur border border-white/15 rounded-2xl p-5">
+                                <i class="fa-solid fa-spa text-2xl text-emerald-300 mb-3"></i>
+                                <div class="text-lg font-black">파라핀·독립 치료실</div>
+                                <p class="text-xs text-slate-300 mt-1 break-keep">프라이빗 커튼 베드 물리치료실 및 수부 파라핀 베스</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notice & Monthly Maintenance Board + Bottom 2-Column Sky-Blue Contact Cards -->
+            <div class="py-20 bg-ice">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+                    <!-- Notice Board -->
+                    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-5">
+                            <div>
+                                <span class="text-xs font-bold text-cobalt tracking-wider uppercase">NOTICE &amp; UPDATES</span>
+                                <h3 class="text-xl sm:text-2xl font-black text-navy mt-0.5">병원 소식 및 정기 업데이트 안내</h3>
+                            </div>
+                            <span class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-emeraldMed bg-emerald-50 px-3 py-1.5 rounded-full">
+                                <span class="w-2 h-2 rounded-full bg-emeraldMed"></span> 정기 관리 운영 중
+                            </span>
+                        </div>
+                        <div class="divide-y divide-slate-100" id="noticeListContainer">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- 2-Column Sky-Blue Contact Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Left: Clinic Hours -->
+                        <div class="rounded-3xl p-8 sm:p-10 text-center bg-gradient-to-b from-[#DFECF6] to-[#CFE1F0] border border-[#C3D8E9] shadow-sm flex flex-col justify-center items-center">
+                            <div class="text-sm font-bold text-slate-600 tracking-wider">수마취통증의학과</div>
+                            <h3 class="text-2xl sm:text-3xl font-black text-navy mt-1 mb-6">진료시간 안내</h3>
+                            <div class="w-20 h-20 rounded-full bg-white shadow-md flex items-center justify-center text-3xl text-navy mb-7">
+                                <i class="fa-regular fa-clock"></i>
+                            </div>
+                            <div class="w-full max-w-sm space-y-2.5 text-left">
+                                <div class="flex justify-between items-baseline text-base sm:text-lg">
+                                    <span class="font-bold text-slate-700 tracking-widest">평 일</span>
+                                    <span class="font-black text-navy"><span class="text-xs font-semibold text-slate-500">AM</span> 09:00 - <span class="text-xs font-semibold text-slate-500">PM</span> 07:00</span>
+                                </div>
+                                <div class="flex justify-between items-baseline text-base sm:text-lg">
+                                    <span class="font-bold text-slate-700 tracking-widest">토 요 일</span>
+                                    <span class="font-black text-cobalt"><span class="text-xs font-semibold text-slate-500">AM</span> 09:00 - <span class="text-xs font-semibold text-slate-500">PM</span> 02:30</span>
+                                </div>
+                                <div class="text-right text-xs font-bold text-slate-600 -mt-1.5 pb-1">(토요일 점심시간 없음)</div>
+                                <div class="flex justify-between items-baseline text-base sm:text-lg">
+                                    <span class="font-bold text-slate-700">점심시간</span>
+                                    <span class="font-black text-navy"><span class="text-xs font-semibold text-slate-500">PM</span> 01:00 - <span class="text-xs font-semibold text-slate-500">PM</span> 02:00</span>
+                                </div>
+                                <div class="pt-2 text-sm sm:text-base font-extrabold text-red-600">매주 일요일 및 공휴일 휴진</div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Phone Inquiry -->
+                        <div class="rounded-3xl p-8 sm:p-10 text-center bg-gradient-to-b from-[#DFECF6] to-[#CFE1F0] border border-[#C3D8E9] shadow-sm flex flex-col justify-center items-center">
+                            <div class="text-sm font-semibold text-slate-600 tracking-[0.25em]"><strong class="text-navy font-black">SOO</strong> PAIN CLINIC</div>
+                            <h3 class="text-2xl sm:text-3xl font-black text-navy mt-1 mb-6">전화문의 안내</h3>
+                            <div class="w-20 h-20 rounded-full bg-white shadow-md flex items-center justify-center text-3xl text-cobalt mb-6">
+                                <i class="fa-solid fa-phone-volume"></i>
+                            </div>
+                            <a href="tel:041-427-7711" class="text-3xl sm:text-5xl font-black text-navy hover:text-cobalt tracking-tight transition mb-4">
+                                041-427-7711
+                            </a>
+                            <p class="text-sm sm:text-base text-slate-600 font-medium leading-relaxed mb-6">
+                                수마취통증의학과에 대한<br>진료 및 시술 문의를 친절히 안내해 드립니다.
+                            </p>
+                            <div class="flex flex-wrap justify-center gap-2">
+                                <button onclick="navigateTo('location')" class="px-5 py-2.5 rounded-xl bg-navy hover:bg-cobalt text-white text-xs sm:text-sm font-bold transition">
+                                    <i class="fa-solid fa-location-dot mr-1.5"></i>오시는길 · 지도 보기
+                                </button>
+                                <button onclick="copyClinicAddress()" class="px-5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-navy border border-slate-300 text-xs sm:text-sm font-bold transition">
+                                    <i class="fa-regular fa-copy mr-1.5"></i>주소 복사
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Compact Location Strip -->
+                    <div class="bg-white rounded-2xl p-5 border border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center gap-3 text-sm sm:text-base text-slate-700">
+                            <i class="fa-solid fa-location-dot text-cobalt text-xl"></i>
+                            <span><strong class="text-navy">충남 아산시 배방읍 배방로14번길 9, J,S 메디컬 2층</strong> (배방역 맞은편 다이소 옆)</span>
+                        </div>
+                        <div class="flex gap-2 shrink-0">
+                            <a href="https://map.kakao.com/link/search/%EC%88%98%EB%A7%88%EC%B7%A8%ED%86%B5%EC%A6%9D%EC%9D%98%ED%95%99%EA%B3%BC" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg bg-[#FEE500] text-[#191919] text-xs font-extrabold hover:opacity-90 transition">카카오맵</a>
+                            <a href="https://map.naver.com/p/search/%EC%88%98%EB%A7%88%EC%B7%A8%ED%86%B5%EC%A6%9D%EC%9D%98%ED%95%99%EA%B3%BC" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg bg-[#03C75A] text-white text-xs font-extrabold hover:opacity-90 transition">네이버지도</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             VIEW 2: ABOUT (#about) - Modernized 2-Column Brochure + Facilities
+        ===================================================================== -->
+        <section id="view-about" class="page-view bg-ice pb-20">
+            <!-- Subpage Header -->
+            <div class="bg-gradient-to-r from-navy to-[#183b6b] text-white py-14">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+                    <span class="text-xs font-bold tracking-[0.2em] text-emerald-300 uppercase">ABOUT SOO PAIN MEDICINE</span>
+                    <h2 class="text-3xl sm:text-4xl font-black mt-2 mb-3">병원소개 및 의료진</h2>
+                    <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto break-keep">풍부한 임상 경험과 대학병원급 진단 장비를 바탕으로, 환자 중심의 정직한 비수술 통증 진료를 실천합니다.</p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 -mt-6">
+                <!-- Modernized 2-Column Brochure Card -->
+                <div class="bg-white rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden grid grid-cols-1 lg:grid-cols-2">
+                    <!-- Left Column: 4 Core Medical Procedures -->
+                    <div class="border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col">
+                        <div class="bg-gradient-to-br from-slate-50 to-sky-50/70 p-8 border-b border-slate-200 flex items-center justify-center gap-4">
+                            <div class="w-14 h-14 rounded-2xl bg-white shadow-md flex items-center justify-center p-1.5">
+                                <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                    <defs><clipPath id="aboutDiamond"><rect x="16" y="16" width="68" height="68" rx="14" transform="rotate(45 50 50)"/></clipPath></defs>
+                                    <g clip-path="url(#aboutDiamond)">
+                                        <rect x="0" y="0" width="52" height="100" fill="#2CA94F"/>
+                                        <rect x="48" y="0" width="52" height="100" fill="#0E76BC"/>
+                                        <g fill="#FFF"><rect x="35" y="18" width="16" height="7" rx="3.5"/><rect x="33" y="31" width="18" height="7.5" rx="3.5"/><rect x="33" y="45" width="19" height="8" rx="4"/><rect x="34" y="59" width="18" height="7.5" rx="3.5"/><rect x="36" y="72" width="16" height="7" rx="3.5"/></g>
+                                        <text x="72" y="61" text-anchor="middle" fill="#FFF" font-size="32" font-weight="800" font-family="serif">秀</text>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl sm:text-3xl font-black text-navy tracking-tight">수마취통증의학과</h3>
+                                <p class="text-xs font-bold text-slate-500 tracking-widest mt-0.5">SOO ANESTHESIOLOGY &amp; PAIN MEDICINE</p>
+                            </div>
+                        </div>
+
+                        <div class="p-6 sm:p-8 space-y-6 flex-1">
+                            <!-- Item 1 -->
+                            <div>
+                                <div class="flex items-center bg-slate-100 h-9 rounded-r-lg mb-3 overflow-hidden">
+                                    <span class="px-4 text-xs font-bold text-slate-500 shrink-0">진료안내</span>
+                                    <span class="ribbon-clip bg-cobalt text-white px-6 h-full flex items-center text-sm sm:text-base font-bold">영상장치 유도하 신경차단술</span>
+                                </div>
+                                <div class="flex flex-col sm:flex-row gap-4 items-start">
+                                    <div class="w-full sm:w-32 h-24 rounded-xl overflow-hidden bg-navy shrink-0 relative">
+                                        <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=400&q=80" alt="디지털 C-Arm" class="w-full h-full object-cover opacity-85" onerror="this.style.opacity='0'">
+                                    </div>
+                                    <div class="text-sm text-slate-600 leading-relaxed break-keep">
+                                        <div class="font-extrabold text-navy mb-1">정확한 진단을 위해 <span class="text-cobalt">디지털 C-Arm</span>을 사용합니다.</div>
+                                        목·허리디스크, 척추관협착증으로 압박된 신경을 실시간 영상장치로 정확하게 찾아내어 염증과 통증을 줄이는 신경차단 주사치료를 시행합니다.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div>
+                                <div class="flex items-center bg-slate-100 h-9 rounded-r-lg mb-3 overflow-hidden">
+                                    <span class="px-4 text-xs font-bold text-slate-500 shrink-0">진료안내</span>
+                                    <span class="ribbon-clip bg-emeraldMed text-white px-6 h-full flex items-center text-sm sm:text-base font-bold">인대강화(프롤로 주사) &amp; DNA 주사</span>
+                                </div>
+                                <div class="flex flex-col sm:flex-row gap-4 items-start">
+                                    <div class="w-full sm:w-32 h-24 rounded-xl overflow-hidden bg-emerald-900 shrink-0">
+                                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=400&q=80" alt="프롤로 및 DNA 주사" class="w-full h-full object-cover opacity-85" onerror="this.style.opacity='0'">
+                                    </div>
+                                    <div class="text-sm text-slate-600 leading-relaxed break-keep">
+                                        손상된 인대와 힘줄에 약물을 정밀 주사하여 새로운 세포 증식을 촉진하고, 약해진 인대와 관절을 튼튼하게 강화하는 근본적인 비수술 재생 치료법입니다.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 3 -->
+                            <div>
+                                <div class="flex items-center bg-slate-100 h-9 rounded-r-lg mb-3 overflow-hidden">
+                                    <span class="px-4 text-xs font-bold text-slate-500 shrink-0">진료안내</span>
+                                    <span class="ribbon-clip bg-cobalt text-white px-6 h-full flex items-center text-sm sm:text-base font-bold">초음파 유도하 정밀 주사치료</span>
+                                </div>
+                                <div class="flex flex-col sm:flex-row gap-4 items-start">
+                                    <div class="w-full sm:w-32 h-24 rounded-xl overflow-hidden bg-slate-800 shrink-0">
+                                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=400&q=80" alt="초음파 유도 주사" class="w-full h-full object-cover opacity-85" onerror="this.style.opacity='0'">
+                                    </div>
+                                    <div class="text-sm text-slate-600 leading-relaxed break-keep">
+                                        방사선 노출 걱정 없는 고해상도 근골격계 초음파를 통해 근육·인대·신경 및 관절 병변을 실시간으로 확인하며 안전하고 정확하게 약물을 주입합니다.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 4 -->
+                            <div>
+                                <div class="flex items-center bg-slate-100 h-9 rounded-r-lg mb-3 overflow-hidden">
+                                    <span class="px-4 text-xs font-bold text-slate-500 shrink-0">진료안내</span>
+                                    <span class="ribbon-clip bg-emeraldMed text-white px-6 h-full flex items-center text-sm sm:text-base font-bold">체외충격파 (ESWT)</span>
+                                </div>
+                                <div class="flex flex-col sm:flex-row gap-4 items-start">
+                                    <div class="w-full sm:w-32 h-24 rounded-xl overflow-hidden bg-slate-800 shrink-0">
+                                        <img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&w=400&q=80" alt="체외충격파" class="w-full h-full object-cover opacity-85" onerror="this.style.opacity='0'">
+                                    </div>
+                                    <div class="text-sm text-slate-600 leading-relaxed break-keep">
+                                        통증과 염증이 있는 인대·힘줄 부위에 충격파 에너지를 전달하여 혈액공급을 증가시키고, 조직의 세포 재생과 회복력을 높여 통증을 완화합니다.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Director Profile, Career & Book -->
+                    <div class="flex flex-col">
+                        <!-- Doctor Hero Banner -->
+                        <div class="bg-gradient-to-br from-slate-600 via-slate-700 to-navy text-white p-8 sm:p-10 relative overflow-hidden flex items-end justify-between min-h-[260px]">
+                            <div class="relative z-10">
+                                <div class="text-sm font-bold text-emerald-300 tracking-wide">수마취통증의학과</div>
+                                <div class="text-[11px] tracking-[0.2em] text-slate-300 mb-4">SOO PAIN MEDICINE</div>
+                                <div class="text-4xl sm:text-5xl font-black tracking-widest mb-1">박현준</div>
+                                <div class="text-lg font-bold text-sky-200">대표원장 · 마취통증의학과 전문의</div>
+                            </div>
+                            <div class="relative z-10 w-36 h-44 rounded-2xl bg-white/10 border border-white/20 overflow-hidden shrink-0 flex items-center justify-center">
+                                <img src="img/doctor.jpg" alt="박현준 대표원장" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                <div class="hidden flex-col items-center justify-center text-center p-3">
+                                    <i class="fa-solid fa-user-doctor text-5xl text-sky-200/80 mb-2"></i>
+                                    <span class="text-[11px] text-slate-300 font-medium">전문의 직접 진료</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Career List & Book Card -->
+                        <div class="p-8 sm:p-10 flex-1 flex flex-col justify-between bg-white">
+                            <div>
+                                <div class="text-center font-serif text-xl sm:text-2xl tracking-[0.25em] text-slate-300 mb-7">SOO PAIN MEDICINE</div>
+                                <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 items-start">
+                                    <ul class="sm:col-span-8 space-y-2 text-sm sm:text-[15px] font-bold text-slate-700">
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cobalt"></span>순천향의과대학 졸업</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cobalt"></span>순천향대학병원 전공의</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cobalt"></span>마취통증의학과 전문의</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cobalt"></span>순천향대학병원 외래교수</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cobalt"></span>단국대학교병원 외래교수</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>대한마취통증학회 정회원</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>대한충격파치료학회 정회원</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>대한근골격계초음파학회 정회원</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>대한성장의학회 정회원</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>대한의원협회 정회원</li>
+                                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>전) 박현준마취통증의학과 원장</li>
+                                        <li class="flex items-center gap-2 text-cobalt"><span class="w-2 h-2 rounded-full bg-emeraldMed"></span>현) 수마취통증의학과 원장</li>
+                                    </ul>
+
+                                    <!-- Book Visual Card -->
+                                    <div class="sm:col-span-4 bg-ice border border-slate-200 rounded-2xl p-4 text-center">
+                                        <div class="w-full aspect-[3/4] rounded-lg bg-gradient-to-br from-navy to-cobalt text-white p-3 flex flex-col justify-between shadow-md mb-3 relative overflow-hidden">
+                                            <img src="img/12.png" alt="무릎통증 바이블" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
+                                            <div class="relative z-10 text-[9px] tracking-wider opacity-80">한솔출판사</div>
+                                            <div class="relative z-10">
+                                                <div class="text-sm font-black leading-tight">무릎통증<br>바이블</div>
+                                                <div class="text-[9px] text-sky-200 mt-1">무릎통증의 보존요법</div>
+                                            </div>
+                                        </div>
+                                        <div class="text-xs font-extrabold text-navy">대표 역서</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 pt-5 border-t border-dashed border-slate-200 flex items-center gap-3 text-sm font-bold text-navy">
+                                <i class="fa-solid fa-book-medical text-cobalt text-lg"></i>
+                                <span>저서 : 『무릎통증 바이블 — 무릎통증의 보존요법』(한솔출판사)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facilities & Equipment Gallery -->
+                <div id="about-facilities" class="mt-16">
+                    <div class="text-center mb-10">
+                        <span class="text-xs font-extrabold tracking-[0.2em] text-cobalt uppercase">CLINIC FACILITIES</span>
+                        <h3 class="text-2xl sm:text-3xl font-black text-navy mt-2">원내 시설 및 보유 장비 둘러보기</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200/80">
+                            <div class="h-52 bg-slate-800 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=900&q=80" alt="디지털 X-ray 및 C-arm실" class="w-full h-full object-cover" onerror="this.style.opacity='0'">
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs font-bold text-cobalt">DIAGNOSTIC IMAGING</span>
+                                <h4 class="text-lg font-extrabold text-navy mt-1 mb-2">고해상도 디지털 X-ray &amp; C-arm실</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed break-keep">DRGEM 최신 디지털 X-ray 및 실시간 C-arm 투시 장비를 통해 미세한 척추·관절 병변까지 정밀하게 진단하고 시술합니다.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200/80">
+                            <div class="h-52 bg-slate-800 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=900&q=80" alt="독립형 커튼 베드 물리통증치료실" class="w-full h-full object-cover" onerror="this.style.opacity='0'">
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs font-bold text-emeraldMed">PRIVATE CARE ZONE</span>
+                                <h4 class="text-lg font-extrabold text-navy mt-1 mb-2">독립형 커튼 베드 물리·통증치료실</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed break-keep">환자 개개인의 프라이버시를 존중하는 쾌적한 온열 베드와 체외충격파(ESWT) 및 전문 물리치료 장비를 갖추고 있습니다.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200/80">
+                            <div class="h-52 bg-slate-800 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=900&q=80" alt="수부 관절 온열 파라핀 치료실" class="w-full h-full object-cover" onerror="this.style.opacity='0'">
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs font-bold text-cobalt">THERMAL THERAPY</span>
+                                <h4 class="text-lg font-extrabold text-navy mt-1 mb-2">수부·관절 온열 파라핀 치료실</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed break-keep">손목·손가락 퇴행성 관절염과 만성 수부 통증 완화를 위한 위생적인 개별 파라핀 베스(Paraffin Bath) 시스템을 운영합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             VIEW 3: PAIN CLINIC (#clinic) - Interactive Category Tabs
+        ===================================================================== -->
+        <section id="view-clinic" class="page-view bg-ice pb-20">
+            <div class="bg-gradient-to-r from-navy to-[#183b6b] text-white py-14">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+                    <span class="text-xs font-bold tracking-[0.2em] text-sky-300 uppercase">SPECIALIZED PAIN CLINIC</span>
+                    <h2 class="text-3xl sm:text-4xl font-black mt-2 mb-3">부위별 · 질환별 통증클리닉</h2>
+                    <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto break-keep">통증의 정확한 원인을 찾고, 수술 부담 없는 맞춤형 비수술 치료 프로토콜을 제공합니다.</p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
+                <!-- Category Tabs -->
+                <div class="flex flex-wrap justify-center gap-2.5 mb-10" id="clinicTabs">
+                    <button onclick="setClinicTab('spine')" data-clinic="spine" class="clinic-tab px-5 py-3 rounded-xl text-sm font-bold bg-navy text-white shadow-md transition">척추 클리닉 (목·허리)</button>
+                    <button onclick="setClinicTab('shoulder')" data-clinic="shoulder" class="clinic-tab px-5 py-3 rounded-xl text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-cobalt transition">어깨 · 상지 클리닉</button>
+                    <button onclick="setClinicTab('knee')" data-clinic="knee" class="clinic-tab px-5 py-3 rounded-xl text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-cobalt transition">무릎 · 하지 클리닉</button>
+                    <button onclick="setClinicTab('headache')" data-clinic="headache" class="clinic-tab px-5 py-3 rounded-xl text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-cobalt transition">두통 · 신경통 클리닉</button>
+                </div>
+
+                <!-- Dynamic Clinic Content -->
+                <div id="clinicContent"></div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             VIEW 4: SPECIAL NON-SURGICAL TREATMENT (#treatment)
+        ===================================================================== -->
+        <section id="view-treatment" class="page-view bg-ice pb-20">
+            <div class="bg-gradient-to-r from-navy to-[#144769] text-white py-14">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+                    <span class="text-xs font-bold tracking-[0.2em] text-emerald-300 uppercase">NON-SURGICAL TREATMENTS</span>
+                    <h2 class="text-3xl sm:text-4xl font-black mt-2 mb-3">특수 비수술 치료 센터</h2>
+                    <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto break-keep">마취통증의학과 전문의의 정밀한 시술 노하우와 첨단 영상 장비로 안전하고 빠른 회복을 돕습니다.</p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
+                <!-- Treatment Tabs -->
+                <div class="flex flex-wrap justify-center gap-2 mb-10" id="treatmentTabs">
+                    <button onclick="setTreatmentTab('carm')" data-treat="carm" class="treat-tab px-4 py-3 rounded-xl text-sm font-bold bg-navy text-white shadow-md transition">C-arm 투시 신경차단술</button>
+                    <button onclick="setTreatmentTab('usg')" data-treat="usg" class="treat-tab px-4 py-3 rounded-xl text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-cobalt transition">초음파 유도 주사치료</button>
+                    <button onclick="setTreatmentTab('regen')" data-treat="regen" class="treat-tab px-4 py-3 rounded-xl text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-cobalt transition">프롤로·PRP·PDRN 재생</button>
+                    <button onclick="setTreatmentTab('eswt')" data-treat="eswt" class="treat-tab px-4 py-3 rounded-xl text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-cobalt transition">체외충격파(ESWT) · 물리치료</button>
+                    <button onclick="setTreatmentTab('iv')" data-treat="iv" class="treat-tab px-4 py-3 rounded-xl text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-cobalt transition">영양수액 · 예방접종</button>
+                </div>
+
+                <!-- Dynamic Treatment Content -->
+                <div id="treatmentContent"></div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             VIEW 5: NON-COVERED FEE SCHEDULE (#fee)
+        ===================================================================== -->
+        <section id="view-fee" class="page-view bg-white pb-20">
+            <div class="bg-gradient-to-r from-ice to-sky-50 border-b border-slate-200 py-14">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+                    <span class="text-xs font-extrabold tracking-[0.2em] text-cobalt uppercase">NON-COVERED MEDICAL EXPENSES</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-navy mt-2 mb-3">비급여 진료비용 안내</h2>
+                    <p class="text-slate-600 text-sm sm:text-base break-keep">의료법 제45조 및 동법 시행규칙 제42조의2에 의거하여 수마취통증의학과의 비급여 진료비용을 투명하게 고지합니다.</p>
+                </div>
+            </div>
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 mt-10">
+                <!-- Live Search & Category Filter -->
+                <div class="bg-ice rounded-2xl p-5 border border-slate-200 mb-10 flex flex-col lg:flex-row gap-4 items-center justify-between">
+                    <div class="relative w-full lg:w-80">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="text" id="feeSearchInput" oninput="renderFeeTables()" placeholder="항목명, 코드, 비고 검색 (예: 초음파, PRP)" class="w-full pl-11 pr-4 py-2.5 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:border-cobalt focus:ring-2 focus:ring-cobalt/20">
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-2" id="feeFilterPills">
+                        <button onclick="setFeeFilter('all')" data-fee="all" class="fee-pill px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-navy text-white transition">전체 보기</button>
+                        <button onclick="setFeeFilter('이학요법')" data-fee="이학요법" class="fee-pill px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-navy transition">이학요법</button>
+                        <button onclick="setFeeFilter('행위비급여')" data-fee="행위비급여" class="fee-pill px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-navy transition">행위비급여</button>
+                        <button onclick="setFeeFilter('예방접종료')" data-fee="예방접종료" class="fee-pill px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-navy transition">예방접종료</button>
+                        <button onclick="setFeeFilter('검사료 (초음파)')" data-fee="검사료 (초음파)" class="fee-pill px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-navy transition">초음파 검사</button>
+                        <button onclick="setFeeFilter('제증명 수수료')" data-fee="제증명 수수료" class="fee-pill px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-navy transition">제증명</button>
+                        <button onclick="setFeeFilter('치료재료 · 처방')" data-fee="치료재료 · 처방" class="fee-pill px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-navy transition">치료재료·처방</button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Fee Tables Container -->
+                <div id="feeTablesContainer" class="space-y-12"></div>
+
+                <!-- Legal Notice Box -->
+                <div class="mt-12 bg-ice border border-slate-200 rounded-2xl p-6 text-sm text-slate-600 leading-relaxed">
+                    <div class="font-extrabold text-navy mb-2"><i class="fa-solid fa-circle-info text-cobalt mr-1.5"></i> 비급여 진료비용 안내 유의사항</div>
+                    <p>1. 상기 비급여 항목 및 금액은 환자의 증상, 시술 부위, 투여 약제의 용량 및 치료 횟수에 따라 다소 차이가 발생할 수 있습니다.</p>
+                    <p>2. 제증명서 발급 시 의료법 규정에 따라 신분증(대리인 발급 시 위임장 및 동의서 등 구비서류) 지참이 필요합니다. (기준일: 2026.08.19)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             VIEW 6: LOCATION & CONTACT (#location)
+        ===================================================================== -->
+        <section id="view-location" class="page-view bg-ice pb-20">
+            <div class="bg-gradient-to-r from-navy to-[#183b6b] text-white py-14">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+                    <span class="text-xs font-bold tracking-[0.2em] text-emerald-300 uppercase">LOCATION &amp; HOURS</span>
+                    <h2 class="text-3xl sm:text-4xl font-black mt-2 mb-3">오시는 길 및 진료시간</h2>
+                    <p class="text-slate-300 text-sm sm:text-base">1호선 배방역 맞은편 다이소 옆 J,S 메디컬 2층에 위치하고 있습니다.</p>
+                </div>
+            </div>
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 mt-10 space-y-8">
+                <!-- Embedded Interactive Map Card -->
+                <div class="bg-white rounded-3xl shadow-lg border border-slate-200 overflow-hidden">
+                    <div class="w-full h-[360px] sm:h-[430px] bg-slate-200">
+                        <iframe
+                            title="수마취통증의학과 오시는 길 지도"
+                            src="https://maps.google.com/maps?q=%EC%B6%A9%EB%82%A8+%EC%95%84%EC%82%B0%EC%8B%9C+%EB%B0%B0%EB%B0%A9%EC%9D%8D+%EB%B0%B0%EB%B0%A9%EB%A1%9C14%EB%B2%88%EA%B8%B8+9&hl=ko&z=17&output=embed"
+                            class="w-full h-full border-0"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6 bg-white">
+                        <div>
+                            <div class="text-lg sm:text-xl font-black text-navy flex items-center gap-2">
+                                <i class="fa-solid fa-location-dot text-cobalt"></i>
+                                충남 아산시 배방읍 배방로14번길 9, J,S 메디컬 2층
+                            </div>
+                            <p class="text-sm text-slate-500 mt-1.5">
+                                배방역 맞은편 다이소 옆 &nbsp;|&nbsp; 지번: 아산시 배방읍 공수리 1564 2층 &nbsp;|&nbsp; 1호선 배방역 1번 출구 도보 약 5분
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2.5 shrink-0">
+                            <a href="https://map.kakao.com/link/search/%EC%88%98%EB%A7%88%EC%B7%A8%ED%86%B5%EC%A6%9D%EC%9D%98%ED%95%99%EA%B3%BC" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-[#FEE500] text-[#191919] text-sm font-extrabold hover:opacity-90 transition flex items-center gap-2">
+                                <i class="fa-solid fa-map-location-dot"></i> 카카오맵 길찾기
+                            </a>
+                            <a href="https://map.naver.com/p/search/%EC%88%98%EB%A7%88%EC%B7%A8%ED%86%B5%EC%A6%9D%EC%9D%98%ED%95%99%EA%B3%BC" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-[#03C75A] text-white text-sm font-extrabold hover:opacity-90 transition flex items-center gap-2">
+                                <i class="fa-solid fa-location-arrow"></i> 네이버지도 보기
+                            </a>
+                            <button onclick="copyClinicAddress()" class="px-5 py-3 rounded-xl bg-ice hover:bg-slate-200 text-navy border border-slate-300 text-sm font-bold transition flex items-center gap-2">
+                                <i class="fa-regular fa-copy"></i> 주소 복사
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clinic Hours & Contact Details Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
+                        <h3 class="text-xl font-black text-navy border-b-2 border-navy pb-3 mb-5 flex items-center justify-between">
+                            <span>진료시간 안내</span>
+                            <span class="text-xs font-semibold text-slate-400">CLINIC HOURS</span>
+                        </h3>
+                        <table class="w-full text-sm sm:text-base">
+                            <tbody class="divide-y divide-slate-100">
+                                <tr>
+                                    <th class="py-3.5 text-left font-bold text-slate-600">평 일 (월~금)</th>
+                                    <td class="py-3.5 text-right font-extrabold text-navy">AM 09:00 ~ PM 07:00</td>
+                                </tr>
+                                <tr>
+                                    <th class="py-3.5 text-left font-bold text-slate-600">토 요 일</th>
+                                    <td class="py-3.5 text-right">
+                                        <div class="font-extrabold text-cobalt">AM 09:00 ~ PM 02:30</div>
+                                        <div class="text-xs font-semibold text-slate-500">(토요일 점심시간 없음)</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="py-3.5 text-left font-bold text-slate-600">점 심 시 간</th>
+                                    <td class="py-3.5 text-right font-extrabold text-navy">PM 01:00 ~ PM 02:00</td>
+                                </tr>
+                                <tr>
+                                    <th class="py-3.5 text-left font-bold text-red-600">휴 진 안 내</th>
+                                    <td class="py-3.5 text-right font-extrabold text-red-600">매주 일요일 · 공휴일 휴진</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-black text-navy border-b-2 border-navy pb-3 mb-5 flex items-center justify-between">
+                                <span>진료 문의 및 연락처</span>
+                                <span class="text-xs font-semibold text-slate-400">CONTACT</span>
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-4 rounded-2xl bg-ice">
+                                    <div class="text-sm font-bold text-slate-600"><i class="fa-solid fa-phone text-cobalt mr-2"></i>대표전화</div>
+                                    <a href="tel:041-427-7711" class="text-2xl font-black text-navy hover:text-cobalt transition">041-427-7711</a>
+                                </div>
+                                <div class="flex items-center justify-between p-4 rounded-2xl bg-slate-50">
+                                    <div class="text-sm font-bold text-slate-600"><i class="fa-solid fa-fax text-slate-400 mr-2"></i>팩스번호</div>
+                                    <span class="text-lg font-bold text-slate-700">041-427-7712</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-500 mt-6 leading-relaxed">
+                            ※ 진료 마감 30분 전까지 접수해 주시면 보다 여유롭고 정밀한 진료 및 시술 상담이 가능합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========================================================================
+         FOOTER
+    ========================================================================= -->
+    <footer class="bg-navy text-slate-400 pt-14 pb-10 border-t-4 border-cobalt">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col lg:flex-row justify-between gap-8 pb-10 border-b border-white/10">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-9 h-9 rounded-lg bg-white p-1 flex items-center justify-center">
+                            <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <defs><clipPath id="footerDiamond"><rect x="16" y="16" width="68" height="68" rx="14" transform="rotate(45 50 50)"/></clipPath></defs>
+                                <g clip-path="url(#footerDiamond)">
+                                    <rect x="0" y="0" width="52" height="100" fill="#2CA94F"/>
+                                    <rect x="48" y="0" width="52" height="100" fill="#0E76BC"/>
+                                    <text x="72" y="61" text-anchor="middle" fill="#FFF" font-size="32" font-weight="800" font-family="serif">秀</text>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-black text-white tracking-tight">수마취통증의학과</span>
+                    </div>
+                    <p class="text-sm text-slate-300 mb-1.5">
+                        <strong class="text-white">수마취통증의학과</strong> &nbsp;|&nbsp; 대표원장: 박현준 &nbsp;|&nbsp; 전화: <a href="tel:041-427-7711" class="text-sky-300 hover:underline">041-427-7711</a> &nbsp;|&nbsp; 팩스: 041-427-7712
+                    </p>
+                    <p class="text-sm">
+                        충남 아산시 배방읍 배방로14번길 9 J,S 메디컬 2층 (배방역 맞은편 다이소 옆)
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-x-6 gap-y-2 items-start text-sm font-semibold">
+                    <button onclick="navigateTo('about')" class="text-slate-300 hover:text-white transition">병원소개</button>
+                    <button onclick="navigateTo('clinic', 'spine')" class="text-slate-300 hover:text-white transition">통증클리닉</button>
+                    <button onclick="navigateTo('treatment', 'carm')" class="text-slate-300 hover:text-white transition">특수비수술치료</button>
+                    <button onclick="navigateTo('fee')" class="text-sky-300 hover:text-white font-bold transition">[비급여진료비용안내]</button>
+                    <button onclick="navigateTo('location')" class="text-slate-300 hover:text-white transition">오시는길</button>
+                </div>
+            </div>
+            <div class="pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs">
+                <div>Copyright &copy; 2021-2026 <strong class="text-slate-200">수마취통증의학과 (SOO ANESTHESIOLOGY &amp; PAIN MEDICINE)</strong>. All rights reserved.</div>
+                <div class="font-mono text-slate-500">Build v2.0 (2024.05-2024.12) | Monthly Maintenance v2.6.9 (2026-09-16)</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================================================
+         NOTICE MODAL & TOAST NOTIFICATION (NO alert() USED)
+    ========================================================================= -->
+    <div id="noticeModal" class="fixed inset-0 z-[120] hidden items-center justify-center p-4">
+        <div onclick="closeNoticeModal()" class="absolute inset-0 bg-navy/60 backdrop-blur-sm"></div>
+        <div class="relative bg-white rounded-3xl max-w-lg w-full p-7 shadow-2xl border border-slate-100">
+            <div class="flex items-center justify-between mb-4">
+                <span id="modalBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-sky-100 text-cobalt">공지</span>
+                <button onclick="closeNoticeModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <h4 id="modalTitle" class="text-xl font-black text-navy mb-2"></h4>
+            <div id="modalDate" class="text-xs font-mono text-slate-400 mb-5"></div>
+            <p id="modalBody" class="text-sm text-slate-600 leading-relaxed whitespace-pre-line mb-6"></p>
+            <button onclick="closeNoticeModal()" class="w-full py-3 rounded-xl bg-navy hover:bg-cobalt text-white font-bold text-sm transition">확인</button>
+        </div>
+    </div>
+
+    <div id="toastBox" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[130] pointer-events-none opacity-0 transition-all duration-300 translate-y-3">
+        <div class="bg-navy text-white px-5 py-3 rounded-full shadow-2xl border border-white/15 text-sm font-bold flex items-center gap-2.5">
+            <i class="fa-solid fa-circle-check text-emerald-400"></i>
+            <span id="toastMessage">복사되었습니다.</span>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         APPLICATION JAVASCRIPT (SPA ROUTING, DATA, INTERACTIVE MODULES)
+    ========================================================================= -->
+    <script>
+        /* ---------------------------------------------------------------------
+           1. DATA STORES (Pain Navigator, Clinics, Treatments, Notices, Fees)
+        --------------------------------------------------------------------- */
+        const BODY_PART_DATA = {
+            neck: {
+                tag: 'CERVICAL & HEADACHE',
+                title: '두통 · 목디스크 클리닉',
+                symptoms: ['뒷목이 뻣뻣하고 어깨·등 날개뼈까지 뻐근함', '팔과 손가락으로 찌릿한 저림 증상 동반', '진통제로 잘 낫지 않는 만성 경추성 두통'],
+                diseases: ['경추 추간판탈출증(목디스크)', '거북목 증후군', '경추성 두통 · 후두신경통'],
+                treatments: ['C-arm 투시 경추 신경차단술', '초음파 유도 후두신경·근막 주사', '전문 물리치료'],
+                targetClinicTab: 'spine'
+            },
+            shoulder: {
+                tag: 'SHOULDER JOINT CARE',
+                title: '어깨 · 오십견 클리닉',
+                symptoms: ['팔을 위로 들거나 뒤로 돌릴 때 극심한 통증', '밤에 아픈 쪽으로 누우면 통증이 심해지는 야간통', '어깨 속에서 걸리는 느낌과 근력 저하'],
+                diseases: ['오십견 (유착성 관절낭염)', '회전근개 파열 · 충돌증후군', '석회성 건염'],
+                treatments: ['초음파 유도 관절강내 주사 · 수압팽창술', '체외충격파(ESWT) 석회 분해', '프롤로 · PDRN 재생치료'],
+                targetClinicTab: 'shoulder'
+            },
+            back: {
+                tag: 'LUMBAR SPINE CARE',
+                title: '허리디스크 · 척추관협착증 클리닉',
+                symptoms: ['허리 통증과 함께 엉치·허벅지·종아리 방사통', '오래 걸으면 다리가 터질 듯 저려 쉬어야 함', '아침에 일어날 때 허리가 굳고 펴기 힘듦'],
+                diseases: ['요추 추간판탈출증(허리디스크)', '척추관협착증', '급·만성 요통 및 후관절 증후군'],
+                treatments: ['C-arm 투시 선택적 신경근차단술', '경막외 신경차단술', '인대강화 프롤로 주사'],
+                targetClinicTab: 'spine'
+            },
+            elbow: {
+                tag: 'ELBOW & WRIST CARE',
+                title: '팔꿈치 · 손목 통증 클리닉',
+                symptoms: ['물건을 들거나 행주를 짤 때 팔꿈치 안·바깥쪽 통증', '손목 시큰거림 및 엄지~약지 손가락 저림', '아침에 손가락 마디가 뻣뻣하고 붓는 증상'],
+                diseases: ['테니스엘보 · 골프엘보', '손목터널증후군', '방아쇠수지 · 손목 건초염'],
+                treatments: ['초음파 유도 정밀 주사', '체외충격파(ESWT)', '프롤로 인대강화 · 파라핀 온열치료'],
+                targetClinicTab: 'shoulder'
+            },
+            knee: {
+                tag: 'KNEE CONSERVATION',
+                title: '무릎 · 퇴행성관절염 클리닉',
+                symptoms: ['계단을 오르내릴 때 무릎 앞쪽·안쪽이 시큰거림', '쪼그려 앉았다 일어날 때 통증과 뚝 소리', '무릎이 자주 붓고 물이 차는 느낌'],
+                diseases: ['퇴행성 무릎관절염', '슬개골 연골연화증', '무릎 인대·힘줄 염좌'],
+                treatments: ['자가혈소판 풍부혈장 치료술(무릎 PRP)', '초음파 유도 연골주사 · PDRN', '인대강화 프롤로 주사'],
+                targetClinicTab: 'knee'
+            },
+            foot: {
+                tag: 'FOOT & ANKLE CARE',
+                title: '발목 · 족저근막염 클리닉',
+                symptoms: ['아침에 일어나 첫발을 디딜 때 발뒤꿈치 찌릿함', '오래 서 있거나 걸은 후 발바닥 통증 악화', '발목 접질림 이후 반복되는 만성 불안정성'],
+                diseases: ['족저근막염', '아킬레스건염', '만성 발목염좌 · 인대손상'],
+                treatments: ['체외충격파(ESWT) 집중 치료', '초음파 유도 프롤로 · PDRN 주사', '전문 물리치료 · 보조기 처방'],
+                targetClinicTab: 'knee'
+            }
+        };
+
+        const VISUAL_GUIDE_DATA = {
+            carm: {
+                badge: 'STEP-BY-STEP VISUAL',
+                title: 'C-arm 투시 신경차단술 원리',
+                desc: '실시간 영상증폭장치(C-arm)로 척추 뼈와 신경 통로를 1mm 단위로 확인하며, 염증이 생긴 신경 주위에 정확히 약물을 전달해 통증 신호를 차단합니다.',
+                points: ['실시간 투시 모니터링으로 높은 정확도와 안전성', '시술 시간 약 5~10분 내외, 시술 후 당일 일상 복귀', '전신마취·절개 부담 없는 대표적 척추 비수술 치료'],
+                svg: `
+                    <svg viewBox="0 0 460 270" class="w-full max-w-md h-auto" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Grid background -->
+                        <defs>
+                            <pattern id="medGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+                                <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#1E3A5F" stroke-width="0.6"/>
+                            </pattern>
+                        </defs>
+                        <rect width="460" height="270" fill="url(#medGrid)" rx="12"/>
+                        <!-- C-arm Arc -->
+                        <path d="M 70 40 C 20 80, 20 190, 70 230" fill="none" stroke="#38BDF8" stroke-width="8" stroke-linecap="round" opacity="0.65"/>
+                        <rect x="58" y="25" width="44" height="22" rx="5" fill="#0E76BC"/>
+                        <rect x="58" y="223" width="44" height="22" rx="5" fill="#0E76BC"/>
+                        <!-- Scanning X-ray Beam -->
+                        <rect x="115" y="110" width="210" height="50" fill="#38BDF8" opacity="0.16" class="svg-scan-beam"/>
+                        <line x1="115" y1="135" x2="325" y2="135" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="5 4" class="svg-scan-beam"/>
+                        <!-- Stylized Spine Vertebrae -->
+                        <g fill="#E2E8F0" stroke="#94A3B8" stroke-width="1.5">
+                            <rect x="175" y="45" width="54" height="28" rx="7"/>
+                            <rect x="175" y="88" width="54" height="28" rx="7"/>
+                            <rect x="175" y="131" width="54" height="28" rx="7"/>
+                            <rect x="175" y="174" width="54" height="28" rx="7"/>
+                            <rect x="175" y="217" width="54" height="24" rx="7"/>
+                        </g>
+                        <!-- Spinal Nerve Canal -->
+                        <line x1="244" y1="38" x2="244" y2="248" stroke="#FACC15" stroke-width="4" stroke-linecap="round"/>
+                        <!-- Inflamed Target Area -->
+                        <circle cx="244" cy="145" r="22" fill="#F43F5E" opacity="0.35" class="svg-pulse"/>
+                        <circle cx="244" cy="145" r="9" fill="#1FA36B"/>
+                        <!-- Precision Needle Approaching -->
+                        <g class="svg-needle-move">
+                            <line x1="252" y1="142" x2="355" y2="82" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
+                            <rect x="348" y="72" width="38" height="12" rx="3" transform="rotate(-30 348 72)" fill="#E2E8F0"/>
+                        </g>
+                        <!-- Labels -->
+                        <text x="18" y="258" fill="#94A3B8" font-size="11" font-weight="700">C-ARM LIVE FLUOROSCOPY</text>
+                        <text x="275" y="160" fill="#34D399" font-size="12" font-weight="700">표적 신경 염증 완화</text>
+                    </svg>
+                `
+            },
+            usg: {
+                badge: 'REAL-TIME PRECISION',
+                title: '초음파 유도 정밀 주사치료 원리',
+                desc: '고해상도 근골격계 초음파 프로브로 피부 아래 근육·인대·힘줄·혈관을 실시간으로 보며, 손상된 병변 부위에 정확하게 재생 약물을 주입합니다.',
+                points: ['방사선 피폭 걱정 없는 안전한 영상 유도 시술', '혈관·신경 손상을 피하며 병변 중심부에 정밀 타겟팅', '프롤로·무릎 PRP·PDRN DNA 주사 효과 극대화'],
+                svg: `
+                    <svg viewBox="0 0 460 270" class="w-full max-w-md h-auto" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="460" height="270" fill="#0D1E33" rx="12"/>
+                        <!-- Tissue Layers -->
+                        <path d="M 30 95 Q 230 85 430 95 L 430 145 Q 230 138 30 145 Z" fill="#1E3A5F" opacity="0.7"/>
+                        <path d="M 30 145 Q 230 138 430 145 L 430 205 Q 230 212 30 205 Z" fill="#16304E" opacity="0.9"/>
+                        <!-- Ultrasound Probe -->
+                        <rect x="195" y="26" width="70" height="44" rx="10" fill="#E2E8F0"/>
+                        <rect x="202" y="66" width="56" height="12" rx="4" fill="#0E76BC"/>
+                        <!-- Sonar Cone -->
+                        <polygon points="205,78 255,78 320,235 140,235" fill="#38BDF8" opacity="0.12"/>
+                        <path d="M 192 115 Q 230 130 268 115" fill="none" stroke="#38BDF8" stroke-width="2" opacity="0.7" class="svg-pulse"/>
+                        <path d="M 176 150 Q 230 172 284 150" fill="none" stroke="#38BDF8" stroke-width="2" opacity="0.5" class="svg-pulse"/>
+                        <!-- Target Tendon Lesion -->
+                        <ellipse cx="230" cy="175" rx="34" ry="15" fill="#1FA36B" opacity="0.3" class="svg-pulse"/>
+                        <circle cx="230" cy="175" r="8" fill="#34D399"/>
+                        <!-- Guided Needle -->
+                        <g class="svg-needle-move">
+                            <line x1="238" y1="173" x2="368" y2="112" stroke="#34D399" stroke-width="3" stroke-linecap="round"/>
+                            <rect x="360" y="104" width="38" height="11" rx="3" transform="rotate(-25 360 104)" fill="#CBD5E1"/>
+                        </g>
+                        <text x="20" y="255" fill="#94A3B8" font-size="11" font-weight="700">HIGH-RES MUSCULOSKELETAL ULTRASOUND</text>
+                        <text x="280" y="196" fill="#34D399" font-size="12" font-weight="700">실시간 병변 타겟팅</text>
+                    </svg>
+                `
+            },
+            eswt: {
+                badge: 'ACOUSTIC ENERGY REGENERATION',
+                title: '체외충격파(ESWT) 조직 재생 원리',
+                desc: '체외에서 고에너지 음향 충격파를 통증 부위에 집중 전달하여, 석회 침착물을 미세하게 분해하고 신생 혈관 생성과 조직 재생을 활성화합니다.',
+                points: ['절개·주사 없이 10~15분 내외로 진행되는 비침습 치료', '어깨 석회성건염, 골프·테니스엘보, 족저근막염에 탁월', '2,000타~5,000타까지 부위·증상별 맞춤 에너지 적용'],
+                svg: `
+                    <svg viewBox="0 0 460 270" class="w-full max-w-md h-auto" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="460" height="270" fill="#0D1E33" rx="12"/>
+                        <!-- Skin & Tendon Surface -->
+                        <rect x="40" y="140" width="380" height="90" rx="14" fill="#152C47"/>
+                        <!-- ESWT Applicator Head -->
+                        <rect x="198" y="30" width="64" height="58" rx="10" fill="#CBD5E1"/>
+                        <path d="M 206 88 L 254 88 L 244 122 L 216 122 Z" fill="#0E76BC"/>
+                        <ellipse cx="230" cy="126" rx="18" ry="6" fill="#38BDF8"/>
+                        <!-- Shockwave Rings -->
+                        <circle cx="230" cy="178" r="20" fill="none" stroke="#34D399" stroke-width="3" class="svg-wave-1"/>
+                        <circle cx="230" cy="178" r="20" fill="none" stroke="#38BDF8" stroke-width="2.5" class="svg-wave-2"/>
+                        <circle cx="230" cy="178" r="20" fill="none" stroke="#34D399" stroke-width="2" class="svg-wave-3"/>
+                        <!-- Focal Target -->
+                        <circle cx="230" cy="178" r="10" fill="#1FA36B"/>
+                        <text x="20" y="255" fill="#94A3B8" font-size="11" font-weight="700">FOCUSED / RADIAL ESWT SHOCKWAVE</text>
+                        <text x="285" y="183" fill="#34D399" font-size="12" font-weight="700">혈류 개선 · 세포 재생</text>
+                    </svg>
+                `
+            }
+        };
+
+        const CLINIC_DATA = {
+            spine: {
+                title: '척추 클리닉 (목 · 허리)',
+                subtitle: '목디스크 · 허리디스크 · 척추관협착증 · 급만성 요통',
+                cards: [
+                    {
+                        name: '목디스크 (경추 추간판탈출증)',
+                        cause: '잘못된 자세, 스마트폰·PC 장시간 사용, 퇴행성 변화로 경추 사이 디스크가 탈출해 신경을 압박합니다.',
+                        symptoms: ['뒷목과 어깨, 날개뼈 안쪽이 뻐근하고 당김', '팔과 손가락으로 내려가는 저림·전기가 통하는 느낌', '목을 뒤로 젖힐 때 통증이 심해짐'],
+                        treatment: '디지털 C-arm 투시 경추 신경차단술, 초음파 유도 근육·근막 주사, 전문 물리치료'
+                    },
+                    {
+                        name: '허리디스크 (요추 추간판탈출증)',
+                        cause: '허리에 반복적인 하중이 가해지거나 외상으로 추간판 수핵이 빠져나와 좌골신경을 자극합니다.',
+                        symptoms: ['허리 통증과 함께 엉치·허벅지·종아리로 뻗치는 방사통', '앉아 있거나 허리를 앞으로 숙일 때 통증 악화', '기침·재채기할 때 허리가 울림'],
+                        treatment: 'C-arm 선택적 신경근차단술, 경막외 신경차단술, 프롤로 인대강화주사'
+                    },
+                    {
+                        name: '척추관협착증',
+                        cause: '노화로 인해 척추 뼈와 인대가 두꺼워지면서 신경이 지나가는 통로(척추관)가 좁아지는 질환입니다.',
+                        symptoms: ['10분 이상 걸으면 다리가 저리고 터질 듯 아파 쪼그려 쉬어야 함', '허리를 뒤로 젖히면 아프고 앞으로 숙이면 편해짐', '밤에 종아리가 자주 저리고 쥐가 남'],
+                        treatment: 'C-arm 경막외 신경차단술, 신경 염증·부종 완화 약물 및 보존적 통증 관리'
+                    },
+                    {
+                        name: '급·만성 요통 / 후관절 증후군',
+                        cause: '척추 뒤쪽의 작은 관절(후관절) 퇴행이나 근육·인대 염좌로 인해 국소적인 허리 통증이 발생합니다.',
+                        symptoms: ['아침에 일어날 때 허리가 뻣뻣하고 움직이면 조금 풀림', '허리를 뒤로 젖히거나 옆으로 돌릴 때 찌릿한 통증', '오래 서 있을 때 묵직한 허리 피로감'],
+                        treatment: 'C-arm 후관절 내측지 신경차단술, 초음파 유도 프롤로 주사, 체외충격파'
+                    }
+                ]
+            },
+            shoulder: {
+                title: '어깨 · 상지 클리닉',
+                subtitle: '오십견 · 회전근개 손상 · 석회성건염 · 골프·테니스엘보 · 손목터널증후군',
+                cards: [
+                    {
+                        name: '오십견 (유착성 관절낭염)',
+                        cause: '어깨 관절을 감싸는 관절낭에 염증이 생기고 유착되어 모든 방향으로 운동 범위가 굳어집니다.',
+                        symptoms: ['팔을 위로 들거나 등 뒤로 올리기 어려움', '밤에 통증이 심해져 잠을 설치는 야간통', '옷을 입고 벗거나 머리를 감기 힘듦'],
+                        treatment: '초음파 유도 관절강내 주사 및 수압팽창술, 염증 조절 약물, 온열 물리치료'
+                    },
+                    {
+                        name: '회전근개 파열 · 충돌증후군',
+                        cause: '어깨를 움직이는 4개의 힘줄(회전근개)이 반복적인 마찰이나 퇴행성 변화로 손상·파열됩니다.',
+                        symptoms: ['팔을 특정 각도(60~120도)로 들어 올릴 때 통증', '어깨 근력이 약해져 물건을 들기 힘듦', '어깨 속에서 뚝뚝 걸리는 마찰음'],
+                        treatment: '초음파 유도 PDRN(DNA)·프롤로·콜라필 재생주사, 체외충격파(ESWT)'
+                    },
+                    {
+                        name: '석회성 건염',
+                        cause: '어깨 힘줄 조직 내에 칼슘 석회가 침착되면서 급성 염증과 극심한 통증을 유발합니다.',
+                        symptoms: ['갑자기 응급실을 찾고 싶을 정도로 극심한 어깨 통증', '팔을 조금만 움직여도 찌르는 듯한 통증', '호전과 악화를 반복하는 만성 어깨 결림'],
+                        treatment: '초음파 유도 석회 세척·흡인술, 고에너지 체외충격파(ESWT)'
+                    },
+                    {
+                        name: '골프·테니스엘보 / 손목터널증후군',
+                        cause: '팔꿈치 힘줄의 반복적 과사용(상과염)이나 손목 정중신경 압박으로 만성 통증과 손저림이 나타납니다.',
+                        symptoms: ['문고리를 돌리거나 물컵을 들 때 팔꿈치 통증', '엄지·검지·중지 손가락 저림 및 감각 저하', '손을 털면 저림이 잠시 완화됨'],
+                        treatment: '초음파 유도 신경·힘줄 정밀 주사, 체외충격파(ESWT), 파라핀 온열치료'
+                    }
+                ]
+            },
+            knee: {
+                title: '무릎 · 하지 클리닉',
+                subtitle: '퇴행성 무릎관절염 · 연골연화증 · 족저근막염 · 발목염좌',
+                cards: [
+                    {
+                        name: '퇴행성 무릎관절염',
+                        cause: '무릎 관절 연골이 점차 닳아 없어지면서 뼈와 뼈가 마찰하고 관절 내 염증과 통증이 발생합니다.',
+                        symptoms: ['계단을 오르내릴 때 무릎이 시큰거리고 아픔', '오래 걷고 나면 무릎이 붓고 열감이 느껴짐', '아침에 무릎이 뻣뻣하고 완전히 펴기 힘듦'],
+                        treatment: '무릎 자가혈소판 풍부혈장 치료술(PRP), 초음파 유도 연골주사·PDRN·프롤로 보존요법'
+                    },
+                    {
+                        name: '슬개골 연골연화증',
+                        cause: '무릎 앞쪽 슬개골 아래 연골이 약해지고 물러지면서 젊은 층에서도 앞무릎 통증을 유발합니다.',
+                        symptoms: ['쪼그려 앉거나 양반다리를 할 때 무릎 앞쪽 통증', '영화관·차량에 오래 앉아 있다 일어날 때 뻐근함', '무릎을 구부릴 때 사각거리는 느낌'],
+                        treatment: '초음파 정밀 진단, 프롤로·PDRN 재생주사, 전문 물리치료'
+                    },
+                    {
+                        name: '족저근막염',
+                        cause: '발바닥 아치를 지지하는 족저근막에 미세 손상과 염증이 반복되어 발뒤꿈치 통증이 생깁니다.',
+                        symptoms: ['아침에 일어나 첫발을 디딜 때 찌르는 듯한 통증', '오래 앉아 있다 일어설 때 발뒤꿈치 통증 재발', '장시간 보행이나 운동 후 발바닥 뻐근함'],
+                        treatment: '체외충격파(ESWT) 집중 프로토콜, 초음파 유도 주사치료, 물리치료'
+                    },
+                    {
+                        name: '발목염좌 · 만성 발목불안정성',
+                        cause: '발목이 접질리며 바깥쪽 인대가 늘어나거나 부분 파열된 후 방치되어 만성 통증으로 이어집니다.',
+                        symptoms: ['같은 쪽 발목을 습관적으로 자주 접질림', '울퉁불퉁한 길을 걸을 때 발목이 시큰거림', '발목 복숭아뼈 주변의 지속적인 부기·압통'],
+                        treatment: '초음파 인대 손상 확인, 프롤로 인대강화주사, 체외충격파, 보호대 처방'
+                    }
+                ]
+            },
+            headache: {
+                title: '두통 · 신경통 클리닉',
+                subtitle: '경추성 두통 · 편두통 · 후두신경통 · 대상포진 후 신경통 · 수술후통증증후군',
+                cards: [
+                    {
+                        name: '경추성 두통 · 후두신경통',
+                        cause: '목 뼈 주변 근육의 긴장과 경추 신경 압박이 뒤통수와 관자놀이로 이어져 두통을 유발합니다.',
+                        symptoms: ['뒤통수에서 정수리·눈 뒤쪽까지 찌릿하게 뻗치는 통증', '목과 어깨 결림이 심할수록 두통이 동반됨', '일반 두통약을 먹어도 일시적 효과에 그침'],
+                        treatment: '초음파 유도 대후두신경 차단술, C-arm 경추 신경치료, 근막통증 주사'
+                    },
+                    {
+                        name: '대상포진 · 대상포진 후 신경통',
+                        cause: '면역력 저하로 신경절에 잠복해 있던 바이러스가 활성화되어 피부 발진과 극심한 신경통을 일으킵니다.',
+                        symptoms: ['몸 한쪽 띠 모양의 수포와 화끈거리고 칼로 베는 듯한 통증', '피부 발진이 나은 뒤에도 옷깃만 스쳐도 아픈 통증 지속', '극심한 통증으로 인한 수면 장애'],
+                        treatment: '급성기 조기 신경차단술(후유증 예방 핵심), 신경병증성 통증 약물치료, 대상포진 예방접종'
+                    },
+                    {
+                        name: '척추·관절 수술후통증증후군',
+                        cause: '수술 이후에도 남아 있는 신경 유착, 주변 조직 염증, 인접 분절 과부하로 통증이 지속됩니다.',
+                        symptoms: ['수술 후에도 허리·다리 저림이나 관절 통증이 남음', '날씨가 흐리거나 피곤하면 수술 부위가 쑤심', '재수술에 대한 부담이 큰 상태'],
+                        treatment: 'C-arm 정밀 신경차단술, 초음파 유도 유착·염증 완화 주사, 맞춤 통증 관리'
+                    },
+                    {
+                        name: '편두통 · 긴장성 두통',
+                        cause: '뇌혈관 및 삼차신경계 과민 반응과 스트레스·근육 긴장이 복합적으로 작용해 발생합니다.',
+                        symptoms: ['한쪽 머리가 맥박 뛰듯 욱신거리는 통증', '빛·소리에 민감해지고 속이 메스꺼움', '머리를 띠로 조이는 듯한 둔한 압박감'],
+                        treatment: '신경차단술 및 통증유발점 주사, 전문 예방 약물 처방, 영양수액 요법'
+                    }
+                ]
+            }
+        };
+
+        const TREATMENT_DATA = {
+            carm: {
+                tag: 'FLUOROSCOPY GUIDED',
+                title: 'C-arm 투시 신경차단술',
+                summary: '실시간 영상증폭장치(C-arm)를 이용해 척추 뼈와 신경 구조를 모니터로 직접 확인하면서, 통증의 원인이 되는 신경 주위에 정밀하게 약물을 주입하는 대표적 비수술 치료입니다.',
+                benefits: ['1mm 단위 정밀 타겟팅으로 높은 치료 효과와 안전성', '절개·전신마취 없이 5~10분 내외 시술 후 당일 귀가', '고령자나 당뇨·고혈압 만성질환자도 안전하게 시술 가능', '신경 부종과 염증을 빠르게 가라앉혀 즉각적인 통증 완화'],
+                steps: [
+                    { step: 'STEP 01', name: '정밀 영상 진단', desc: '디지털 X-ray 및 이학적 검사를 통해 통증 유발 신경 분절을 정확히 파악합니다.' },
+                    { step: 'STEP 02', name: 'C-arm 실시간 조준', desc: '고화질 C-arm 투시 화면을 보며 시술 부위를 소독하고 안전하게 표적에 접근합니다.' },
+                    { step: 'STEP 03', name: '표적 약물 주입', desc: '압박되고 염증이 생긴 신경 주위에 염증 완화 및 혈류 개선 약물을 정밀 주입합니다.' },
+                    { step: 'STEP 04', name: '안정 및 당일 귀가', desc: '시술 후 회복실에서 약 15~20분간 안정을 취한 뒤 바로 일상생활로 복귀합니다.' }
+                ],
+                caution: '시술 당일은 사우나·탕목욕을 피하고 가벼운 샤워만 권장합니다. 일시적으로 다리에 힘이 빠지거나 묵직한 느낌이 들 수 있으나 수 시간 내 자연 회복됩니다.'
+            },
+            usg: {
+                tag: 'ULTRASOUND GUIDED',
+                title: '초음파 유도 정밀 주사치료',
+                summary: '고해상도 근골격계 초음파를 이용해 X-ray로는 보이지 않는 인대, 힘줄, 근육, 관절낭, 말초신경의 병변을 실시간으로 확인하며 시술하는 안전하고 정교한 치료입니다.',
+                benefits: ['방사선 노출이 전혀 없어 임산부·소아·반복 시술에도 안전', '바늘 끝 위치와 약물 퍼짐을 실시간 확인해 오차 최소화', '주변 주요 혈관과 신경을 피해 합병증 위험 극소화', '어깨·무릎·팔꿈치·손목·발목 등 전신 관절 병변에 적용'],
+                steps: [
+                    { step: 'STEP 01', name: '동적 초음파 검사', desc: '관절을 움직이며 힘줄 파열, 염증, 석회, 관절액 저류를 실시간 진단합니다.' },
+                    { step: 'STEP 02', name: '병변 깊이·경로 설계', desc: '초음파 화면에서 혈관과 신경을 피하는 가장 안전한 진입 경로를 설정합니다.' },
+                    { step: 'STEP 03', name: '실시간 유도 시술', desc: '바늘이 병변 중심부에 정확히 도달한 것을 확인하며 약물을 주입합니다.' },
+                    { step: 'STEP 04', name: '경과 확인 및 관리', desc: '시술 직후 통증 변화를 확인하고 재발 방지를 위한 생활 습관을 안내합니다.' }
+                ],
+                caution: '시술 부위에 무리한 운동이나 과도한 스트레칭은 2~3일간 삼가시고, 안내해 드린 주의사항을 지켜주시면 회복이 더욱 빠릅니다.'
+            },
+            regen: {
+                tag: 'REGENERATIVE MEDICINE',
+                title: '프롤로 · 무릎 PRP · PDRN 재생치료',
+                summary: '단순히 통증만 잠시 가라앉히는 것이 아니라, 손상되고 약해진 인대·힘줄·연골 조직의 자가 치유력과 세포 재생을 유도하여 통증의 근본 원인을 해결합니다.',
+                compare: [
+                    { name: '인대강화주사 (프롤로)', code: 'MY142', desc: '고농도 포도당 등 증식제를 인대·힘줄 부착부에 주입해 인위적 치유 반응을 유도, 약해진 인대를 튼튼하게 강화합니다.', target: '만성 요통, 발목염좌, 테니스엘보, 관절 불안정성' },
+                    { name: '무릎 자가혈소판 (PRP)', code: '4Z0E00026', desc: '환자 본인의 혈액에서 성장인자가 풍부한 혈소판을 고농축 분리해 무릎 관절에 주입하는 신의료기술 재생치료입니다.', target: '무릎 퇴행성관절염, 연골 손상, 만성 무릎 통증' },
+                    { name: 'PDRN (DNA 주사)', code: '56200011', desc: '연어 추출 DNA 성분으로 세포 재생 인자 분비를 촉진하고 미세혈류를 개선해 손상된 힘줄과 연골 회복을 돕습니다.', target: '회전근개 손상, 족저근막염, 팔꿈치·무릎 힘줄염' },
+                    { name: 'GCWB 콜라필', code: 'BM2600VT', desc: '고순도 콜라겐 조직보충제를 손상된 인대·힘줄 결손 부위에 직접 보충하여 구조적 안정성과 회복력을 높입니다.', target: '힘줄 부분 파열, 만성 건병증, 인대 손상' }
+                ]
+            },
+            eswt: {
+                tag: 'ESWT & PHYSICAL THERAPY',
+                title: '체외충격파(ESWT) & 전문 물리치료',
+                summary: '통증과 염증이 만성화된 인대·힘줄 부위에 고에너지 충격파를 전달해 석회질을 분해하고 신생 혈관 형성을 유도하며, 독립형 물리치료실 및 파라핀 온열치료로 회복을 극대화합니다.',
+                benefits: ['피부 절개나 약물 주입 없이 진행되는 안전한 비침습 치료', '부위 및 만성화 정도에 따라 2,000타 ~ 5,000타 맞춤 프로토콜 적용', '석회성건염·족저근막염·골프/테니스엘보 등 난치성 힘줄 통증에 효과적', '독립 커튼 베드 물리치료실 및 수부 관절 전용 파라핀 온열치료 연계'],
+                steps: [
+                    { step: '2,000타', name: '국소 초기 염증', desc: '손목·팔꿈치·발바닥 등 좁은 부위의 초기 힘줄염에 적합 (50,000원)' },
+                    { step: '3,000타', name: '표준 집중 치료', desc: '어깨·무릎·족저근막염 등 대표적 근골격계 만성 통증 표준 프로토콜 (70,000원)' },
+                    { step: '4,000타', name: '광범위·심부 치료', desc: '석회성건염, 넓은 부위의 근육·인대 유착 및 만성 통증 집중 케어 (90,000원)' },
+                    { step: '5,000타', name: '복합 다부위 집중', desc: '양측 또는 복합 관절 부위의 고강도 조직 재생 프로토콜 (110,000원)' }
+                ],
+                caution: '치료 직후 일시적인 뻐근함이나 미세한 멍이 생길 수 있으나 조직 재생 과정의 자연스러운 반응이며 1~2일 내 사라집니다.'
+            },
+            iv: {
+                tag: 'NUTRITION & VACCINATION',
+                title: '1:1 맞춤 영양수액 & 예방접종 클리닉',
+                summary: '만성 피로, 면역력 저하, 신경통 및 근육 피로 회복을 위한 상태별 맞춤 영양수액 처방과 함께, 중장년층 통증 예방의 핵심인 대상포진·독감 백신 접종을 시행합니다.',
+                benefits: ['전문의 문진을 통한 개인 컨디션·증상별 맞춤 수액 구성', '만성피로 회복, 항산화·면역 증진, 신경통·근육통 보조 회복', '대상포진 사백신(싱그릭스주) 및 생백신(스카이조스터) 모두 보유', '독립형 커튼 베드에서 편안하고 위생적인 수액 투여 환경'],
+                steps: [
+                    { step: '수액 클리닉', name: '만성피로 · 면역 회복', desc: '고용량 비타민·미네랄·항산화 성분으로 기력 회복과 통증 피로 완화를 돕습니다.' },
+                    { step: '싱그릭스주', name: '대상포진 사백신 (220,000원)', desc: '90% 이상의 높은 예방 효과를 보이는 유전자재조합 백신 (총 2회 접종, 1회 기준).' },
+                    { step: '스카이조스터', name: '대상포진 백신 (140,000원)', desc: '1회 접종으로 간편하게 대상포진 및 대상포진 후 신경통을 예방합니다.' },
+                    { step: '독감 백신', name: '지씨플루 (30,000원)', desc: '환절기·동절기 인플루엔자 예방을 위한 안전한 백신 접종을 시행합니다.' }
+                ],
+                caution: '예방접종은 백신 재고 상황에 따라 당일 접종 여부가 달라질 수 있으므로 내원 전 041-427-7711로 문의해 주시면 정확히 안내해 드립니다.'
+            }
+        };
+
+        const NOTICES = [
+            { cat: '공지', badgeClass: 'bg-sky-100 text-cobalt', title: '2026년 9월 추석 연휴 진료 및 휴진 일정 안내', date: '2026.09.16', body: '풍요롭고 건강한 한가위 되시길 바랍니다.\n\n추석 연휴 기간 공휴일은 휴진이며, 연휴 전후 평일(09:00~19:00) 및 토요일(09:00~14:30, 점심시간 없음)은 정상 진료합니다. 내원 전 전화(041-427-7711)로 확인해 주시면 감사하겠습니다.' },
+            { cat: '갱신', badgeClass: 'bg-emerald-100 text-emeraldMed', title: '2026년 하반기 비급여 진료비용 고시 정기 안내', date: '2026.08.19', body: '의료법 제45조에 따라 2026년 하반기 수마취통증의학과 비급여 진료비용(이학요법, 행위비급여, 예방접종, 초음파, 제증명, 치료재료) 항목을 정기 점검하여 홈페이지 [비급여안내] 메뉴에 최신화하였습니다.' },
+            { cat: '안내', badgeClass: 'bg-sky-100 text-cobalt', title: '하절기 만성피로·면역력 회복 영양수액 클리닉 안내', date: '2026.07.15', body: '무더위와 냉방병으로 지친 기력 회복과 면역력 강화를 위한 1:1 맞춤 영양수액 클리닉을 운영 중입니다. 독립형 커튼 베드에서 편안하게 수액 치료를 받으실 수 있습니다.' },
+            { cat: '점검', badgeClass: 'bg-emerald-100 text-emeraldMed', title: '체외충격파(ESWT) 및 전문 물리치료실 장비 정기 점검 완료', date: '2026.06.17', body: '안전하고 정밀한 비수술 치료 환경 유지를 위해 체외충격파(ESWT) 장비 및 물리치료실·파라핀 온열치료기 정기 안전 점검과 캘리브레이션을 완료하였습니다.' },
+            { cat: '개편', badgeClass: 'bg-emerald-100 text-emeraldMed', title: '무릎 관절염 보존요법(PRP·프롤로·PDRN) 안내 페이지 개편', date: '2026.03.18', body: '퇴행성 무릎관절염 환자분들이 비수술 보존요법(무릎 자가혈소판 PRP, 프롤로, PDRN DNA 주사)의 차이를 쉽게 이해하실 수 있도록 홈페이지 안내를 전면 개편하였습니다.' },
+            { cat: '시스템', badgeClass: 'bg-slate-200 text-slate-700', title: '홈페이지 리뉴얼 및 SSL 보안서버 통합 완료', date: '2024.12.18', body: '2024년 5월부터 진행된 수마취통증의학과 공식 웹사이트 전면 리뉴얼 및 전역 SSL(HTTPS) 보안서버 적용이 완료되었습니다. 앞으로도 매월 정기 점검을 통해 최신 의료 정보를 제공하겠습니다.' }
+        ];
+
+        const FEE_DATA = [
+            {
+                category: '이학요법',
+                sub: '기준일 : 2026.08.19',
+                items: [
+                    { name: '체외충격파 2,000타', code: 'SZ084', price: '50,000원', note: '1회 기준' },
+                    { name: '체외충격파 3,000타', code: 'SZ084', price: '70,000원', note: '1회 기준' },
+                    { name: '체외충격파 4,000타', code: 'SZ084', price: '90,000원', note: '1회 기준' },
+                    { name: '체외충격파 5,000타', code: 'SZ084', price: '110,000원', note: '1회 기준' }
+                ]
+            },
+            {
+                category: '행위비급여',
+                sub: '부위 및 약제 용량에 따라 상이할 수 있습니다',
+                items: [
+                    { name: '인대강화주사 (프롤로)', code: 'MY142', price: '30,000 ~ 200,000원', note: '부위 및 용량에 따라 다름' },
+                    { name: '자가 혈소판 풍부 혈장 치료술 (PRP) 무릎', code: '4Z0E00026', price: '200,000원', note: '1회 기준' },
+                    { name: 'PDRN (DNA주사)', code: '56200011', price: '40,000 ~ 200,000원', note: '용량에 따라 다름' },
+                    { name: 'GCWB 콜라필 (콜라겐조직보충제)', code: 'BM2600VT', price: '150,000원', note: '1회 기준' },
+                    { name: '리포라제주', code: '669904601', price: '30,000 ~ 100,000원', note: '용량에 따라 다름' },
+                    { name: '액상하이랙스주 (주사)', code: '654802111', price: '50,000 ~ 200,000원', note: '용량에 따라 다름' }
+                ]
+            },
+            {
+                category: '예방접종료',
+                sub: '백신 수급 상황에 따라 재고 확인 후 접종 가능',
+                items: [
+                    { name: '대상포진 백신 (스카이조스터)', code: '3Z5200301', price: '140,000원', note: '1회 접종' },
+                    { name: '대상포진 백신 (싱그릭스주)', code: '650003220', price: '220,000원', note: '1회 기준 (총 2회 접종)' },
+                    { name: '독감 백신 (지씨플루프리필드시린지주)', code: '643603630', price: '30,000원', note: '1회 접종' }
+                ]
+            },
+            {
+                category: '검사료 (초음파)',
+                sub: '부위별 근골격계 정밀 초음파',
+                items: [
+                    { name: '손가락 초음파', code: 'EB461', price: '30,000원', note: '-' },
+                    { name: '발가락 초음파', code: 'EB462', price: '30,000원', note: '-' },
+                    { name: '팔꿈치 초음파', code: 'EB463', price: '30,000원', note: '-' },
+                    { name: '무릎 초음파', code: 'EB464', price: '30,000원', note: '-' },
+                    { name: '어깨 초음파', code: 'EB466', price: '30,000원', note: '-' },
+                    { name: '고관절 초음파', code: 'EB467', price: '30,000원', note: '-' },
+                    { name: '발목 초음파', code: 'EB468', price: '30,000원', note: '-' },
+                    { name: '연부조직 초음파', code: 'EB470', price: '30,000원', note: '-' },
+                    { name: '근골격, 연부조직 초음파 - 정밀', code: 'EB471', price: '50,000원', note: '정밀 진단' },
+                    { name: '가이드 초음파 (초음파 유도료)', code: 'EB402', price: '20,000원', note: '시술 시 적용' },
+                    { name: '단순 초음파', code: '-', price: '10,000원', note: '-' }
+                ]
+            },
+            {
+                category: '제증명 수수료',
+                sub: '보건복지부 의료기관 제증명수수료 기준 준수',
+                items: [
+                    { name: '일반진단서 (병명 기재)', code: 'PDZ010000', price: '15,000원', note: '-' },
+                    { name: '소견서', code: '-', price: '5,000원', note: '-' },
+                    { name: '초진차트 사본', code: 'PDZ110101', price: '1,000원', note: '-' },
+                    { name: '통원확인서 (병명 미포함)', code: 'PDZ090004', price: '1,000원', note: '-' },
+                    { name: '진료확인서', code: 'PDZ090007', price: '3,000원', note: '-' },
+                    { name: '진료기록지 사본 (기본)', code: 'PDZ110101', price: '1,000원', note: '5장 이하' },
+                    { name: '진료기록지 사본 (추가)', code: 'PDZ110102', price: '장당 100원', note: '5장 초과 시 매당' },
+                    { name: '영상 CD 복사', code: 'PDZ110004', price: '10,000원', note: '-' }
+                ]
+            },
+            {
+                category: '치료재료 · 처방',
+                sub: '보조기 및 비급여 원외처방',
+                items: [
+                    { name: '관절·척추 보호대 (보조기)', code: '-', price: '5,000 ~ 50,000원', note: '종류에 따라 다름' },
+                    { name: '비급여 처방전', code: '-', price: '10,000 ~ 50,000원', note: '1회 / 종류 및 기간에 따라 다름' }
+                ]
+            }
+        ];
+
+        /* ---------------------------------------------------------------------
+           2. SPA NAVIGATION & ROUTER
+        --------------------------------------------------------------------- */
+        let currentFeeFilter = 'all';
+
+        function navigateTo(pageId, subTarget) {
+            // Hide all views
+            document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active'));
+            const targetView = document.getElementById('view-' + pageId) || document.getElementById('view-home');
+            targetView.classList.add('active');
+
+            // Update Desktop Nav Active State
+            document.querySelectorAll('.nav-link').forEach(btn => {
+                const isActive = btn.getAttribute('data-nav') === pageId;
+                btn.classList.toggle('text-cobalt', isActive);
+                btn.classList.toggle('bg-ice', isActive);
+            });
+
+            // Close mobile drawer if open
+            document.getElementById('mobileDrawer').classList.add('hidden');
+
+            // Activate sub-tabs if provided
+            if (pageId === 'clinic' && subTarget) setClinicTab(subTarget);
+            if (pageId === 'treatment' && subTarget) setTreatmentTab(subTarget);
+
+            // Update hash safely without jump
+            try { history.replaceState(null, '', '#' + pageId); } catch (e) {}
+
+            // Scroll handling
+            if (pageId === 'about' && subTarget === 'facilities') {
+                setTimeout(() => {
+                    const el = document.getElementById('about-facilities');
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 60);
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileDrawer').classList.toggle('hidden');
+        }
+
+        /* ---------------------------------------------------------------------
+           3. HERO SLIDER LOGIC
+        --------------------------------------------------------------------- */
+        let heroIdx = 0;
+        let heroTimer = null;
+        const heroSlides = () => document.querySelectorAll('.hero-slide');
+        const heroDotBtns = () => document.querySelectorAll('#heroDots button');
+
+        function renderHeroSlide(newIdx) {
+            const slides = heroSlides();
+            const dots = heroDotBtns();
+            heroIdx = (newIdx + slides.length) % slides.length;
+
+            slides.forEach((s, i) => s.classList.toggle('active', i === heroIdx));
+            dots.forEach((d, i) => {
+                if (i === heroIdx) {
+                    d.className = 'h-2.5 w-9 rounded-full bg-emerald-400 transition-all';
+                } else {
+                    d.className = 'h-2.5 w-2.5 rounded-full bg-white/40 hover:bg-white/70 transition-all';
+                }
+            });
+
+            document.getElementById('heroSlideNum').textContent = '0' + (heroIdx + 1);
+
+            // Restart progress bar animation
+            const bar = document.getElementById('heroProgressBar');
+            bar.classList.remove('hero-progress-fill');
+            void bar.offsetWidth;
+            bar.classList.add('hero-progress-fill');
+        }
+
+        function changeHeroSlide(step) {
+            renderHeroSlide(heroIdx + step);
+            resetHeroTimer();
+        }
+        function goToHeroSlide(idx) {
+            renderHeroSlide(idx);
+            resetHeroTimer();
+        }
+        function resetHeroTimer() {
+            if (heroTimer) clearInterval(heroTimer);
+            heroTimer = setInterval(() => renderHeroSlide(heroIdx + 1), 6000);
+        }
+
+        /* ---------------------------------------------------------------------
+           4. INTERACTIVE BODY-PART PAIN NAVIGATOR
+        --------------------------------------------------------------------- */
+        function selectBodyPart(partKey) {
+            const data = BODY_PART_DATA[partKey];
+            if (!data) return;
+
+            document.querySelectorAll('.body-part-btn').forEach(btn => {
+                const active = btn.getAttribute('data-part') === partKey;
+                btn.classList.toggle('border-2', active);
+                btn.classList.toggle('border-cobalt', active);
+                btn.classList.toggle('bg-ice', active);
+                btn.classList.toggle('border', !active);
+                btn.classList.toggle('border-slate-200', !active);
+                btn.classList.toggle('bg-white', !active);
+                const iconBox = btn.querySelector('div:first-child');
+                if (iconBox) {
+                    iconBox.classList.toggle('bg-cobalt', active);
+                    iconBox.classList.toggle('text-white', active);
+                    iconBox.classList.toggle('bg-slate-100', !active);
+                    iconBox.classList.toggle('text-navy', !active);
+                }
+            });
+
+            document.getElementById('bodyPartPreview').innerHTML = `
+                <span class="inline-block px-3 py-1 rounded-full bg-emerald-400/20 text-emerald-300 text-xs font-bold tracking-wider mb-3">${data.tag}</span>
+                <h3 class="text-2xl sm:text-3xl font-black mb-5">${data.title}</h3>
+                <div class="space-y-5 mb-7">
+                    <div>
+                        <div class="text-xs font-bold text-sky-300 uppercase tracking-wider mb-2">주요 의심 증상</div>
+                        <ul class="space-y-1.5 text-sm text-slate-200">
+                            ${data.symptoms.map(s => `<li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-400 mt-1 text-xs"></i><span>${s}</span></li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-white/10">
+                        <div>
+                            <div class="text-xs font-bold text-sky-300 mb-1.5">대표 질환</div>
+                            <div class="flex flex-wrap gap-1.5">
+                                ${data.diseases.map(d => `<span class="px-2.5 py-1 rounded-lg bg-white/10 text-xs font-semibold">${d}</span>`).join('')}
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-emerald-300 mb-1.5">권장 비수술 치료</div>
+                            <div class="flex flex-wrap gap-1.5">
+                                ${data.treatments.map(t => `<span class="px-2.5 py-1 rounded-lg bg-emerald-400/15 border border-emerald-400/30 text-emerald-200 text-xs font-semibold">${t}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <button onclick="navigateTo('clinic', '${data.targetClinicTab}')" class="px-6 py-3 rounded-xl bg-white hover:bg-sky-50 text-navy font-extrabold text-sm shadow-lg transition flex items-center gap-2">
+                        상세 클리닉 보기 <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                    <a href="tel:041-427-7711" class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm transition">
+                        <i class="fa-solid fa-phone mr-1.5"></i>전화 상담
+                    </a>
+                </div>
+            `;
+        }
+
+        /* ---------------------------------------------------------------------
+           5. INTERACTIVE VISUAL PROCEDURE GUIDE
+        --------------------------------------------------------------------- */
+        function setVisualGuide(key) {
+            const g = VISUAL_GUIDE_DATA[key];
+            if (!g) return;
+
+            document.querySelectorAll('.vg-tab').forEach(btn => {
+                const active = btn.getAttribute('data-guide') === key;
+                btn.className = active
+                    ? 'vg-tab px-5 py-2.5 rounded-full text-sm font-bold bg-navy text-white shadow-md transition'
+                    : 'vg-tab px-5 py-2.5 rounded-full text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition';
+            });
+
+            document.getElementById('visualGuideStage').innerHTML = g.svg;
+            document.getElementById('visualGuideInfo').innerHTML = `
+                <span class="text-xs font-extrabold tracking-widest text-emerald-400">${g.badge}</span>
+                <h3 class="text-2xl sm:text-3xl font-black mt-2 mb-4">${g.title}</h3>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 break-keep">${g.desc}</p>
+                <ul class="space-y-3 mb-7">
+                    ${g.points.map(p => `<li class="flex items-start gap-2.5 text-sm text-slate-100"><i class="fa-solid fa-circle-check text-sky-400 mt-0.5"></i><span>${p}</span></li>`).join('')}
+                </ul>
+                <button onclick="navigateTo('treatment', '${key}')" class="px-6 py-3 rounded-xl bg-cobalt hover:bg-sky-500 text-white font-bold text-sm transition inline-flex items-center gap-2">
+                    시술 과정 자세히 보기 <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+            `;
+        }
+
+        /* ---------------------------------------------------------------------
+           6. CLINIC TABS RENDERER (#clinic)
+        --------------------------------------------------------------------- */
+        function setClinicTab(key) {
+            const data = CLINIC_DATA[key] || CLINIC_DATA.spine;
+            document.querySelectorAll('.clinic-tab').forEach(btn => {
+                const active = btn.getAttribute('data-clinic') === key;
+                btn.className = active
+                    ? 'clinic-tab px-5 py-3 rounded-xl text-sm font-bold bg-navy text-white shadow-md transition'
+                    : 'clinic-tab px-5 py-3 rounded-xl text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-cobalt transition';
+            });
+
+            document.getElementById('clinicContent').innerHTML = `
+                <div class="mb-8 text-center">
+                    <h3 class="text-2xl sm:text-3xl font-black text-navy">${data.title}</h3>
+                    <p class="text-sm text-slate-500 mt-1">${data.subtitle}</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    ${data.cards.map((c, idx) => `
+                        <div class="bg-white rounded-3xl p-7 border border-slate-200/80 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span class="w-9 h-9 rounded-xl bg-ice text-cobalt font-black text-sm flex items-center justify-center">0${idx + 1}</span>
+                                    <h4 class="text-xl font-black text-navy">${c.name}</h4>
+                                </div>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-5 break-keep">${c.cause}</p>
+                                <div class="bg-ice rounded-2xl p-4 mb-5">
+                                    <div class="text-xs font-extrabold text-navy mb-2"><i class="fa-solid fa-list-check text-cobalt mr-1.5"></i>주요 증상 체크리스트</div>
+                                    <ul class="space-y-1.5 text-sm text-slate-700">
+                                        ${c.symptoms.map(s => `<li class="flex items-start gap-2"><span class="text-emeraldMed font-bold">·</span><span>${s}</span></li>`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="pt-4 border-t border-slate-100">
+                                <div class="text-xs font-bold text-emeraldMed mb-1">수마취통증의학과 비수술 치료</div>
+                                <div class="text-sm font-bold text-navy">${c.treatment}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        /* ---------------------------------------------------------------------
+           7. TREATMENT TABS RENDERER (#treatment)
+        --------------------------------------------------------------------- */
+        function setTreatmentTab(key) {
+            const data = TREATMENT_DATA[key] || TREATMENT_DATA.carm;
+            document.querySelectorAll('.treat-tab').forEach(btn => {
+                const active = btn.getAttribute('data-treat') === key;
+                btn.className = active
+                    ? 'treat-tab px-4 py-3 rounded-xl text-sm font-bold bg-navy text-white shadow-md transition'
+                    : 'treat-tab px-4 py-3 rounded-xl text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-cobalt transition';
+            });
+
+            if (key === 'regen') {
+                document.getElementById('treatmentContent').innerHTML = `
+                    <div class="bg-white rounded-3xl p-7 sm:p-10 border border-slate-200 shadow-sm">
+                        <span class="text-xs font-extrabold tracking-widest text-emeraldMed">${data.tag}</span>
+                        <h3 class="text-2xl sm:text-3xl font-black text-navy mt-1 mb-3">${data.title}</h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-3xl mb-8 break-keep">${data.summary}</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            ${data.compare.map(item => `
+                                <div class="rounded-2xl p-6 bg-ice border border-slate-200/80 flex flex-col justify-between">
+                                    <div>
+                                        <div class="flex items-center justify-between mb-3">
+                                            <h4 class="text-lg font-black text-navy">${item.name}</h4>
+                                            <span class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-white text-cobalt border border-slate-200">${item.code}</span>
+                                        </div>
+                                        <p class="text-sm text-slate-600 leading-relaxed mb-4 break-keep">${item.desc}</p>
+                                    </div>
+                                    <div class="pt-3 border-t border-slate-200/80 text-xs">
+                                        <span class="font-bold text-emeraldMed">적용 질환 : </span>
+                                        <span class="text-slate-700 font-medium">${item.target}</span>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="mt-8 text-center">
+                            <button onclick="navigateTo('fee')" class="px-7 py-3.5 rounded-xl bg-navy hover:bg-cobalt text-white font-bold text-sm transition">
+                                재생치료 비급여 수가 자세히 보기 <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            document.getElementById('treatmentContent').innerHTML = `
+                <div class="bg-white rounded-3xl p-7 sm:p-10 border border-slate-200 shadow-sm space-y-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                        <div class="lg:col-span-7">
+                            <span class="text-xs font-extrabold tracking-widest text-cobalt">${data.tag}</span>
+                            <h3 class="text-2xl sm:text-3xl font-black text-navy mt-1 mb-4">${data.title}</h3>
+                            <p class="text-slate-600 text-sm sm:text-base leading-relaxed break-keep">${data.summary}</p>
+                        </div>
+                        <div class="lg:col-span-5 bg-ice rounded-2xl p-6 border border-slate-200/70">
+                            <div class="text-sm font-extrabold text-navy mb-3"><i class="fa-solid fa-star text-emeraldMed mr-1.5"></i>주요 장점</div>
+                            <ul class="space-y-2 text-sm text-slate-700">
+                                ${data.benefits.map(b => `<li class="flex items-start gap-2"><i class="fa-solid fa-check text-cobalt mt-1 text-xs"></i><span>${b}</span></li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-black text-navy mb-4">치료 단계 및 프로그램 안내</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            ${data.steps.map(st => `
+                                <div class="p-5 rounded-2xl border border-slate-200 bg-slate-50/70">
+                                    <span class="inline-block px-2.5 py-1 rounded-lg bg-navy text-white text-xs font-extrabold mb-3">${st.step}</span>
+                                    <div class="font-extrabold text-navy text-base mb-1.5">${st.name}</div>
+                                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed break-keep">${st.desc}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-sky-50 border border-sky-100 text-sm text-slate-700 flex items-start gap-3">
+                        <i class="fa-solid fa-circle-info text-cobalt text-lg mt-0.5"></i>
+                        <div><strong class="text-navy">시술 전·후 안내 : </strong>${data.caution}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        /* ---------------------------------------------------------------------
+           8. NOTICE LIST & MODAL
+        --------------------------------------------------------------------- */
+        function renderNotices() {
+            document.getElementById('noticeListContainer').innerHTML = NOTICES.map((n, i) => `
+                <button onclick="openNoticeModal(${i})" class="w-full py-3.5 flex items-center justify-between gap-4 text-left hover:bg-ice/60 px-2 rounded-xl transition">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <span class="px-2.5 py-0.5 rounded-md text-[11px] font-bold shrink-0 ${n.badgeClass}">${n.cat}</span>
+                        <span class="text-sm sm:text-[15px] font-semibold text-slate-800 truncate">${n.title}</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400 shrink-0">${n.date}</span>
+                </button>
+            `).join('');
+        }
+
+        function openNoticeModal(idx) {
+            const n = NOTICES[idx];
+            document.getElementById('modalBadge').textContent = n.cat;
+            document.getElementById('modalBadge').className = 'px-3 py-1 rounded-full text-xs font-bold ' + n.badgeClass;
+            document.getElementById('modalTitle').textContent = n.title;
+            document.getElementById('modalDate').textContent = '등록일 : ' + n.date;
+            document.getElementById('modalBody').textContent = n.body;
+            const modal = document.getElementById('noticeModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeNoticeModal() {
+            const modal = document.getElementById('noticeModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        /* ---------------------------------------------------------------------
+           9. NON-COVERED FEE SCHEDULE RENDERER (#fee)
+        --------------------------------------------------------------------- */
+        function setFeeFilter(cat) {
+            currentFeeFilter = cat;
+            document.querySelectorAll('.fee-pill').forEach(p => {
+                const active = p.getAttribute('data-fee') === cat;
+                p.className = active
+                    ? 'fee-pill px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-navy text-white transition'
+                    : 'fee-pill px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-navy transition';
+            });
+            renderFeeTables();
+        }
+
+        function renderFeeTables() {
+            const query = (document.getElementById('feeSearchInput').value || '').trim().toLowerCase();
+            const container = document.getElementById('feeTablesContainer');
+
+            const filteredSections = FEE_DATA
+                .filter(sec => currentFeeFilter === 'all' || sec.category === currentFeeFilter)
+                .map(sec => ({
+                    ...sec,
+                    items: sec.items.filter(item =>
+                        !query ||
+                        item.name.toLowerCase().includes(query) ||
+                        item.code.toLowerCase().includes(query) ||
+                        item.note.toLowerCase().includes(query) ||
+                        sec.category.toLowerCase().includes(query)
+                    )
+                }))
+                .filter(sec => sec.items.length > 0);
+
+            if (filteredSections.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16 bg-ice rounded-2xl border border-slate-200 text-slate-500">
+                        <i class="fa-solid fa-magnifying-glass text-3xl mb-3 text-slate-300"></i>
+                        <div class="font-bold">검색 결과가 없습니다.</div>
+                        <p class="text-xs mt-1">다른 검색어를 입력하거나 '전체 보기'를 선택해 주세요.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filteredSections.map(sec => `
+                <div>
+                    <div class="flex flex-wrap items-end justify-between border-b-2 border-navy mb-4 gap-2">
+                        <span class="inline-block bg-navy text-white text-base sm:text-lg font-extrabold px-7 py-2.5 rounded-t-2xl">${sec.category}</span>
+                        <span class="text-xs text-slate-500 pb-2">${sec.sub}</span>
+                    </div>
+                    <div class="overflow-x-auto custom-scroll border border-slate-200 rounded-xl">
+                        <table class="w-full min-w-[580px] border-collapse text-sm">
+                            <thead>
+                                <tr class="bg-ice text-slate-700 border-b border-slate-200">
+                                    <th class="py-3.5 px-4 text-center font-bold border-r border-slate-200 w-[36%]">명칭</th>
+                                    <th class="py-3.5 px-4 text-center font-bold border-r border-slate-200 w-[18%]">코드</th>
+                                    <th class="py-3.5 px-4 text-center font-bold border-r border-slate-200 w-[22%]">비급여</th>
+                                    <th class="py-3.5 px-4 text-center font-bold w-[24%]">비고</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 bg-white">
+                                ${sec.items.map(it => `
+                                    <tr class="hover:bg-sky-50/50 transition">
+                                        <td class="py-3.5 px-4 text-center font-semibold text-slate-800 border-r border-slate-200">${it.name}</td>
+                                        <td class="py-3.5 px-4 text-center font-mono font-bold text-navy border-r border-slate-200">${it.code}</td>
+                                        <td class="py-3.5 px-4 text-center font-extrabold text-cobalt border-r border-slate-200">${it.price}</td>
+                                        <td class="py-3.5 px-4 text-center text-xs sm:text-sm text-slate-500">${it.note}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* ---------------------------------------------------------------------
+           10. CLIPBOARD COPY & TOAST NOTIFICATION
+        --------------------------------------------------------------------- */
+        let toastTimer = null;
+        function showToast(msg) {
+            const box = document.getElementById('toastBox');
+            document.getElementById('toastMessage').textContent = msg;
+            box.classList.remove('opacity-0', 'translate-y-3');
+            box.classList.add('opacity-100', 'translate-y-0');
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                box.classList.add('opacity-0', 'translate-y-3');
+                box.classList.remove('opacity-100', 'translate-y-0');
+            }, 2600);
+        }
+
+        function copyClinicAddress() {
+            const addr = '충남 아산시 배방읍 배방로14번길 9 J,S 메디컬 2층';
+            const temp = document.createElement('textarea');
+            temp.value = addr;
+            temp.style.position = 'fixed';
+            temp.style.opacity = '0';
+            document.body.appendChild(temp);
+            temp.select();
+            try {
+                document.execCommand('copy');
+                showToast('병원 주소가 복사되었습니다.');
+            } catch (e) {
+                showToast(addr);
+            }
+            document.body.removeChild(temp);
+        }
+
+        /* ---------------------------------------------------------------------
+           11. INITIALIZATION
+        --------------------------------------------------------------------- */
+        window.addEventListener('DOMContentLoaded', () => {
+            selectBodyPart('neck');
+            setVisualGuide('carm');
+            setClinicTab('spine');
+            setTreatmentTab('carm');
+            renderNotices();
+            renderFeeTables();
+            resetHeroTimer();
+
+            // Support initial hash navigation
+            const hash = (window.location.hash || '').replace('#', '');
+            if (['home', 'about', 'clinic', 'treatment', 'fee', 'location'].includes(hash)) {
+                navigateTo(hash);
+            } else {
+                navigateTo('home');
+            }
+        });
+    </script>
+</body>
+</html>
