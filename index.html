@@ -5,8 +5,8 @@
  [SYSTEM & MAINTENANCE ARCHITECTURE LOG - SOO PAIN CLINIC (soopain.com)]
  * Project Name   : 수마취통증의학과 공식 웹사이트 통합 SPA 시스템
  * Initial Build  : 2024.05.14 - 2024.12.20 (Core Architecture, Responsive UI, SSL & SEO)
- * Last Modified  : 2026.11.24 (v3.0.1 Pure HTML/CSS SPA, High-Contrast PC Typography)
- * Managed By     : Web Infrastructure & Marketing Operations Team
+ * Last Modified  : 2026.11.24 (v4.0.0 Stem Cell Anti-Aging Center, Official Fee Schedule, Collagen Therapy)
+ * Powered By     : SeHyeong AD.
 =========================================================================================
  [CHRONOLOGICAL REVISION HISTORY]
  - 2024.05.14 : [v1.0.0] 수마취통증의학과 사이트 구조 개편 기획 및 와이어프레임 설계
@@ -14,11 +14,9 @@
  - 2024.08.19 : [v1.3.0] C-arm 신경차단술 / 초음파 유도 주사 / 체외충격파 의학 컨텐츠 구축
  - 2024.11.20 : [v1.6.0] 보건복지부 비급여 진료비용 고시 기준안 테이블 모듈화 탑재
  - 2024.12.18 : [v2.0.0] 보안서버(SSL) 인증서 전역 적용 및 HTTPS 프로토콜 통합 완료
- - 2025.06.18 : [v2.1.6] 영양수액 클리닉 및 부위별 통증 안내 섹션 업데이트
- - 2025.12.17 : [v2.2.2] 연말 서버 보안 패치 및 정적 에셋 최적화
- - 2026.08.19 : [v2.6.8] 비급여 진료비용 고시 항목 정기 업데이트 (도수치료 제외)
  - 2026.09.16 : [v2.6.9] 진료시간(토요일 09:00-14:30) 및 대표전화(041-427-7711) 동기화
- - 2026.11.24 : [v3.0.1] 외부 CDN 경고 제거, 순수 HTML/CSS 단일 SPA 통합, PC 가독성·시술 비주얼 강화
+ - 2026.11.24 : [v3.0.1] 순수 HTML/CSS 단일 SPA 통합, PC 고대비 타이포그래피, 실사 이미지 연동
+ - 2026.11.24 : [v4.0.0] 항노화 줄기세포 치료센터(이뉴셀) 신설, 콜라겐 주사 추가, 비급여수가표 전면 반영, SeHyeong AD. 푸터 적용
 =========================================================================================
 -->
 <head>
@@ -26,10 +24,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>수마취통증의학과 | SOO ANESTHESIOLOGY &amp; PAIN MEDICINE</title>
-    <meta name="description" content="충남 아산시 배방읍 수마취통증의학과. 마취통증의학과 전문의 박현준 원장 진료. C-arm 신경차단술, 초음파 유도 주사, 프롤로·PDRN·PRP 재생치료, 체외충격파(ESWT). 평일 09:00-19:00, 토요일 09:00-14:30. 전화 041-427-7711.">
-    <meta name="keywords" content="수마취통증의학과, 아산 통증의학과, 배방 통증의학과, 박현준 원장, C-arm 신경차단술, 초음파 주사, 체외충격파, 프롤로주사, PDRN, PRP, 목디스크, 허리디스크, 오십견, 무릎통증바이블">
+    <meta name="description" content="충남 아산시 배방읍 수마취통증의학과. 마취통증의학과 전문의 박현준 원장 진료. C-arm 신경차단술, 초음파 유도 주사(프롤로·PDRN·PRP·콜라겐), 체외충격파(ESWT), 이뉴셀 항노화 줄기세포 치료센터. 평일 09:00-19:00, 토요일 09:00-14:30. 전화 041-427-7711.">
+    <meta name="keywords" content="수마취통증의학과, 아산 통증의학과, 배방 통증의학과, 박현준 원장, C-arm 신경차단술, 초음파 주사, 콜라겐주사, 체외충격파, 프롤로주사, PDRN, PRP, 항노화 줄기세포, 이뉴셀, 저속노화">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="수마취통증의학과 | 비수술 척추·관절·통증 중점 클리닉">
+    <meta property="og:title" content="수마취통증의학과 | 비수술 척추·관절 통증 &amp; 항노화 줄기세포 치료센터">
     <meta property="og:description" content="비수술 치료 우선, 과잉진료 없는 바른 진료. 아산 배방 J,S 메디컬 2층 · 041-427-7711">
     <link rel="shortcut icon" href="로고1.jpg">
 
@@ -44,7 +42,10 @@
             --blue-light: #e8f3fc;
             --green: #1e8e46;
             --green-light: #e9f7ee;
-            --teal: #0f766e;
+            --gold: #a67c37;
+            --gold-bright: #d4af6a;
+            --gold-soft: #faf6ee;
+            --plum: #4a235a;
             --text-main: #111827;
             --text-body: #273240;
             --text-muted: #4b5563;
@@ -55,13 +56,9 @@
             --shadow-sm: 0 4px 12px rgba(15, 41, 74, 0.06);
             --shadow-md: 0 10px 28px rgba(15, 41, 74, 0.10);
             --radius: 12px;
-            --scale: 1;
         }
 
-        /* 글자 크게(A+) 모드 */
-        html.font-large {
-            font-size: 114%;
-        }
+        html.font-large { font-size: 114%; }
 
         *, *::before, *::after { box-sizing: border-box; }
         html { scroll-behavior: smooth; font-size: 16px; }
@@ -116,11 +113,7 @@
         }
         .top-bar-info span { display: inline-flex; align-items: center; gap: 6px; }
         .top-bar-info strong { color: #ffffff; font-weight: 800; }
-        .top-bar-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .top-bar-actions { display: flex; align-items: center; gap: 10px; }
         .font-toggle-btn {
             background: rgba(255,255,255,0.14);
             color: #ffffff;
@@ -129,7 +122,6 @@
             padding: 5px 12px;
             font-size: 0.88rem;
             font-weight: 700;
-            transition: background 0.2s;
         }
         .font-toggle-btn:hover, .font-toggle-btn.active {
             background: var(--green);
@@ -160,17 +152,12 @@
             justify-content: space-between;
             align-items: center;
             height: 86px;
-            gap: 20px;
+            gap: 16px;
         }
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            flex-shrink: 0;
-        }
+        .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
         .brand-mark {
-            width: 52px;
-            height: 52px;
+            width: 50px;
+            height: 50px;
             position: relative;
             flex-shrink: 0;
             border-radius: 10px;
@@ -191,7 +178,7 @@
         }
         .brand-text { display: flex; flex-direction: column; }
         .brand-kor {
-            font-size: 1.55rem;
+            font-size: 1.5rem;
             font-weight: 900;
             color: var(--text-main);
             letter-spacing: -0.8px;
@@ -199,37 +186,38 @@
         }
         .brand-kor em { font-style: normal; color: var(--blue); }
         .brand-eng {
-            font-size: 0.74rem;
+            font-size: 0.72rem;
             font-weight: 800;
             color: var(--green);
-            letter-spacing: 1px;
+            letter-spacing: 0.9px;
             margin-top: 2px;
         }
 
-        .main-nav {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        .main-nav { display: flex; align-items: center; gap: 4px; }
         .nav-btn {
             background: transparent;
             border: none;
-            padding: 12px 18px;
-            font-size: 1.16rem;
+            padding: 11px 14px;
+            font-size: 1.08rem;
             font-weight: 800;
             color: var(--text-main);
             border-radius: 8px;
             letter-spacing: -0.4px;
-            position: relative;
+            white-space: nowrap;
             transition: all 0.2s;
         }
-        .nav-btn:hover {
-            color: var(--blue);
-            background: var(--blue-light);
+        .nav-btn:hover { color: var(--blue); background: var(--blue-light); }
+        .nav-btn.active { color: #ffffff; background: var(--navy); }
+        .nav-btn.nav-premium {
+            color: #7c5618;
+            background: #fbf4e4;
+            border: 1.5px solid #e4c98b;
         }
-        .nav-btn.active {
-            color: #ffffff;
-            background: var(--navy);
+        .nav-btn.nav-premium:hover { background: #f4e4bf; color: #5b3d0d; }
+        .nav-btn.nav-premium.active {
+            background: linear-gradient(135deg, #24193d 0%, #6e4e1c 100%);
+            color: #fff;
+            border-color: transparent;
         }
 
         .mobile-menu-btn {
@@ -255,21 +243,21 @@
         .hero-section {
             background: linear-gradient(125deg, #0b2240 0%, #123966 55%, #0e5a6d 100%);
             color: #fff;
-            padding: 68px 0 74px;
+            padding: 66px 0 72px;
             position: relative;
             overflow: hidden;
         }
         .hero-grid {
             display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 44px;
+            grid-template-columns: 1.12fr 0.88fr;
+            gap: 42px;
             align-items: center;
         }
         .hero-eyebrow {
             display: inline-block;
             background: rgba(30, 142, 70, 0.92);
             color: #fff;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             font-weight: 800;
             padding: 6px 16px;
             border-radius: 999px;
@@ -277,7 +265,7 @@
             margin-bottom: 18px;
         }
         .hero-title {
-            font-size: 2.85rem;
+            font-size: 2.8rem;
             font-weight: 900;
             line-height: 1.24;
             letter-spacing: -1.2px;
@@ -286,37 +274,46 @@
         }
         .hero-title span { color: #7ae59b; }
         .hero-desc {
-            font-size: 1.18rem;
+            font-size: 1.16rem;
             font-weight: 500;
             color: #e6f0fa;
-            line-height: 1.75;
-            margin: 0 0 30px 0;
+            line-height: 1.76;
+            margin: 0 0 28px 0;
         }
-        .hero-cta-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-        }
+        .hero-cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
         .btn-primary {
             background: #ffffff;
             color: var(--navy);
             border: 2px solid #ffffff;
-            padding: 15px 28px;
+            padding: 14px 24px;
             border-radius: 10px;
-            font-size: 1.08rem;
+            font-size: 1.05rem;
             font-weight: 800;
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
         .btn-primary:hover { background: var(--blue-light); border-color: var(--blue-light); transform: translateY(-2px); }
+        .btn-gold {
+            background: linear-gradient(135deg, #d4af6a 0%, #b88b3d 100%);
+            color: #121826;
+            border: 2px solid #e2c588;
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 900;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-gold:hover { filter: brightness(1.06); transform: translateY(-2px); }
         .btn-outline-white {
             background: rgba(255,255,255,0.1);
             color: #ffffff;
             border: 2px solid rgba(255,255,255,0.55);
-            padding: 15px 26px;
+            padding: 14px 22px;
             border-radius: 10px;
-            font-size: 1.08rem;
+            font-size: 1.05rem;
             font-weight: 800;
             display: inline-flex;
             align-items: center;
@@ -328,30 +325,26 @@
             background: rgba(255,255,255,0.08);
             border: 1px solid rgba(255,255,255,0.2);
             border-radius: 16px;
-            padding: 20px;
+            padding: 18px;
             backdrop-filter: blur(8px);
         }
         .hero-slide-tabs {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 8px;
-            margin-top: 14px;
+            margin-top: 12px;
         }
         .hero-tab-btn {
             background: rgba(255,255,255,0.12);
             color: #dce9f7;
             border: 1px solid rgba(255,255,255,0.2);
             border-radius: 8px;
-            padding: 10px 6px;
-            font-size: 0.9rem;
+            padding: 9px 6px;
+            font-size: 0.88rem;
             font-weight: 800;
             text-align: center;
         }
-        .hero-tab-btn.active {
-            background: #ffffff;
-            color: var(--navy);
-            border-color: #ffffff;
-        }
+        .hero-tab-btn.active { background: #ffffff; color: var(--navy); border-color: #ffffff; }
         .hero-stage {
             border-radius: 12px;
             overflow: hidden;
@@ -359,22 +352,22 @@
             border: 1px solid rgba(255,255,255,0.18);
         }
         .hero-stage-caption {
-            padding: 14px 18px;
-            background: rgba(9, 27, 51, 0.92);
+            padding: 13px 16px;
+            background: rgba(9, 27, 51, 0.94);
             color: #fff;
-            font-size: 1rem;
+            font-size: 0.98rem;
             font-weight: 700;
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 10px;
         }
-        .hero-stage-caption small { color: #8be6a8; font-weight: 800; font-size: 0.88rem; }
+        .hero-stage-caption small { color: #8be6a8; font-weight: 800; font-size: 0.86rem; }
 
         /* ================= 5. 공통 섹션 스타일 ================= */
-        .section { padding: 76px 0; }
+        .section { padding: 74px 0; }
         .section-soft { background: var(--bg-soft); border-top: 1px solid #e3ebf3; border-bottom: 1px solid #e3ebf3; }
-        .sec-head { text-align: center; margin-bottom: 46px; }
+        .sec-head { text-align: center; margin-bottom: 44px; }
         .sec-tag {
             display: inline-block;
             color: var(--blue);
@@ -386,8 +379,13 @@
             letter-spacing: 0.8px;
             margin-bottom: 12px;
         }
+        .sec-tag-gold {
+            background: #f8eed8;
+            color: #8a621c;
+            border: 1px solid #e5cb92;
+        }
         .sec-title {
-            font-size: 2.25rem;
+            font-size: 2.22rem;
             font-weight: 900;
             color: var(--text-main);
             letter-spacing: -0.9px;
@@ -398,16 +396,12 @@
             font-size: 1.12rem;
             color: var(--text-muted);
             font-weight: 600;
-            max-width: 720px;
+            max-width: 760px;
             margin: 0 auto;
         }
 
-        /* ================= 6. 시술 장면 비주얼 카드 (4대 핵심 비수술 치료) ================= */
-        .proc-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 28px;
-        }
+        /* ================= 6. 시술 장면 비주얼 카드 ================= */
+        .proc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
         .proc-card {
             background: #ffffff;
             border: 1.5px solid var(--border);
@@ -418,11 +412,7 @@
             flex-direction: column;
             transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
         }
-        .proc-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--blue);
-        }
+        .proc-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--blue); }
         .proc-visual {
             position: relative;
             width: 100%;
@@ -431,17 +421,14 @@
             overflow: hidden;
             border-bottom: 1px solid var(--border);
         }
-        .proc-visual svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
+        .proc-visual svg { width: 100%; height: 100%; display: block; }
         .proc-visual img.real-photo {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center 20%;
             z-index: 2;
         }
         .proc-badge {
@@ -451,38 +438,22 @@
             z-index: 3;
             background: rgba(15, 41, 74, 0.9);
             color: #ffffff;
-            font-size: 0.86rem;
+            font-size: 0.85rem;
             font-weight: 800;
             padding: 6px 13px;
             border-radius: 8px;
             border: 1px solid rgba(255,255,255,0.22);
         }
-        .proc-body {
-            padding: 26px 28px 28px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
+        .proc-body { padding: 26px 28px 28px; flex: 1; display: flex; flex-direction: column; }
         .proc-body h3 {
-            font-size: 1.48rem;
+            font-size: 1.46rem;
             font-weight: 900;
             color: var(--navy);
             margin: 0 0 10px 0;
             letter-spacing: -0.5px;
         }
-        .proc-body p {
-            font-size: 1.08rem;
-            color: var(--text-body);
-            margin: 0 0 16px 0;
-            line-height: 1.72;
-            font-weight: 500;
-        }
-        .proc-points {
-            margin-top: auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
+        .proc-body p { font-size: 1.08rem; color: var(--text-body); margin: 0 0 16px 0; line-height: 1.72; }
+        .proc-points { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
         .proc-pill {
             background: var(--bg-soft);
             border: 1px solid #d0dce8;
@@ -493,36 +464,56 @@
             border-radius: 6px;
         }
 
-        /* ================= 7. 부위별 통증 내비게이터 ================= */
-        .body-filter-bar {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 32px;
+        /* 홈 내 항노화 줄기세포 배너 */
+        .home-stem-banner {
+            margin-top: 34px;
+            background: linear-gradient(125deg, #16182c 0%, #262244 55%, #4a3520 100%);
+            color: #fff;
+            border-radius: 16px;
+            padding: 36px 40px;
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 28px;
+            align-items: center;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(212, 175, 106, 0.35);
         }
+        .home-stem-banner h3 { font-size: 1.9rem; font-weight: 900; margin: 10px 0 12px; color: #fff; }
+        .home-stem-banner h3 span { color: #f0cf85; }
+        .home-stem-banner p { font-size: 1.08rem; color: #e2e5f0; margin: 0 0 22px; line-height: 1.72; }
+        .home-stem-thumb {
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            background: #1d1a33;
+            border: 1px solid rgba(240, 207, 133, 0.4);
+            position: relative;
+        }
+        .home-stem-thumb img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 2;
+        }
+
+        /* ================= 7. 부위별 통증 내비게이터 ================= */
+        .body-filter-bar { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
         .filter-btn {
             background: #ffffff;
             border: 2px solid #cbd6e2;
             color: var(--text-main);
-            padding: 11px 22px;
+            padding: 10px 20px;
             border-radius: 999px;
-            font-size: 1.05rem;
+            font-size: 1.02rem;
             font-weight: 800;
             transition: all 0.2s;
         }
         .filter-btn:hover { border-color: var(--blue); color: var(--blue); }
-        .filter-btn.active {
-            background: var(--navy);
-            border-color: var(--navy);
-            color: #ffffff;
-        }
+        .filter-btn.active { background: var(--navy); border-color: var(--navy); color: #ffffff; }
 
-        .disease-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-        }
+        .disease-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
         .disease-card {
             background: #ffffff;
             border: 1.5px solid var(--border);
@@ -543,18 +534,8 @@
             border-radius: 6px;
             margin-bottom: 12px;
         }
-        .disease-card h4 {
-            font-size: 1.35rem;
-            font-weight: 900;
-            color: var(--text-main);
-            margin: 0 0 10px 0;
-        }
-        .disease-card p {
-            font-size: 1.04rem;
-            color: var(--text-body);
-            margin: 0 0 16px 0;
-            line-height: 1.68;
-        }
+        .disease-card h4 { font-size: 1.32rem; font-weight: 900; color: var(--text-main); margin: 0 0 10px 0; }
+        .disease-card p { font-size: 1.04rem; color: var(--text-body); margin: 0 0 16px 0; line-height: 1.68; }
         .disease-treat {
             margin-top: auto;
             padding-top: 14px;
@@ -564,7 +545,7 @@
             color: var(--blue);
         }
 
-        /* ================= 8. 진료철학 배너 ================= */
+        /* ================= 8. 진료철학 & 2단 패널 ================= */
         .promise-box {
             background: linear-gradient(135deg, #ffffff 0%, #eef6ff 100%);
             border: 2px solid #c5daf0;
@@ -575,42 +556,22 @@
             gap: 32px;
             align-items: center;
         }
-        .promise-box h3 {
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--navy);
-            margin: 0 0 14px 0;
-            letter-spacing: -0.7px;
-        }
-        .promise-box p {
-            font-size: 1.12rem;
-            color: var(--text-body);
-            margin: 0;
-            line-height: 1.78;
-        }
-        .promise-badges {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+        .promise-box h3 { font-size: 1.95rem; font-weight: 900; color: var(--navy); margin: 0 0 14px 0; }
+        .promise-box p { font-size: 1.12rem; color: var(--text-body); margin: 0; line-height: 1.78; }
+        .promise-badges { display: flex; flex-direction: column; gap: 12px; }
         .promise-item {
             background: #ffffff;
             border: 1.5px solid #cbd9e8;
             border-left: 6px solid var(--green);
             border-radius: 10px;
             padding: 15px 20px;
-            font-size: 1.12rem;
+            font-size: 1.1rem;
             font-weight: 800;
             color: var(--text-main);
             box-shadow: var(--shadow-sm);
         }
 
-        /* ================= 9. 진료시간 & 공지사항 2단 ================= */
-        .two-col-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
-        }
+        .two-col-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
         .panel-card {
             background: #ffffff;
             border: 1.5px solid var(--border);
@@ -619,7 +580,7 @@
             box-shadow: var(--shadow-sm);
         }
         .panel-title {
-            font-size: 1.45rem;
+            font-size: 1.44rem;
             font-weight: 900;
             color: var(--navy);
             margin: 0 0 22px 0;
@@ -634,28 +595,9 @@
         .hours-table { width: 100%; border-collapse: collapse; }
         .hours-table tr { border-bottom: 1px solid #e5ecf4; }
         .hours-table tr:last-child { border-bottom: none; }
-        .hours-table th {
-            text-align: left;
-            padding: 15px 4px;
-            font-size: 1.12rem;
-            font-weight: 800;
-            color: var(--navy);
-            width: 32%;
-        }
-        .hours-table td {
-            text-align: right;
-            padding: 15px 4px;
-            font-size: 1.18rem;
-            font-weight: 800;
-            color: var(--text-main);
-        }
-        .hours-table td small {
-            display: block;
-            font-size: 0.92rem;
-            color: var(--blue);
-            font-weight: 700;
-            margin-top: 2px;
-        }
+        .hours-table th { text-align: left; padding: 15px 4px; font-size: 1.12rem; font-weight: 800; color: var(--navy); width: 32%; }
+        .hours-table td { text-align: right; padding: 15px 4px; font-size: 1.18rem; font-weight: 800; color: var(--text-main); }
+        .hours-table td small { display: block; font-size: 0.92rem; color: var(--blue); font-weight: 700; margin-top: 2px; }
         .call-banner {
             margin-top: 20px;
             background: var(--blue-light);
@@ -690,9 +632,198 @@
         }
         .tag-blue { background: var(--blue-light); color: var(--blue); }
         .tag-green { background: var(--green-light); color: var(--green); }
+        .tag-gold { background: #fbf1da; color: #8c6217; }
         .notice-date { font-size: 0.92rem; color: var(--text-muted); font-weight: 700; white-space: nowrap; }
 
-        /* ================= 10. 병원소개 브로슈어 (About 탭) ================= */
+        /* ================= 9. 항노화 줄기세포 치료센터 (INjucell) 전용 스타일 ================= */
+        .stem-hero {
+            background: linear-gradient(125deg, #14172b 0%, #241f40 50%, #4d3821 100%);
+            color: #ffffff;
+            padding: 68px 0;
+        }
+        .stem-hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .stem-eyebrow {
+            display: inline-block;
+            background: rgba(212, 175, 106, 0.22);
+            color: #f4d692;
+            border: 1px solid rgba(244, 214, 146, 0.45);
+            font-size: 0.9rem;
+            font-weight: 800;
+            padding: 6px 16px;
+            border-radius: 999px;
+            letter-spacing: 0.9px;
+            margin-bottom: 16px;
+        }
+        .stem-hero h1 {
+            font-size: 2.65rem;
+            font-weight: 900;
+            line-height: 1.24;
+            margin: 0 0 18px 0;
+            letter-spacing: -1px;
+        }
+        .stem-hero h1 span { color: #f4d692; }
+        .stem-hero p { font-size: 1.14rem; color: #e5e7f2; line-height: 1.76; margin: 0 0 24px 0; }
+        .stem-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+        .stem-pill {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(244, 214, 146, 0.35);
+            color: #fdf6e4;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+        .stem-visual-frame {
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            background: #1b1730;
+            border: 2px solid rgba(244, 214, 146, 0.35);
+            position: relative;
+            box-shadow: 0 18px 42px rgba(0,0,0,0.35);
+        }
+        .stem-visual-frame img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 2;
+        }
+
+        .stem-triple-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        .stem-card {
+            background: #ffffff;
+            border: 1.5px solid #e5dccb;
+            border-radius: 14px;
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .stem-card-num {
+            display: inline-block;
+            background: #f9f1df;
+            color: #8a621c;
+            font-size: 0.86rem;
+            font-weight: 900;
+            padding: 4px 12px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+        .stem-card h3 { font-size: 1.38rem; font-weight: 900; color: var(--navy); margin: 0 0 10px 0; }
+        .stem-card p { font-size: 1.04rem; color: var(--text-body); margin: 0; line-height: 1.7; }
+
+        .gf-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+        .gf-card {
+            background: #ffffff;
+            border: 1.5px solid var(--border);
+            border-top: 5px solid var(--navy);
+            border-radius: 12px;
+            padding: 22px 20px;
+            box-shadow: var(--shadow-sm);
+        }
+        .gf-card.gf-green { border-top-color: #2e8b57; }
+        .gf-card.gf-rose { border-top-color: #c25b6e; }
+        .gf-card.gf-amber { border-top-color: #d9822b; }
+        .gf-card.gf-red { border-top-color: #b83227; }
+        .gf-code { font-size: 1.48rem; font-weight: 900; color: var(--navy); margin-bottom: 4px; }
+        .gf-name { font-size: 0.94rem; font-weight: 800; color: var(--text-muted); margin-bottom: 10px; }
+        .gf-desc { font-size: 0.98rem; color: var(--text-body); line-height: 1.58; margin: 0; }
+
+        .data-box {
+            background: linear-gradient(135deg, #ffffff 0%, #faf6ee 100%);
+            border: 1.5px solid #e4d4b4;
+            border-radius: 14px;
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+        }
+        .bar-chart { display: flex; flex-direction: column; gap: 18px; margin-top: 18px; }
+        .bar-row-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.02rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+        .bar-track {
+            width: 100%;
+            height: 22px;
+            background: #e9eef5;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #1d4e89 0%, #c99a45 100%);
+        }
+        .bar-fill.muted { background: #94a3b8; }
+
+        .step-flow {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .step-box {
+            background: #ffffff;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .step-box strong { display: block; font-size: 1.18rem; color: var(--navy); margin: 8px 0 6px; }
+        .step-box span { font-size: 0.96rem; color: var(--text-muted); }
+        .step-num {
+            display: inline-flex;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--navy);
+            color: #fff;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.96rem;
+        }
+
+        .homecare-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+        .homecare-card {
+            background: #ffffff;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 20px;
+            text-align: center;
+        }
+        .homecare-tag {
+            display: inline-block;
+            background: #f8eed8;
+            color: #8a621c;
+            font-size: 0.88rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 10px;
+        }
+        .homecare-card h4 { font-size: 1.24rem; font-weight: 900; color: var(--navy); margin: 0 0 8px 0; }
+        .homecare-card p { font-size: 0.98rem; color: var(--text-body); margin: 0; }
+
+        .qa-list { display: flex; flex-direction: column; gap: 14px; }
+        .qa-item {
+            background: #ffffff;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 22px 26px;
+        }
+        .qa-q { font-size: 1.16rem; font-weight: 900; color: var(--navy); margin-bottom: 8px; }
+        .qa-a { font-size: 1.05rem; color: var(--text-body); margin: 0; }
+
+        /* ================= 10. 병원소개 브로슈어 ================= */
         .brochure-wrap {
             background: #ffffff;
             border: 1.5px solid var(--border);
@@ -705,76 +836,55 @@
         .brochure-left { border-right: 1.5px solid var(--border); }
         .brochure-left-head {
             background: linear-gradient(135deg, #eef4fa 0%, #dfeaf5 100%);
-            padding: 38px 30px;
+            padding: 36px 28px;
             text-align: center;
             border-bottom: 1px solid var(--border);
         }
-        .brochure-left-head h2 {
-            font-size: 2.1rem;
-            font-weight: 900;
-            color: var(--navy);
-            margin: 0 0 6px 0;
-        }
-        .brochure-left-head p {
-            font-size: 0.96rem;
-            font-weight: 800;
-            color: var(--green);
-            letter-spacing: 1.4px;
-            margin: 0;
-        }
-        .ribbon-item { padding: 24px 28px; border-bottom: 1px solid #e8eef5; }
+        .brochure-left-head h2 { font-size: 2.05rem; font-weight: 900; color: var(--navy); margin: 0 0 6px 0; }
+        .brochure-left-head p { font-size: 0.94rem; font-weight: 800; color: var(--green); letter-spacing: 1.4px; margin: 0; }
+        .ribbon-item { padding: 22px 28px; border-bottom: 1px solid #e8eef5; }
         .ribbon-item:last-child { border-bottom: none; }
         .ribbon-label {
             display: inline-block;
-            padding: 6px 16px;
+            padding: 6px 15px;
             border-radius: 6px;
             color: #fff;
-            font-size: 1.05rem;
+            font-size: 1.02rem;
             font-weight: 800;
             margin-bottom: 10px;
         }
         .ribbon-blue { background: var(--blue); }
         .ribbon-green { background: var(--green); }
-        .ribbon-item p { margin: 0; font-size: 1.05rem; color: var(--text-body); line-height: 1.7; }
+        .ribbon-gold { background: #8c6217; }
+        .ribbon-item p { margin: 0; font-size: 1.04rem; color: var(--text-body); line-height: 1.7; }
 
         .doctor-banner {
             background: linear-gradient(135deg, #5d6775 0%, #3d4654 100%);
             color: #ffffff;
-            padding: 38px 34px 0;
-            min-height: 270px;
+            padding: 36px 34px 0;
+            min-height: 260px;
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
             gap: 20px;
         }
-        .doctor-banner-text { padding-bottom: 36px; }
-        .doctor-banner-text .sub { font-size: 1.05rem; font-weight: 700; color: #dbe5f0; }
-        .doctor-banner-text h2 { font-size: 2.5rem; font-weight: 900; margin: 8px 0 4px; letter-spacing: 2px; }
-        .doctor-banner-text .role { font-size: 1.2rem; font-weight: 700; color: #9be8b5; }
-        .doctor-photo-box {
-            width: 200px;
-            flex-shrink: 0;
-            align-self: flex-end;
-        }
+        .doctor-banner-text { padding-bottom: 34px; }
+        .doctor-banner-text .sub { font-size: 1.04rem; font-weight: 700; color: #dbe5f0; }
+        .doctor-banner-text h2 { font-size: 2.45rem; font-weight: 900; margin: 8px 0 4px; letter-spacing: 2px; }
+        .doctor-banner-text .role { font-size: 1.18rem; font-weight: 700; color: #9be8b5; }
+        .doctor-photo-box { width: 195px; flex-shrink: 0; align-self: flex-end; }
         .doctor-photo-box img { width: 100%; border-radius: 8px 8px 0 0; }
 
         .career-body { padding: 34px; }
         .career-grid { display: flex; justify-content: space-between; gap: 22px; align-items: flex-start; }
         .career-list li {
-            font-size: 1.08rem;
+            font-size: 1.06rem;
             font-weight: 700;
             color: var(--text-main);
-            padding: 5px 0;
-            padding-left: 16px;
+            padding: 5px 0 5px 16px;
             position: relative;
         }
-        .career-list li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--blue);
-            font-weight: 900;
-        }
+        .career-list li::before { content: '•'; position: absolute; left: 0; color: var(--blue); font-weight: 900; }
         .book-box {
             width: 140px;
             flex-shrink: 0;
@@ -790,7 +900,7 @@
             margin-top: 22px;
             padding-top: 16px;
             border-top: 1.5px dashed var(--border);
-            font-size: 1.06rem;
+            font-size: 1.05rem;
             font-weight: 800;
             color: var(--navy);
         }
@@ -809,12 +919,12 @@
             padding: 20px 24px;
         }
         .fee-search-input {
-            width: 320px;
+            width: 300px;
             max-width: 100%;
-            padding: 13px 16px;
+            padding: 12px 16px;
             border: 2px solid #cbd5e1;
             border-radius: 8px;
-            font-size: 1.05rem;
+            font-size: 1.02rem;
             font-weight: 600;
             color: var(--text-main);
         }
@@ -827,48 +937,51 @@
             overflow-x: auto;
             box-shadow: var(--shadow-sm);
         }
-        .fee-table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 720px;
-        }
+        .fee-table { width: 100%; border-collapse: collapse; min-width: 780px; }
         .fee-table thead th {
             background: var(--navy);
             color: #ffffff;
-            padding: 16px 18px;
-            font-size: 1.08rem;
+            padding: 15px 16px;
+            font-size: 1.04rem;
             font-weight: 800;
             text-align: left;
+            white-space: nowrap;
         }
         .fee-table thead th.num-col { text-align: right; }
         .fee-table tbody td {
-            padding: 16px 18px;
+            padding: 14px 16px;
             border-bottom: 1px solid #e4ebf2;
-            font-size: 1.08rem;
+            font-size: 1.04rem;
             font-weight: 600;
             color: var(--text-main);
         }
         .fee-table tbody tr:nth-child(even) { background: #f9fbfd; }
         .fee-table tbody tr:hover { background: var(--blue-light); }
+        .fee-table tbody td.code-col {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 0.94rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
         .fee-table tbody td.price-col {
             text-align: right;
             font-weight: 900;
             color: var(--navy);
-            font-size: 1.12rem;
+            font-size: 1.08rem;
             white-space: nowrap;
         }
         .fee-cat-pill {
             display: inline-block;
             background: #eef4fa;
             color: var(--blue);
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             font-weight: 800;
             padding: 4px 10px;
             border-radius: 6px;
             white-space: nowrap;
         }
 
-        /* ================= 12. 오시는 길 & 하늘색 2단 카드 ================= */
+        /* ================= 12. 오시는 길 ================= */
         .sky-card {
             background: linear-gradient(180deg, #e1eef8 0%, #d1e4f3 100%);
             border: 1.5px solid #bfd5e8;
@@ -881,29 +994,23 @@
             align-items: center;
             box-shadow: var(--shadow-sm);
         }
-        .sky-card .sub-lbl { font-size: 1.08rem; font-weight: 800; color: #3d5670; letter-spacing: 1px; margin-bottom: 6px; }
-        .sky-card h3 { font-size: 1.9rem; font-weight: 900; color: var(--navy); margin: 0 0 24px 0; }
+        .sky-card .sub-lbl { font-size: 1.06rem; font-weight: 800; color: #3d5670; letter-spacing: 1px; margin-bottom: 6px; }
+        .sky-card h3 { font-size: 1.88rem; font-weight: 900; color: var(--navy); margin: 0 0 24px 0; }
         .sky-hours-box { width: 100%; max-width: 400px; text-align: left; }
         .sky-row {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
             margin-bottom: 12px;
-            font-size: 1.18rem;
+            font-size: 1.16rem;
             font-weight: 800;
             color: var(--text-main);
         }
         .sky-sub { text-align: right; font-size: 0.96rem; font-weight: 700; color: var(--blue); margin: -8px 0 14px; }
-        .sky-red { color: var(--danger); font-weight: 900; font-size: 1.08rem; margin-top: 10px; }
-        .sky-phone {
-            font-size: 2.7rem;
-            font-weight: 900;
-            color: var(--navy);
-            margin: 12px 0 16px;
-            letter-spacing: -0.5px;
-        }
+        .sky-red { color: var(--danger); font-weight: 900; font-size: 1.06rem; margin-top: 10px; }
+        .sky-phone { font-size: 2.65rem; font-weight: 900; color: var(--navy); margin: 12px 0 16px; letter-spacing: -0.5px; }
         .sky-phone:hover { color: var(--blue); }
-        .sky-desc { font-size: 1.1rem; font-weight: 700; color: #364d63; margin: 0; }
+        .sky-desc { font-size: 1.08rem; font-weight: 700; color: #364d63; margin: 0; }
 
         .map-card {
             margin-top: 28px;
@@ -925,7 +1032,7 @@
             flex-wrap: wrap;
             gap: 18px;
         }
-        .map-addr-main { font-size: 1.2rem; font-weight: 900; color: var(--navy); margin-bottom: 6px; }
+        .map-addr-main { font-size: 1.18rem; font-weight: 900; color: var(--navy); margin-bottom: 6px; }
         .map-addr-sub { font-size: 1rem; font-weight: 600; color: var(--text-muted); margin: 0; }
         .map-btns { display: flex; flex-wrap: wrap; gap: 10px; }
         .map-btn {
@@ -943,11 +1050,11 @@
         .btn-copy { background: #ffffff; color: var(--navy); border: 2px solid #cbd5e1; }
         .map-btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
-        /* ================= 13. 푸터 & 모바일 퀵바 ================= */
+        /* ================= 13. 푸터 (SeHyeong AD. 공식 크레딧 포함) ================= */
         .site-footer {
             background: #161d27;
             color: #c2ccd8;
-            padding: 52px 0 46px;
+            padding: 50px 0 38px;
             font-size: 0.98rem;
             border-top: 4px solid var(--blue);
         }
@@ -959,42 +1066,58 @@
             gap: 24px;
             padding-bottom: 24px;
             border-bottom: 1px solid #2b3544;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
-        .footer-title { font-size: 1.35rem; font-weight: 900; color: #ffffff; margin: 0 0 10px 0; }
-        .footer-meta { margin: 0 0 6px 0; line-height: 1.7; }
+        .footer-title { font-size: 1.32rem; font-weight: 900; color: #ffffff; margin: 0 0 10px 0; }
+        .footer-meta { margin: 0 0 6px 0; line-height: 1.72; }
         .footer-meta strong { color: #ffffff; }
         .footer-links { display: flex; flex-wrap: wrap; gap: 16px; }
         .footer-links button {
             background: none;
             border: none;
             color: #e2eaf4;
-            font-size: 1rem;
+            font-size: 0.98rem;
             font-weight: 700;
             padding: 4px 0;
         }
         .footer-links button:hover { color: #7ae59b; }
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-            font-size: 0.9rem;
-            color: #93a1b2;
+        .footer-credit-center {
+            text-align: center;
+            padding-top: 6px;
         }
+        .footer-copy {
+            font-size: 0.95rem;
+            color: #aeb8c6;
+            margin: 0 0 12px 0;
+        }
+        .footer-copy strong { color: #ffffff; }
+        .footer-powered {
+            display: inline-block;
+            font-size: 0.96rem;
+            color: #d6e0ec;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.14);
+            padding: 7px 20px;
+            border-radius: 999px;
+            letter-spacing: 0.3px;
+        }
+        .footer-powered strong { color: #ffffff; font-weight: 800; }
 
         /* ================= 14. 반응형 ================= */
+        @media (max-width: 1120px) {
+            .nav-btn { padding: 10px 10px; font-size: 1rem; }
+            .gf-grid, .homecare-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 1024px) {
-            .hero-grid { grid-template-columns: 1fr; }
-            .disease-grid { grid-template-columns: repeat(2, 1fr); }
-            .brochure-wrap { grid-template-columns: 1fr; }
+            .hero-grid, .stem-hero-grid, .home-stem-banner, .brochure-wrap, .promise-box { grid-template-columns: 1fr; }
+            .disease-grid, .stem-triple-grid { grid-template-columns: repeat(2, 1fr); }
             .brochure-left { border-right: none; border-bottom: 1.5px solid var(--border); }
-            .promise-box { grid-template-columns: 1fr; }
+            .step-flow { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
             .top-bar-info { display: none; }
             .header-inner { height: 72px; }
-            .brand-kor { font-size: 1.28rem; }
+            .brand-kor { font-size: 1.24rem; }
             .mobile-menu-btn { display: inline-block; }
             .main-nav {
                 display: none;
@@ -1010,16 +1133,16 @@
                 box-shadow: var(--shadow-md);
             }
             .main-nav.open { display: flex; }
-            .nav-btn { text-align: left; padding: 14px 16px; font-size: 1.1rem; }
-            .hero-section { padding: 42px 0 48px; }
-            .hero-title { font-size: 2rem; }
+            .nav-btn { text-align: left; padding: 13px 16px; font-size: 1.08rem; }
+            .hero-section, .stem-hero { padding: 42px 0 48px; }
+            .hero-title, .stem-hero h1 { font-size: 1.95rem; }
             .hero-desc { font-size: 1.04rem; }
             .hero-slide-tabs { grid-template-columns: repeat(2, 1fr); }
-            .section { padding: 52px 0; }
-            .sec-title { font-size: 1.72rem; }
-            .proc-grid, .disease-grid, .two-col-grid { grid-template-columns: 1fr; }
-            .promise-box { padding: 26px 22px; }
-            .sky-phone { font-size: 2.15rem; }
+            .section { padding: 50px 0; }
+            .sec-title { font-size: 1.68rem; }
+            .proc-grid, .disease-grid, .two-col-grid, .stem-triple-grid, .gf-grid, .homecare-grid, .step-flow { grid-template-columns: 1fr; }
+            .promise-box, .home-stem-banner { padding: 26px 22px; }
+            .sky-phone { font-size: 2.1rem; }
             .map-frame { height: 290px; }
             .career-grid { flex-direction: column; }
             .doctor-banner { flex-direction: column; align-items: flex-start; padding-bottom: 24px; }
@@ -1047,9 +1170,8 @@
         <div class="container header-inner">
             <a href="#home" class="brand" onclick="switchPage('home'); return false;">
                 <div class="brand-mark">
-                    <!-- 로고1.jpg가 같은 폴더에 있으면 자동 표시, 없으면 秀 척추 심볼 벡터 표시 -->
                     <img src="로고1.jpg" alt="수마취통증의학과 심볼" onerror="this.remove();">
-                    <svg viewBox="0 0 64 64" width="50" height="50" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" width="48" height="48" aria-hidden="true">
                         <defs>
                             <linearGradient id="sooGrad" x1="0" y1="0" x2="1" y2="1">
                                 <stop offset="0%" stop-color="#1e8e46"/>
@@ -1074,6 +1196,7 @@
                 <button type="button" class="nav-btn" data-page="about" onclick="switchPage('about')">병원소개</button>
                 <button type="button" class="nav-btn" data-page="clinic" onclick="switchPage('clinic')">통증클리닉</button>
                 <button type="button" class="nav-btn" data-page="treatment" onclick="switchPage('treatment')">특수비수술치료</button>
+                <button type="button" class="nav-btn nav-premium" data-page="stemcell" onclick="switchPage('stemcell')">항노화 줄기세포</button>
                 <button type="button" class="nav-btn" data-page="fee" onclick="switchPage('fee')">비급여안내</button>
                 <button type="button" class="nav-btn" data-page="location" onclick="switchPage('location')">오시는길</button>
             </nav>
@@ -1084,7 +1207,6 @@
          PAGE 1: 홈 (HOME)
     ========================================================================= -->
     <main id="page-home" class="page-view active">
-        <!-- 히어로 섹션 -->
         <section class="hero-section">
             <div class="container hero-grid">
                 <div>
@@ -1092,28 +1214,28 @@
                     <h1 class="hero-title">정확한 영상 진단,<br><span>비수술 통증 치료</span>의 기준</h1>
                     <p class="hero-desc">
                         마취통증의학과 전문의 박현준 원장이 직접 진료합니다.<br>
-                        디지털 C-arm 신경차단술, 고해상도 초음파 유도 주사, 프롤로·PDRN·PRP 재생치료, 체외충격파(ESWT)로 과잉진료 없이 통증의 근본 원인을 치료합니다.
+                        디지털 C-arm 신경차단술, 고해상도 초음파 유도 주사, 프롤로·PDRN·PRP·콜라겐 재생치료, 체외충격파(ESWT) 및 항노화 줄기세포(이뉴셀) 케어로 통증의 근본 원인을 치료합니다.
                     </p>
                     <div class="hero-cta-row">
                         <button type="button" class="btn-primary" onclick="switchPage('treatment')">핵심 비수술 시술 보기 →</button>
+                        <button type="button" class="btn-gold" onclick="switchPage('stemcell')">항노화 줄기세포 센터</button>
                         <button type="button" class="btn-outline-white" onclick="switchPage('location')">진료시간 · 오시는 길</button>
                     </div>
                 </div>
 
-                <!-- 시술 장면 인터랙티브 프리뷰 -->
                 <div class="hero-visual-card">
                     <div class="hero-stage" id="heroStage"></div>
                     <div class="hero-slide-tabs">
                         <button type="button" class="hero-tab-btn active" onclick="setHeroScene(0)">C-arm 시술</button>
                         <button type="button" class="hero-tab-btn" onclick="setHeroScene(1)">초음파 진료</button>
-                        <button type="button" class="hero-tab-btn" onclick="setHeroScene(2)">프롤로·PDRN</button>
+                        <button type="button" class="hero-tab-btn" onclick="setHeroScene(2)">재생·콜라겐주사</button>
                         <button type="button" class="hero-tab-btn" onclick="setHeroScene(3)">체외충격파</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 4대 핵심 비수술 치료 (시술 맞춤 장면) -->
+        <!-- 4대 핵심 비수술 치료 + 항노화 줄기세포 센터 프리뷰 -->
         <section class="section">
             <div class="container">
                 <div class="sec-head">
@@ -1123,10 +1245,24 @@
                 </div>
 
                 <div class="proc-grid" id="homeProcGrid"></div>
+
+                <!-- 항노화 줄기세포 치료센터 하이라이트 배너 -->
+                <div class="home-stem-banner">
+                    <div>
+                        <span class="stem-eyebrow" style="margin-bottom:8px;">NEW · PREMIUM ANTI-AGING CENTER</span>
+                        <h3>수마취통증의학과 <span>항노화 줄기세포 치료센터</span></h3>
+                        <p>
+                            내 혈액에서 고농축 추출한 자가 줄기세포 유래 재생성분 <strong>이뉴셀(INjucell)</strong>.<br>
+                            인위적인 약물 없이 세포 회복·재생·항염 3중 시너지와 호밍효과로 전신 활력, 면역 밸런스, 수면의 질, 피부 저속노화까지 한 번에 케어합니다.
+                        </p>
+                        <button type="button" class="btn-gold" onclick="switchPage('stemcell')">이뉴셀 항노화 솔루션 자세히 보기 →</button>
+                    </div>
+                    <div class="home-stem-thumb" id="homeStemThumb"></div>
+                </div>
             </div>
         </section>
 
-        <!-- 어디가 아프신가요? 부위별 통증 빠른 찾기 -->
+        <!-- 부위별 통증 빠른 찾기 -->
         <section class="section section-soft">
             <div class="container">
                 <div class="sec-head">
@@ -1167,7 +1303,7 @@
             </div>
         </section>
 
-        <!-- 진료시간 & 공지사항 2단 구성 (대문 의료진 카드 제외) -->
+        <!-- 진료시간 & 공지사항 2단 구성 -->
         <section class="section section-soft">
             <div class="container">
                 <div class="two-col-grid">
@@ -1204,20 +1340,20 @@
                         <h3 class="panel-title">병원 소식 및 공지 <small>Notice &amp; Updates</small></h3>
                         <ul class="notice-list">
                             <li>
+                                <a href="#stemcell" onclick="switchPage('stemcell'); return false;"><span class="notice-tag tag-gold">신설</span>항노화 줄기세포 치료센터(이뉴셀 INjucell) 오픈 안내</a>
+                                <span class="notice-date">2026.11</span>
+                            </li>
+                            <li>
                                 <span><span class="notice-tag tag-blue">공지</span>토요일 오후 2시 30분까지 점심시간 없이 진료합니다</span>
                                 <span class="notice-date">2026.11</span>
                             </li>
                             <li>
-                                <a href="#fee" onclick="switchPage('fee'); return false;"><span class="notice-tag tag-green">안내</span>2026년 하반기 비급여 진료비용 고시 안내 확인하기</a>
-                                <span class="notice-date">2026.08</span>
+                                <a href="#fee" onclick="switchPage('fee'); return false;"><span class="notice-tag tag-green">안내</span>2026년 비급여 진료비용 고시(수가표) 업데이트 안내</a>
+                                <span class="notice-date">2026.11</span>
                             </li>
                             <li>
-                                <a href="#treatment" onclick="switchPage('treatment'); return false;"><span class="notice-tag tag-blue">클리닉</span>초음파 가이드 프롤로·PDRN·PRP 재생치료 안내</a>
-                                <span class="notice-date">2026.07</span>
-                            </li>
-                            <li>
-                                <a href="#treatment" onclick="switchPage('treatment'); return false;"><span class="notice-tag tag-green">장비</span>체외충격파(ESWT) 및 디지털 C-arm 정기 점검 완료</a>
-                                <span class="notice-date">2026.06</span>
+                                <a href="#treatment" onclick="switchPage('treatment'); return false;"><span class="notice-tag tag-blue">클리닉</span>초음파 가이드 프롤로·PDRN·PRP·콜라겐 재생치료 안내</a>
+                                <span class="notice-date">2026.10</span>
                             </li>
                             <li>
                                 <a href="#location" onclick="switchPage('location'); return false;"><span class="notice-tag tag-blue">오시는길</span>배방역 맞은편 다이소 옆 J,S 메디컬 2층 위치 안내</a>
@@ -1231,7 +1367,7 @@
     </main>
 
     <!-- =========================================================================
-         PAGE 2: 병원소개 (ABOUT - 브로슈어 2단 구성)
+         PAGE 2: 병원소개 (ABOUT)
     ========================================================================= -->
     <main id="page-about" class="page-view">
         <section class="section">
@@ -1239,11 +1375,10 @@
                 <div class="sec-head">
                     <span class="sec-tag">ABOUT SOO PAIN CLINIC</span>
                     <h2 class="sec-title">병원소개 및 대표원장 약력</h2>
-                    <p class="sec-sub">풍부한 임상 경험과 학술적 전문성을 바탕으로 안전하고 정확한 비수술 통증 치료를 시행합니다.</p>
+                    <p class="sec-sub">풍부한 임상 경험과 학술적 전문성을 바탕으로 안전하고 정확한 비수술 통증·재생 치료를 시행합니다.</p>
                 </div>
 
                 <div class="brochure-wrap">
-                    <!-- 좌측: 주요 진료안내 (도수치료 제외) -->
                     <div class="brochure-left">
                         <div class="brochure-left-head">
                             <h2>수마취통증의학과</h2>
@@ -1256,22 +1391,21 @@
                         </div>
 
                         <div class="ribbon-item">
-                            <span class="ribbon-label ribbon-green">진료안내 · 인대강화(프롤로) &amp; PDRN·PRP 재생주사</span>
-                            <p>손상되고 약해진 인대·힘줄 부위에 초음파 가이드하에 약물을 정밀 주사하여 자가 조직 증식과 세포 재생을 촉진하고 관절의 안정성을 회복합니다.</p>
+                            <span class="ribbon-label ribbon-green">진료안내 · 인대강화(프롤로)·PDRN·PRP·콜라겐 재생주사</span>
+                            <p>손상되고 약해진 인대·힘줄·연골 부위에 초음파 가이드하에 프롤로, PDRN(DNA), 자가혈 PRP, DENCORE 콜라겐 조직보충제를 정밀 주사하여 조직 재생과 관절 안정성을 회복합니다.</p>
                         </div>
 
                         <div class="ribbon-item">
-                            <span class="ribbon-label ribbon-blue">진료안내 · 고해상도 초음파 유도 정밀 주사치료</span>
-                            <p>방사선 노출 걱정 없는 근골격계 초음파를 통해 어깨 회전근개, 관절, 말초신경 병변을 실시간 확인하며 정밀한 주사 치료를 시행합니다.</p>
+                            <span class="ribbon-label ribbon-blue">진료안내 · 고해상도 초음파 진료 &amp; 체외충격파 (ESWT)</span>
+                            <p>방사선 노출 걱정 없는 근골격계 초음파 정밀 진단과 고에너지 체외충격파(ESWT)로 어깨 석회성건염, 오십견, 엘보, 족저근막염을 비침습적으로 치료합니다.</p>
                         </div>
 
                         <div class="ribbon-item">
-                            <span class="ribbon-label ribbon-green">진료안내 · 체외충격파 (ESWT) &amp; 영양수액 클리닉</span>
-                            <p>염증과 석회화가 동반된 인대·힘줄에 고에너지 충격파를 전달해 혈류 개선 및 조직 재생을 돕고, 피로 회복과 면역 증진을 위한 맞춤 영양수액을 처방합니다.</p>
+                            <span class="ribbon-label ribbon-gold">특화센터 · 항노화 줄기세포 치료센터 (이뉴셀) &amp; 예방접종</span>
+                            <p>환자 본인의 혈액에서 유효 재생인자를 고농축 추출하는 이뉴셀(INjucell) 자가혈 저속노화 케어와 대상포진(싱그릭스·스카이조스터)·독감 예방접종을 시행합니다.</p>
                         </div>
                     </div>
 
-                    <!-- 우측: 박현준 대표원장 약력 및 저서 -->
                     <div class="brochure-right">
                         <div class="doctor-banner">
                             <div class="doctor-banner-text">
@@ -1357,19 +1491,19 @@
 
                 <div class="proc-grid" id="treatProcGrid"></div>
 
-                <!-- 영양수액 클리닉 추가 안내 -->
+                <!-- 예방접종 & 맞춤 클리닉 안내 -->
                 <div class="panel-card" style="margin-top:32px; background:linear-gradient(135deg, #ffffff 0%, #f1f9f4 100%); border-color:#c6e4d0;">
                     <h3 class="panel-title" style="border-bottom-color:var(--green); color:var(--green);">
-                        1:1 맞춤 영양수액 클리닉 <small>IV Nutrition Therapy</small>
+                        대상포진·독감 예방접종 &amp; 맞춤 수액 클리닉 <small>Vaccination &amp; Wellness</small>
                     </h3>
-                    <p style="font-size:1.1rem; margin:0 0 14px 0;">
-                        만성피로 회복, 면역력 증진, 대상포진·신경통 회복 보조, 기력 저하 개선을 위해 환자의 증상과 컨디션에 맞춘 비타민·미네랄·항산화 맞춤 수액 요법을 시행합니다.
+                    <p style="font-size:1.08rem; margin:0 0 14px 0;">
+                        신경통으로 이어지기 쉬운 대상포진 예방을 위한 프리미엄 백신(싱그릭스 · 스카이조스터)과 계절 독감 백신(지씨플루) 접종, 만성피로·면역 증진 맞춤 수액을 시행합니다.
                     </p>
                     <div class="proc-points">
-                        <span class="proc-pill">마늘주사 · 비타민 주사</span>
-                        <span class="proc-pill">태반 · 신데렐라 · 백옥주사</span>
-                        <span class="proc-pill">감기·몸살 회복 수액</span>
-                        <span class="proc-pill">면역력 강화 수액</span>
+                        <span class="proc-pill">대상포진 싱그릭스주</span>
+                        <span class="proc-pill">대상포진 스카이조스터</span>
+                        <span class="proc-pill">독감 지씨플루 백신</span>
+                        <span class="proc-pill">DENCORE 콜라겐 조직보충제</span>
                     </div>
                 </div>
             </div>
@@ -1377,50 +1511,323 @@
     </main>
 
     <!-- =========================================================================
-         PAGE 5: 비급여 진료비용 안내 (FEE SCHEDULE)
+         PAGE 5: 항노화 줄기세포 치료센터 (STEM CELL ANTI-AGING CENTER - INjucell)
+    ========================================================================= -->
+    <main id="page-stemcell" class="page-view">
+        <!-- 5-1. 프리미엄 히어로 -->
+        <section class="stem-hero">
+            <div class="container stem-hero-grid">
+                <div>
+                    <span class="stem-eyebrow">PREMIUM SLOW-AGING SOLUTION · INJUCELL</span>
+                    <h1>항노화 줄기세포 치료센터<br><span>이뉴셀(INjucell)</span> 저속노화 케어</h1>
+                    <p>
+                        라틴어 <em>injuvenésco(다시 젊어지다)</em>에서 유래한 <strong>이뉴셀(INjucell)</strong>은 환자 본인의 혈액에서 줄기세포 유래 재생성분과 성장인자 복합체를 고농축 추출해 정맥 또는 국소 부위에 투여하는 하이엔드 자가 바이오 치료입니다.
+                    </p>
+                    <div class="stem-pills">
+                        <span class="stem-pill">✓ 100% 자가혈 성분 · 면역 거부반응 최소화</span>
+                        <span class="stem-pill">✓ 국내 특허 원심분리 키트 (제10-1827783호)</span>
+                        <span class="stem-pill">✓ 전혈 대비 혈소판 5.35~7.42배 고농축</span>
+                    </div>
+                </div>
+                <div class="stem-visual-frame" id="stemHeroVisual"></div>
+            </div>
+        </section>
+
+        <!-- 5-2. 3대 핵심 작용 메커니즘 (호밍효과 · 자가재생 · 다분화) -->
+        <section class="section">
+            <div class="container">
+                <div class="sec-head">
+                    <span class="sec-tag sec-tag-gold">TRIPLE CELL SOLUTION</span>
+                    <h2 class="sec-title">세포 케어 · 재생 · 항염 3중 트리플 솔루션</h2>
+                    <p class="sec-sub">인위적인 화학 약물이 아닌 내 몸이 가진 순수 자가 재생인자로 전신의 세포가 스스로 회복하는 힘을 되살립니다.</p>
+                </div>
+
+                <div class="stem-triple-grid">
+                    <div class="stem-card">
+                        <span class="stem-card-num">MECHANISM 01</span>
+                        <h3>호밍효과 (Homing Effect)</h3>
+                        <p>고농축 셀 성장인자들이 혈류를 타고 순환하다 체내에서 손상되거나 노화된 조직을 스스로 감지해 해당 부위로 정확히 이동·작용하는 생체 반응입니다.</p>
+                    </div>
+                    <div class="stem-card">
+                        <span class="stem-card-num">MECHANISM 02</span>
+                        <h3>자가재생능력 (Self-Renewal)</h3>
+                        <p>줄기세포 유래 재생인자와 사이토카인이 염증 반응을 조절하고 조직 항상성을 회복시켜, 세포가 스스로 활력을 되찾고 건강하게 증식하도록 돕습니다.</p>
+                    </div>
+                    <div class="stem-card">
+                        <span class="stem-card-num">MECHANISM 03</span>
+                        <h3>다분화 · 조직 리모델링</h3>
+                        <p>피부 진피층의 섬유아세포와 혈관 내피세포, 근육·관절 조직에 폭넓게 작용해 콜라겐 합성과 미세혈류 개선, 전반적인 신체 기능 향상을 지원합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5-3. 이뉴셀 8대 핵심 성장인자 -->
+        <section class="section section-soft">
+            <div class="container">
+                <div class="sec-head">
+                    <span class="sec-tag sec-tag-gold">8 CORE GROWTH FACTORS</span>
+                    <h2 class="sec-title">혈액 속 8가지 핵심 성장인자 고농축 추출</h2>
+                    <p class="sec-sub">세포 재생 활성부터 콜라겐 리모델링, 피부 장벽 강화, 혈류 개선까지 복합적으로 작용합니다.</p>
+                </div>
+
+                <div class="gf-grid">
+                    <div class="gf-card gf-green">
+                        <div class="gf-code">HGF</div>
+                        <div class="gf-name">간세포 성장인자 · 세포 재생 활성</div>
+                        <p class="gf-desc">조직 재생을 유도하고 저하된 세포의 활력을 회복합니다.</p>
+                    </div>
+                    <div class="gf-card gf-green">
+                        <div class="gf-code">EGF</div>
+                        <div class="gf-name">상피세포 성장인자 · 세포 재생 활성</div>
+                        <p class="gf-desc">상피세포 재생을 돕고 손상 조직의 빠른 회복을 촉진합니다.</p>
+                    </div>
+                    <div class="gf-card gf-rose">
+                        <div class="gf-code">FGF-2</div>
+                        <div class="gf-name">섬유아세포 성장인자 · 탄력 리모델링</div>
+                        <p class="gf-desc">진피 내 콜라겐 생성을 촉진하고 주름·탄력을 개선합니다.</p>
+                    </div>
+                    <div class="gf-card gf-rose">
+                        <div class="gf-code">GDF11</div>
+                        <div class="gf-name">성장분화인자 · 탄력 리모델링</div>
+                        <p class="gf-desc">세포 노화 속도를 조절하고 건강한 탄력 구조를 회복합니다.</p>
+                    </div>
+                    <div class="gf-card gf-rose">
+                        <div class="gf-code">TGF-β</div>
+                        <div class="gf-name">형질변화 성장인자 · 사이토카인</div>
+                        <p class="gf-desc">피부 속밀도를 강화하고 만성 염증 반응을 완화합니다.</p>
+                    </div>
+                    <div class="gf-card gf-amber">
+                        <div class="gf-code">KGF</div>
+                        <div class="gf-name">각질세포 성장인자 · 장벽 강화</div>
+                        <p class="gf-desc">피부 장벽 기능을 강화하고 민감해진 조직을 진정·회복합니다.</p>
+                    </div>
+                    <div class="gf-card gf-amber">
+                        <div class="gf-code">PDGF</div>
+                        <div class="gf-name">혈소판유래 성장인자 · 손상 복구</div>
+                        <p class="gf-desc">손상된 조직을 복원하고 진피·혈관 구조 재건을 유도합니다.</p>
+                    </div>
+                    <div class="gf-card gf-red">
+                        <div class="gf-code">VEGF</div>
+                        <div class="gf-name">혈관내피 성장인자 · 혈류 톤업</div>
+                        <p class="gf-desc">미세 혈류 순환을 개선하고 조직 내 산소 공급을 촉진합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5-4. 특허 기술 & 삼광의료재단 농축 데이터 -->
+        <section class="section">
+            <div class="container">
+                <div class="two-col-grid">
+                    <div class="data-box">
+                        <span class="sec-tag sec-tag-gold">CLINICAL DATA · 삼광의료재단 검사</span>
+                        <h3 style="font-size:1.52rem; font-weight:900; color:var(--navy); margin:8px 0 10px;">전혈 대비 혈소판(PLT) 최대 7.42배 고농축</h3>
+                        <p style="font-size:1.02rem; color:var(--text-body); margin:0 0 16px;">
+                            자가혈 재생치료의 핵심은 성장인자가 응축된 혈소판(PLT) 농축 수치입니다. 이뉴셀은 안정적이고 높은 농축 데이터를 입증했습니다.
+                        </p>
+                        <div class="bar-chart">
+                            <div>
+                                <div class="bar-row-label"><span>샘플 1 · 전혈 (270 ×10³/μL)</span><span>기준치</span></div>
+                                <div class="bar-track"><div class="bar-fill muted" style="width:12%;"></div></div>
+                            </div>
+                            <div>
+                                <div class="bar-row-label"><span>샘플 1 · 이뉴셀 농축 후 (1,444 ×10³/μL)</span><span style="color:#8a621c;">약 5.35배 ↑</span></div>
+                                <div class="bar-track"><div class="bar-fill" style="width:62%;"></div></div>
+                            </div>
+                            <div>
+                                <div class="bar-row-label"><span>샘플 2 · 전혈 (345 ×10³/μL)</span><span>기준치</span></div>
+                                <div class="bar-track"><div class="bar-fill muted" style="width:15%;"></div></div>
+                            </div>
+                            <div>
+                                <div class="bar-row-label"><span>샘플 2 · 이뉴셀 농축 후 (2,559 ×10³/μL)</span><span style="color:#8a621c;">약 7.42배 ↑</span></div>
+                                <div class="bar-track"><div class="bar-fill" style="width:96%;"></div></div>
+                            </div>
+                        </div>
+                        <p style="font-size:0.88rem; color:var(--text-muted); margin:16px 0 0;">* 출처: 퍼비스코리아 의뢰 / 의료법인 삼광의료재단 EDTA Blood Platelet 검사 결과</p>
+                    </div>
+
+                    <div class="panel-card">
+                        <span class="sec-tag">PATENTED CLOSED SYSTEM</span>
+                        <h3 style="font-size:1.52rem; font-weight:900; color:var(--navy); margin:8px 0 10px;">혈액을 옮길 필요 없는 특허 키트</h3>
+                        <p style="font-size:1.02rem; color:var(--text-body); margin:0 0 16px;">
+                            국내 특허(제10-1827783호)를 받은 '분리형 플랜지 구비 혈액 원심분리 겸용 주사기 키트'를 사용하여, 혈액을 여러 번 옮기는 과정에서 발생할 수 있는 외부 공기 노출·감염 위험을 원천적으로 최소화했습니다.
+                        </p>
+                        <div class="step-flow" style="grid-template-columns: repeat(2, 1fr);">
+                            <div class="step-box">
+                                <span class="step-num">1</span>
+                                <strong>전문의 상담</strong>
+                                <span>컨디션·목적별 용량 설계</span>
+                            </div>
+                            <div class="step-box">
+                                <span class="step-num">2</span>
+                                <strong>간편 채혈</strong>
+                                <span>특허 전용 키트로 직접 채혈</span>
+                            </div>
+                            <div class="step-box">
+                                <span class="step-num">3</span>
+                                <strong>고농축 원심분리</strong>
+                                <span>3000RPM · 5분 정밀 추출</span>
+                            </div>
+                            <div class="step-box">
+                                <span class="step-num">4</span>
+                                <strong>정맥·국소 투여</strong>
+                                <span>20분~1시간 내 편안한 시술</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 용량별 맞춤 프로그램 비교표 -->
+                <div class="fee-table-wrap" style="margin-top:30px;">
+                    <table class="fee-table">
+                        <thead>
+                            <tr>
+                                <th>프로그램 구분</th>
+                                <th>이뉴셀 20ml (기본)</th>
+                                <th>이뉴셀 40ml (20ml×2)</th>
+                                <th>이뉴셀 60ml (20ml×3)</th>
+                                <th>이뉴셀 80ml (20ml×4)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>채혈량</strong></td>
+                                <td>17 ml</td>
+                                <td>34 ml</td>
+                                <td>51 ml</td>
+                                <td>68 ml</td>
+                            </tr>
+                            <tr>
+                                <td><strong>고농축 유효 성분량</strong></td>
+                                <td>약 3 ~ 4 cc</td>
+                                <td>약 6 ~ 7 cc</td>
+                                <td>약 9 ~ 10 cc</td>
+                                <td>약 12 ~ 13 cc</td>
+                            </tr>
+                            <tr>
+                                <td><strong>수액량 / 소요 시간</strong></td>
+                                <td>50 ml / 약 20분</td>
+                                <td>100 ml / 약 30분</td>
+                                <td>200 ml / 약 1시간</td>
+                                <td>250 ml / 약 1시간 30분</td>
+                            </tr>
+                            <tr>
+                                <td><strong>추천 대상</strong></td>
+                                <td>입문·정기 예방 케어</td>
+                                <td>피로·피부 탄력 집중</td>
+                                <td>면역·만성피로·수면</td>
+                                <td>프리미엄 전신 저속노화</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5-5. 적용 분야 & 시술 후 남은 혈장 홈케어 & Q&A -->
+        <section class="section section-soft">
+            <div class="container">
+                <div class="sec-head">
+                    <span class="sec-tag sec-tag-gold">AFTER-CARE &amp; FAQ</span>
+                    <h2 class="sec-title">시술 후 남은 자가 혈장 홈케어 &amp; 자주 묻는 질문</h2>
+                    <p class="sec-sub">이뉴셀 시술 후 남는 자가 혈장까지 버리지 않고 피부·두피·비강·안구 홈케어 용기로 맞춤 제공해 드립니다.</p>
+                </div>
+
+                <div class="homecare-grid" style="margin-bottom:36px;">
+                    <div class="homecare-card">
+                        <span class="homecare-tag"># 바르세요</span>
+                        <h4>피부 탄력 케어</h4>
+                        <p>세포 재생을 촉진하고 피부 장벽 강화 및 속건조·탄력 개선을 돕습니다.</p>
+                    </div>
+                    <div class="homecare-card">
+                        <span class="homecare-tag"># 도포하세요</span>
+                        <h4>두피 · 모근 케어</h4>
+                        <p>손상되고 민감해진 두피를 진정시키고 건강한 모근 환경 재생을 돕습니다.</p>
+                    </div>
+                    <div class="homecare-card">
+                        <span class="homecare-tag"># 분무하세요</span>
+                        <h4>비염 · 호흡 케어</h4>
+                        <p>비강 점막의 염증을 부드럽게 완화하고 편안한 호흡 컨디션을 돕습니다.</p>
+                    </div>
+                    <div class="homecare-card">
+                        <span class="homecare-tag"># 점안하세요</span>
+                        <h4>촉촉한 눈 케어</h4>
+                        <p>안구 건조감을 줄이고 눈 표면의 수분 유지와 편안함을 돕습니다.</p>
+                    </div>
+                </div>
+
+                <div class="qa-list">
+                    <div class="qa-item">
+                        <div class="qa-q">Q. 내 몸에서 나온 혈액을 다시 넣는데 정말 효과가 있나요?</div>
+                        <p class="qa-a">A. 일반 혈액을 그대로 넣는 것이 아니라, 특허 원심분리 키트를 통해 혈액 속 핵심 줄기세포 유래 재생인자와 혈소판 성장인자만 최대 5~7배 고농축 분리하여 투여함으로써 신체가 스스로 회복하도록 돕습니다.</p>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-q">Q. 몇 회 정도, 어떤 주기로 받는 것이 좋나요?</div>
+                        <p class="qa-a">A. 1회 시술만으로도 컨디션 회복을 경험하실 수 있으며, 지속적인 저속노화 관리를 위해 <strong>2~3개월에 1회(연 4회 이상)</strong> 정기적인 케어를 권장합니다.</p>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-q">Q. 연령대별로 어떤 효과를 기대할 수 있나요?</div>
+                        <p class="qa-a">A. <strong>20~30대</strong>는 조기 노화 예방 및 피로·피부 관리, <strong>40~50대</strong>는 주름·탄력 개선 및 면역 밸런스 강화, <strong>60대 이상</strong>은 만성 피로 해소·수면의 질 개선 및 전신 활력 회복 목적으로 폭넓게 시행합니다.</p>
+                    </div>
+                </div>
+
+                <div class="call-banner" style="margin-top:28px; background:#faf3e3; border-color:#e2c68b;">
+                    <span style="color:#6e4e1c;">항노화 줄기세포 치료센터 (이뉴셀) 1:1 전문의 상담 및 예약</span>
+                    <a href="tel:041-427-7711" style="color:#24193d;">☎ 041-427-7711</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =========================================================================
+         PAGE 6: 비급여 진료비용 안내 (비급여수가목록수정판.xlsx 100% 반영)
     ========================================================================= -->
     <main id="page-fee" class="page-view">
         <section class="section">
             <div class="container">
                 <div class="sec-head">
                     <span class="sec-tag">NON-REIMBURSED FEE SCHEDULE</span>
-                    <h2 class="sec-title">비급여 진료비용 안내 (의료보수표)</h2>
-                    <p class="sec-sub">의료법 제45조 및 보건복지부 고시에 따라 수마취통증의학과의 비급여 진료비용을 투명하게 안내합니다.</p>
+                    <h2 class="sec-title">비급여 진료비용 안내 (수가표)</h2>
+                    <p class="sec-sub">의료법 제45조 및 보건복지부 고시에 따라 수마취통증의학과의원의 비급여 진료비용을 투명하게 안내합니다.</p>
                 </div>
 
                 <div class="fee-controls">
                     <div class="body-filter-bar" style="margin-bottom:0; justify-content:flex-start;" id="feeCatBar">
                         <button type="button" class="filter-btn active" onclick="filterFees('all')">전체</button>
-                        <button type="button" class="filter-btn" onclick="filterFees('재생·주사치료')">재생·주사치료</button>
-                        <button type="button" class="filter-btn" onclick="filterFees('체외충격파')">체외충격파</button>
-                        <button type="button" class="filter-btn" onclick="filterFees('영양수액')">영양수액</button>
-                        <button type="button" class="filter-btn" onclick="filterFees('제증명')">제증명</button>
+                        <button type="button" class="filter-btn" onclick="filterFees('이학요법')">이학요법</button>
+                        <button type="button" class="filter-btn" onclick="filterFees('행위비급여')">행위비급여</button>
+                        <button type="button" class="filter-btn" onclick="filterFees('예방접종')">예방접종</button>
+                        <button type="button" class="filter-btn" onclick="filterFees('초음파')">초음파</button>
+                        <button type="button" class="filter-btn" onclick="filterFees('서류')">서류</button>
+                        <button type="button" class="filter-btn" onclick="filterFees('치료재료·처방')">치료재료·처방</button>
                     </div>
-                    <input type="text" id="feeSearchInput" class="fee-search-input" placeholder="항목명 검색 (예: 충격파, 프롤로, 진단서)" oninput="renderFeeTable()">
+                    <input type="text" id="feeSearchInput" class="fee-search-input" placeholder="항목명·코드 검색 (예: 충격파, 콜라겐, 초음파)" oninput="renderFeeTable()">
                 </div>
 
                 <div class="fee-table-wrap">
                     <table class="fee-table">
                         <thead>
                             <tr>
-                                <th style="width:18%;">구분</th>
-                                <th style="width:42%;">항목명</th>
-                                <th class="num-col" style="width:20%;">비용 (원)</th>
-                                <th style="width:20%;">비고</th>
+                                <th style="width:15%;">분류</th>
+                                <th style="width:36%;">명칭</th>
+                                <th style="width:14%;">코드</th>
+                                <th class="num-col" style="width:18%;">가격</th>
+                                <th style="width:17%;">비고</th>
                             </tr>
                         </thead>
                         <tbody id="feeTableBody"></tbody>
                     </table>
                 </div>
                 <p style="margin-top:16px; font-size:0.98rem; color:var(--text-muted); font-weight:600;">
-                    * 시술 부위, 사용 용량 및 치료 횟수에 따라 실제 진료비가 달라질 수 있으며, 상세 비용은 원내 데스크 또는 대표전화(041-427-7711)로 문의해 주시기 바랍니다.
+                    * 시술 부위, 사용 용량 및 치료 횟수에 따라 실제 진료비가 달라질 수 있으며, 항노화 줄기세포(이뉴셀) 및 상세 비용은 원내 데스크 또는 대표전화(041-427-7711)로 문의해 주시기 바랍니다.
                 </p>
             </div>
         </section>
     </main>
 
     <!-- =========================================================================
-         PAGE 6: 오시는 길 및 진료 문의 (LOCATION)
+         PAGE 7: 오시는 길 및 진료 문의 (LOCATION)
     ========================================================================= -->
     <main id="page-location" class="page-view">
         <section class="section">
@@ -1483,44 +1890,61 @@
     </main>
 
     <!-- =========================================================================
-         하단 푸터 (FOOTER)
+         하단 푸터 (FOOTER - SeHyeong AD. 공식 크레딧)
     ========================================================================= -->
     <footer class="site-footer">
         <div class="container">
             <div class="footer-top">
                 <div>
-                    <h4 class="footer-title">수마취통증의학과 (SOO PAIN CLINIC)</h4>
+                    <h4 class="footer-title">수마취통증의학과의원 (SOO PAIN CLINIC)</h4>
                     <p class="footer-meta">
-                        <strong>대표원장 :</strong> 박현준 &nbsp;|&nbsp; <strong>대표전화 :</strong> 041-427-7711 &nbsp;|&nbsp; <strong>팩스 :</strong> 041-427-7712
+                        <strong>상호명 :</strong> 수마취통증의학과의원 &nbsp;|&nbsp; <strong>대표 :</strong> 박현준 &nbsp;|&nbsp; <strong>사업자등록번호 :</strong> 130-95-10071
                     </p>
                     <p class="footer-meta">
-                        <strong>주소 :</strong> 충남 아산시 배방읍 배방로14번길 9, J,S 메디컬 2층 (배방역 맞은편 다이소 옆)
+                        <strong>전화번호 :</strong> 041-427-7711 &nbsp;|&nbsp; <strong>팩스번호 :</strong> 041-427-7712 &nbsp;|&nbsp; <strong>주소 :</strong> 충남 아산시 배방읍 배방로14번길 9, J,S 메디컬 2층
                     </p>
                 </div>
                 <div class="footer-links">
                     <button type="button" onclick="switchPage('about')">병원소개</button>
                     <button type="button" onclick="switchPage('clinic')">통증클리닉</button>
                     <button type="button" onclick="switchPage('treatment')">특수비수술치료</button>
+                    <button type="button" onclick="switchPage('stemcell')" style="color:#f4d692;">항노화 줄기세포</button>
                     <button type="button" onclick="switchPage('fee')" style="color:#7dd3fc;">[비급여진료비용고시]</button>
                     <button type="button" onclick="switchPage('location')">오시는길</button>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <span>Copyright &copy; 2021–2026 수마취통증의학과. All rights reserved.</span>
-                <span>Build v3.0.1 | Last Updated 2026-11-24</span>
+
+            <div class="footer-credit-center">
+                <p class="footer-copy">Copyright(c) 2024–2026 <strong>soopain.com</strong> All Rights Reserved</p>
+                <div class="footer-powered">powered by <strong>SeHyeong AD.</strong></div>
             </div>
         </div>
     </footer>
 
     <script>
+        /* 이미지 확장자(.jpg -> .png -> .jfif) 자동 순차 탐색 핸들러 */
+        function handleImgFallback(imgEl) {
+            const tried = Number(imgEl.dataset.tried || 0);
+            const base = imgEl.dataset.base;
+            if (tried === 0) {
+                imgEl.dataset.tried = 1;
+                imgEl.src = base + '.png';
+            } else if (tried === 1) {
+                imgEl.dataset.tried = 2;
+                imgEl.src = base + '.jfif';
+            } else {
+                imgEl.remove();
+            }
+        }
+
         /* =====================================================================
-           1. 시술 장면 맞춤 SVG 일러스트 (실제 사진 업로드 시 자동 교체 지원)
+           1. 4대 핵심 비수술 치료 데이터 (콜라겐 주사 포함)
         ===================================================================== */
         const PROCEDURES = [
             {
                 id: 'carm',
                 badge: 'C-ARM FLUOROSCOPY',
-                photo: 'img/proc_carm.jpg',
+                photoBase: 'img/proc_carm',
                 title: '디지털 C-arm 투시 신경차단술',
                 shortTitle: 'C-arm 투시 신경차단술',
                 shortSub: '실시간 척추 신경 투시 시술',
@@ -1528,56 +1952,18 @@
                 points: ['목·허리디스크', '척추관협착증', '좌골신경통', '실시간 정밀 투시'],
                 svg: `
                 <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="bgCarm" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stop-color="#0d233d"/>
-                            <stop offset="100%" stop-color="#173e66"/>
-                        </linearGradient>
-                    </defs>
-                    <rect width="640" height="360" fill="url(#bgCarm)"/>
-                    <!-- 좌측 모니터 (척추 투시 화면) -->
+                    <rect width="640" height="360" fill="#102944"/>
                     <rect x="34" y="42" width="166" height="128" rx="10" fill="#091524" stroke="#4f8cc9" stroke-width="3"/>
-                    <rect x="46" y="54" width="142" height="92" rx="4" fill="#102944"/>
-                    <!-- 척추 X-ray 실루엣 -->
-                    <g stroke="#7dd3fc" stroke-width="2.5" fill="none" opacity="0.9">
-                        <rect x="104" y="64" width="26" height="12" rx="3"/>
-                        <rect x="104" y="81" width="26" height="12" rx="3"/>
-                        <rect x="104" y="98" width="26" height="12" rx="3"/>
-                        <rect x="104" y="115" width="26" height="12" rx="3"/>
-                        <circle cx="117" cy="104" r="14" stroke="#4ade80" stroke-dasharray="3 2"/>
-                        <line x1="148" y1="90" x2="122" y2="103" stroke="#facc15" stroke-width="2.5"/>
-                    </g>
-                    <text x="117" y="160" text-anchor="middle" fill="#93c5fd" font-size="11" font-weight="700">REAL-TIME C-ARM MONITOR</text>
-                    <!-- C-arm 본체 및 C형 아암 -->
-                    <rect x="480" y="170" width="90" height="145" rx="8" fill="#dbe5f0"/>
-                    <rect x="495" y="190" width="60" height="35" rx="4" fill="#1e3a5f"/>
-                    <path d="M 510 175 L 440 175 C 340 175, 290 60, 395 55 L 430 55" fill="none" stroke="#e2e8f0" stroke-width="22" stroke-linecap="round"/>
-                    <!-- 상단 X선 튜브 / 하단 디텍터 -->
-                    <rect x="372" y="38" width="76" height="34" rx="8" fill="#0b66b2" stroke="#ffffff" stroke-width="2"/>
-                    <rect x="380" y="258" width="60" height="28" rx="6" fill="#0b66b2" stroke="#ffffff" stroke-width="2"/>
-                    <!-- 투시 빔 영역 -->
-                    <polygon points="390,72 430,72 440,258 380,258" fill="#38bdf8" opacity="0.16"/>
-                    <!-- 시술 베드 & 엎드린 환자 -->
+                    <text x="117" y="112" text-anchor="middle" fill="#93c5fd" font-size="14" font-weight="800">C-ARM MONITOR</text>
+                    <path d="M 510 175 L 440 175 C 340 175, 290 60, 395 55 L 430 55" fill="none" stroke="#e2e8f0" stroke-width="20" stroke-linecap="round"/>
                     <rect x="210" y="218" width="275" height="18" rx="6" fill="#334155"/>
-                    <rect x="255" y="236" width="18" height="78" fill="#64748b"/>
-                    <rect x="425" y="236" width="18" height="78" fill="#64748b"/>
-                    <!-- 환자 실루엣 (엎드린 자세) -->
-                    <circle cx="255" cy="198" r="18" fill="#fed7aa"/>
-                    <path d="M 274 202 Q 345 186 435 198 L 455 214 L 274 214 Z" fill="#60a5fa"/>
-                    <!-- 타겟 포인트 & 미세 바늘 -->
-                    <circle cx="385" cy="195" r="8" fill="#4ade80" opacity="0.85"/>
-                    <line x1="352" y1="145" x2="385" y2="195" stroke="#facc15" stroke-width="3.5" stroke-linecap="round"/>
-                    <!-- 시술 의료진 (전문의) -->
-                    <circle cx="315" cy="112" r="20" fill="#fed7aa"/>
-                    <path d="M 285 182 Q 290 136 315 136 Q 340 136 346 175 Z" fill="#ffffff"/>
-                    <path d="M 326 146 L 355 154" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/>
-                    <text x="320" y="340" text-anchor="middle" fill="#cbd5e1" font-size="14" font-weight="700">C-arm 투시 아암 아래에서 실시간 영상 확인 후 척추 신경차단술 시행</text>
+                    <text x="320" y="334" text-anchor="middle" fill="#cbd5e1" font-size="14" font-weight="700">img/proc_carm.jpg 업로드 시 실사 사진 자동 적용</text>
                 </svg>`
             },
             {
                 id: 'usg',
                 badge: 'HIGH-RES ULTRASOUND',
-                photo: 'img/proc_usg_shoulder.jpg',
+                photoBase: 'img/proc_usg_shoulder',
                 title: '고해상도 초음파 어깨·관절 진료',
                 shortTitle: '초음파 어깨·관절 진료',
                 shortSub: '어깨 회전근개 실시간 스캔',
@@ -1585,91 +1971,31 @@
                 points: ['오십견·회전근개', '석회성건염', '관절염 정밀진단', '방사선 노출 없음'],
                 svg: `
                 <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="bgUsg" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stop-color="#0d2b3e"/>
-                            <stop offset="100%" stop-color="#134e6f"/>
-                        </linearGradient>
-                    </defs>
-                    <rect width="640" height="360" fill="url(#bgUsg)"/>
-                    <!-- 초음파 장비 콘솔 & 모니터 -->
-                    <rect x="46" y="44" width="186" height="134" rx="10" fill="#0b1726" stroke="#38bdf8" stroke-width="3"/>
-                    <rect x="58" y="56" width="162" height="98" rx="4" fill="#06121e"/>
-                    <!-- 초음파 부채꼴 스캔 영상 -->
-                    <path d="M 139 64 L 78 144 Q 139 156 200 144 Z" fill="#1e3a5f" stroke="#38bdf8" stroke-width="1.5"/>
-                    <path d="M 96 118 Q 139 98 182 118" stroke="#93c5fd" stroke-width="4" fill="none"/>
-                    <path d="M 104 132 Q 139 116 174 132" stroke="#e2e8f0" stroke-width="3" fill="none" opacity="0.8"/>
-                    <circle cx="145" cy="110" r="9" fill="none" stroke="#4ade80" stroke-width="2.5"/>
-                    <text x="139" y="169" text-anchor="middle" fill="#7dd3fc" font-size="11" font-weight="700">SHOULDER TENDON LIVE SCAN</text>
-                    <rect x="112" y="178" width="54" height="125" rx="6" fill="#cbd5e1"/>
-                    <rect x="86" y="210" width="106" height="18" rx="4" fill="#94a3b8"/>
-                    <!-- 앉아있는 환자 (어깨 노출) -->
-                    <circle cx="348" cy="112" r="24" fill="#fed7aa"/>
-                    <path d="M 304 265 L 312 162 Q 348 142 384 162 L 392 265 Z" fill="#3b82f6"/>
-                    <!-- 환자 어깨 부위 강조 -->
-                    <circle cx="384" cy="168" r="20" fill="#fed7aa"/>
-                    <circle cx="384" cy="168" r="28" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-dasharray="5 4"/>
-                    <!-- 진료 중인 전문의 & 초음파 프로브 -->
-                    <circle cx="485" cy="108" r="24" fill="#fed7aa"/>
-                    <path d="M 442 268 L 450 156 Q 485 138 522 156 L 532 268 Z" fill="#ffffff"/>
-                    <!-- 프로브 잡은 팔과 프로브 -->
-                    <path d="M 458 172 L 406 168" stroke="#ffffff" stroke-width="14" stroke-linecap="round"/>
-                    <rect x="382" y="152" width="22" height="14" rx="4" transform="rotate(-20 393 159)" fill="#0b66b2" stroke="#fff" stroke-width="2"/>
-                    <!-- 프로브 케이블 -->
-                    <path d="M 396 154 Q 300 220 185 218" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="2 0"/>
-                    <text x="320" y="340" text-anchor="middle" fill="#cbd5e1" font-size="14" font-weight="700">고해상도 초음파 프로브로 환자 어깨 힘줄·관절을 실시간 스캔 진료</text>
+                    <rect width="640" height="360" fill="#123d56"/>
+                    <text x="320" y="180" text-anchor="middle" fill="#93c5fd" font-size="18" font-weight="800">HIGH-RES ULTRASOUND</text>
+                    <text x="320" y="334" text-anchor="middle" fill="#cbd5e1" font-size="14" font-weight="700">img/proc_usg_shoulder.jpg 업로드 시 실사 사진 자동 적용</text>
                 </svg>`
             },
             {
                 id: 'prolo',
                 badge: 'ULTRASOUND-GUIDED REGENERATION',
-                photo: 'img/proc_prolo_inj.jpg',
-                title: '초음파 가이드 프롤로·PDRN·PRP 주사',
-                shortTitle: '프롤로·PDRN·PRP 주사',
-                shortSub: '초음파 가이드 인대·힘줄 재생',
-                desc: '초음파 프로브로 손상된 인대와 힘줄의 정확한 위치를 보면서 주사 바늘 끝을 실시간 추적해 프롤로·PDRN·PRP 재생 약물을 정밀하게 주입합니다.',
-                points: ['프롤로 인대강화', 'PDRN(DNA) 재생주사', '자가혈 PRP 치료', '재발 방지 근본치료'],
+                photoBase: 'img/proc_prolo_inj',
+                title: '초음파 가이드 프롤로·PDRN·PRP·콜라겐 주사',
+                shortTitle: '프롤로·PDRN·PRP·콜라겐 주사',
+                shortSub: '초음파 가이드 인대·힘줄·연골 재생',
+                desc: '초음파 프로브로 손상된 인대·힘줄·관절 부위를 실시간 확인하며 프롤로, PDRN(DNA), 자가혈 PRP 및 콜라겐 조직보충제를 정확하게 주입해 조직 재생을 돕습니다.',
+                points: ['프롤로 인대강화', 'PDRN(DNA) 주사', '자가혈 PRP 치료', '콜라겐 조직보충제'],
                 svg: `
                 <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="bgProlo" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stop-color="#0c2e28"/>
-                            <stop offset="100%" stop-color="#145348"/>
-                        </linearGradient>
-                    </defs>
-                    <rect width="640" height="360" fill="url(#bgProlo)"/>
-                    <!-- 조직 단면 확대 뷰 (우측) -->
-                    <rect x="60" y="170" width="520" height="125" rx="14" fill="#1c3b36" stroke="#4ade80" stroke-width="2"/>
-                    <!-- 피부층 / 근육층 / 손상된 인대 -->
-                    <rect x="74" y="182" width="492" height="22" rx="6" fill="#fed7aa" opacity="0.88"/>
-                    <rect x="74" y="210" width="492" height="34" rx="6" fill="#f87171" opacity="0.45"/>
-                    <path d="M 74 264 Q 320 248 566 264 L 566 284 L 74 284 Z" fill="#e2e8f0" opacity="0.9"/>
-                    <!-- 손상 타겟 부위 & 약물 확산 -->
-                    <circle cx="330" cy="258" r="24" fill="#4ade80" opacity="0.35"/>
-                    <circle cx="330" cy="258" r="11" fill="#22c55e" stroke="#ffffff" stroke-width="2"/>
-                    <!-- 초음파 프로브 (수직) -->
-                    <rect x="292" y="72" width="76" height="98" rx="14" fill="#e2e8f0" stroke="#0b66b2" stroke-width="3"/>
-                    <rect x="304" y="156" width="52" height="16" rx="4" fill="#0b66b2"/>
-                    <!-- 초음파 스캔 빔 -->
-                    <polygon points="304,172 356,172 415,284 245,284" fill="#38bdf8" opacity="0.22"/>
-                    <!-- 주사기 & 바늘 (사선 진입) -->
-                    <g transform="translate(155, 84) rotate(38)">
-                        <rect x="0" y="0" width="96" height="24" rx="5" fill="#ffffff" stroke="#0b66b2" stroke-width="2.5"/>
-                        <rect x="18" y="4" width="56" height="16" rx="2" fill="#4ade80" opacity="0.85"/>
-                        <rect x="-26" y="7" width="26" height="10" rx="2" fill="#cbd5e1"/>
-                        <line x1="96" y1="12" x2="215" y2="12" stroke="#facc15" stroke-width="3.5" stroke-linecap="round"/>
-                    </g>
-                    <!-- 라벨 -->
-                    <rect x="422" y="64" width="160" height="72" rx="10" fill="rgba(9,27,51,0.8)" stroke="#4ade80" stroke-width="1.5"/>
-                    <text x="502" y="92" text-anchor="middle" fill="#4ade80" font-size="13" font-weight="800">NEEDLE TRACKING</text>
-                    <text x="502" y="116" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">손상 인대 정밀 주입</text>
-                    <text x="320" y="340" text-anchor="middle" fill="#d1fae5" font-size="14" font-weight="700">초음파 프로브로 바늘 끝을 실시간 확인하며 프롤로·PDRN·PRP 주사 시행</text>
+                    <rect width="640" height="360" fill="#114038"/>
+                    <text x="320" y="180" text-anchor="middle" fill="#86efac" font-size="18" font-weight="800">ULTRASOUND-GUIDED INJECTION</text>
+                    <text x="320" y="334" text-anchor="middle" fill="#d1fae5" font-size="14" font-weight="700">img/proc_prolo_inj.jpg 업로드 시 실사 사진 자동 적용</text>
                 </svg>`
             },
             {
                 id: 'eswt',
                 badge: 'EXTRACORPOREAL SHOCKWAVE',
-                photo: 'img/proc_eswt.jpg',
+                photoBase: 'img/proc_eswt',
                 title: '체외충격파(ESWT) 집중 치료',
                 shortTitle: '체외충격파(ESWT)',
                 shortSub: '고에너지 충격파 통증·재생',
@@ -1677,74 +2003,97 @@
                 points: ['골프·테니스엘보', '족저근막염', '어깨 석회성건염', '비침습 무절개'],
                 svg: `
                 <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="bgEswt" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stop-color="#172554"/>
-                            <stop offset="100%" stop-color="#1e40af"/>
-                        </linearGradient>
-                    </defs>
-                    <rect width="640" height="360" fill="url(#bgEswt)"/>
-                    <!-- ESWT 본체 장비 -->
-                    <rect x="52" y="76" width="154" height="218" rx="14" fill="#f1f5f9" stroke="#93c5fd" stroke-width="3"/>
-                    <rect x="70" y="96" width="118" height="74" rx="8" fill="#0f172a"/>
-                    <text x="129" y="128" text-anchor="middle" fill="#4ade80" font-size="18" font-weight="900">2.5 BAR</text>
-                    <text x="129" y="152" text-anchor="middle" fill="#93c5fd" font-size="12" font-weight="700">2000 SHOTS · 10Hz</text>
-                    <circle cx="96" cy="212" r="14" fill="#0b66b2"/>
-                    <circle cx="162" cy="212" r="14" fill="#1e8e46"/>
-                    <!-- 치료 베드 & 환자 팔/관절 -->
-                    <rect x="255" y="246" width="330" height="24" rx="8" fill="#334155"/>
-                    <path d="M 285 246 Q 355 190 455 206 L 555 214 L 555 246 Z" fill="#fed7aa"/>
-                    <!-- 통증 관절 부위 충격파 파동 -->
-                    <circle cx="420" cy="216" r="12" fill="#facc15"/>
-                    <circle cx="420" cy="216" r="28" fill="none" stroke="#fde047" stroke-width="3" opacity="0.85"/>
-                    <circle cx="420" cy="216" r="46" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="6 4"/>
-                    <circle cx="420" cy="216" r="64" fill="none" stroke="#4ade80" stroke-width="2" stroke-dasharray="4 4"/>
-                    <!-- 충격파 핸드피스 (어플리케이터) -->
-                    <g transform="translate(415, 76) rotate(22)">
-                        <rect x="0" y="0" width="36" height="122" rx="12" fill="#ffffff" stroke="#0b66b2" stroke-width="3"/>
-                        <rect x="6" y="106" width="24" height="22" rx="5" fill="#0b66b2"/>
-                    </g>
-                    <!-- 장비와 핸드피스 연결 케이블 -->
-                    <path d="M 206 185 Q 290 190 415 98" fill="none" stroke="#cbd5e1" stroke-width="5"/>
-                    <text x="320" y="340" text-anchor="middle" fill="#dbeafe" font-size="14" font-weight="700">충격파 핸드피스로 통증 병변에 고에너지 충격파 전달 · 혈류 개선 및 조직 재생</text>
+                    <rect width="640" height="360" fill="#1b3175"/>
+                    <text x="320" y="180" text-anchor="middle" fill="#bfdbfe" font-size="18" font-weight="800">EXTRACORPOREAL SHOCKWAVE</text>
+                    <text x="320" y="334" text-anchor="middle" fill="#dbeafe" font-size="14" font-weight="700">img/proc_eswt.jpg 업로드 시 실사 사진 자동 적용</text>
                 </svg>`
             }
         ];
 
+        const STEM_FALLBACK_SVG = `
+            <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+                <defs>
+                    <radialGradient id="stemGlow" cx="65%" cy="48%" r="48%">
+                        <stop offset="0%" stop-color="#f4d692" stop-opacity="0.55"/>
+                        <stop offset="55%" stop-color="#6b4c9a" stop-opacity="0.3"/>
+                        <stop offset="100%" stop-color="#15172b" stop-opacity="1"/>
+                    </radialGradient>
+                </defs>
+                <rect width="640" height="360" fill="#15172b"/>
+                <rect width="640" height="360" fill="url(#stemGlow)"/>
+                <circle cx="420" cy="176" r="88" fill="none" stroke="#f4d692" stroke-width="2" opacity="0.6"/>
+                <circle cx="420" cy="176" r="56" fill="#d4af6a" opacity="0.24"/>
+                <circle cx="420" cy="176" r="24" fill="#f7e1a8" opacity="0.85"/>
+                <text x="64" y="168" fill="#f4d692" font-size="22" font-weight="900">INjucell</text>
+                <text x="64" y="198" fill="#ffffff" font-size="14" font-weight="700">PREMIUM SLOW-AGING CELL CARE</text>
+            </svg>
+        `;
+
         /* =====================================================================
-           2. 부위별 통증 질환 데이터 (도수치료 완전 제외)
+           2. 부위별 통증 질환 데이터
         ===================================================================== */
         const DISEASES = [
             { part: '목·두통', name: '목디스크 · 경추성 두통', desc: '뒷목 뻐근함, 어깨·팔 저림, 목에서 기인한 만성 두통과 어지럼증을 정밀 진단합니다.', treat: '권장 치료 : C-arm 경추 신경차단술 · 초음파 주사' },
-            { part: '어깨·팔', name: '오십견 · 회전근개 손상', desc: '팔을 올리기 힘들고 밤에 심해지는 어깨 통증 및 석회성건염을 비수술적으로 치료합니다.', treat: '권장 치료 : 초음파 유도 주사 · 체외충격파(ESWT)' },
-            { part: '어깨·팔', name: '골프엘보 · 테니스엘보', desc: '팔꿈치 안쪽·바깥쪽 힘줄의 반복적 미세 손상과 만성 염증을 근본적으로 회복합니다.', treat: '권장 치료 : 체외충격파(ESWT) · 프롤로·PDRN 재생주사' },
-            { part: '허리·척추', name: '허리디스크 · 척추관협착증', desc: '허리 통증, 엉치·다리 저림, 걸을 때 다리가 당기는 보행 장애를 수술 없이 완화합니다.', treat: '권장 치료 : C-arm 투시 신경차단술 · 신경성형 보존치료' },
-            { part: '무릎·발', name: '무릎 퇴행성관절염 · 인대손상', desc: '계단 오르내릴 때 시큰거리는 무릎 통증, 연골 마모, 관절 부종을 체계적으로 관리합니다.', treat: '권장 치료 : 초음파 연골·프롤로·PRP 주사 · 보존요법' },
+            { part: '어깨·팔', name: '오십견 · 회전근개 손상', desc: '팔을 올리기 힘들고 밤에 심해지는 어깨 통증 및 석회성건염을 비수술적으로 치료합니다.', treat: '권장 치료 : 초음파 유도 주사 · 콜라겐·체외충격파(ESWT)' },
+            { part: '어깨·팔', name: '골프엘보 · 테니스엘보', desc: '팔꿈치 안쪽·바깥쪽 힘줄의 반복적 미세 손상과 만성 염증을 근본적으로 회복합니다.', treat: '권장 치료 : 체외충격파(ESWT) · 프롤로·PDRN·콜라겐 주사' },
+            { part: '허리·척추', name: '허리디스크 · 척추관협착증', desc: '허리 통증, 엉치·다리 저림, 걸을 때 다리가 당기는 보행 장애를 수술 없이 완화합니다.', treat: '권장 치료 : C-arm 투시 신경차단술 · 보존 치료' },
+            { part: '무릎·발', name: '무릎 퇴행성관절염 · 인대손상', desc: '계단 오르내릴 때 시큰거리는 무릎 통증, 연골 마모, 관절 부종을 체계적으로 관리합니다.', treat: '권장 치료 : 초음파 유도 PRP·콜라겐·프롤로 주사' },
             { part: '무릎·발', name: '족저근막염 · 발목 인대손상', desc: '아침 첫 발을 디딜 때 찌릿한 발뒤꿈치 통증과 반복되는 발목 접질림을 치료합니다.', treat: '권장 치료 : 체외충격파(ESWT) · 초음파 인대강화주사' }
         ];
 
         /* =====================================================================
-           3. 비급여 진료비용 데이터 (보건복지부 고시 기준 · 도수치료 제외)
+           3. 비급여 진료비용 데이터 (비급여수가목록수정판.xlsx 전체 반영)
         ===================================================================== */
         const FEE_ITEMS = [
-            { cat: '재생·주사치료', name: '프롤로 인대강화주사 (부위별)', price: '50,000 ~ 150,000', note: '초음파 유도 시술 포함' },
-            { cat: '재생·주사치료', name: 'PDRN (DNA) 조직재생주사', price: '80,000 ~ 150,000', note: '용량·부위별 상이' },
-            { cat: '재생·주사치료', name: '콜라겐 관절·힘줄 주사치료', price: '100,000 ~ 250,000', note: '제품별 상이' },
-            { cat: '재생·주사치료', name: '자가혈 혈소판 풍부혈장 치료술 (PRP)', price: '250,000 ~ 400,000', note: '팔꿈치·어깨·무릎' },
-            { cat: '재생·주사치료', name: '관절강내 히알루론산 연골주사 (비급여 제제)', price: '100,000 ~ 200,000', note: '1회 제형 기준' },
-            { cat: '체외충격파', name: '체외충격파 치료 (ESWT - 기본)', price: '50,000', note: '부위별 1회 기준' },
-            { cat: '체외충격파', name: '체외충격파 치료 (ESWT - 집중형)', price: '70,000 ~ 100,000', note: '석회성건염·만성병변' },
-            { cat: '영양수액', name: '피로회복 마늘·비타민 주사', price: '30,000 ~ 50,000', note: '1회 투여 기준' },
-            { cat: '영양수액', name: '면역력 강화 맞춤 영양수액', price: '60,000 ~ 100,000', note: '처방 구성별 상이' },
-            { cat: '영양수액', name: '신데렐라 · 백옥 항산화 수액', price: '40,000 ~ 60,000', note: '1회 투여 기준' },
-            { cat: '제증명', name: '일반 진단서', price: '20,000', note: '보건복지부 상한 준수' },
-            { cat: '제증명', name: '소견서 / 통원확인서', price: '3,000 ~ 10,000', note: '확인서 3,000원' },
-            { cat: '제증명', name: '상해진단서 (3주 미만 / 3주 이상)', price: '100,000 / 150,000', note: '법정 상한 기준' },
-            { cat: '제증명', name: '의무기록 사본 복사 (1~5매 / 추가 매당)', price: '1,000 / 100', note: '영상 CD 복사 10,000원' }
+            // 이학요법
+            { cat: '이학요법', name: '체외충격파 2000타', code: 'SZ084', price: '50,000원', note: '' },
+            { cat: '이학요법', name: '체외충격파 3000타', code: 'SZ084', price: '70,000원', note: '' },
+            { cat: '이학요법', name: '체외충격파 4000타', code: 'SZ084', price: '90,000원', note: '' },
+            { cat: '이학요법', name: '체외충격파 5000타', code: 'SZ084', price: '110,000원', note: '' },
+
+            // 행위비급여
+            { cat: '행위비급여', name: '인대강화주사 (프롤로)', code: 'MY142', price: '30,000 ~ 200,000원', note: '부위 및 용량에 따라 다름' },
+            { cat: '행위비급여', name: '자가 혈소판 풍부 혈장 치료술 (PRP) 무릎', code: '4Z0E00026', price: '200,000원', note: '' },
+            { cat: '행위비급여', name: 'PDRN (DNA주사)', code: '56200011', price: '40,000 ~ 200,000원', note: '용량에 따라 다름' },
+            { cat: '행위비급여', name: 'DENCORE 콜라겐사용조직보충제', code: 'BM2600VT', price: '150,000원', note: '콜라겐 주사' },
+            { cat: '행위비급여', name: '리포라제주', code: '669904601', price: '30,000 ~ 100,000원', note: '용량에 따라 다름' },
+            { cat: '행위비급여', name: '액상하이랙스주 (주사)', code: '654802111', price: '50,000 ~ 200,000원', note: '용량에 따라 다름' },
+
+            // 예방접종 (대상포진 백신 / 독감백신)
+            { cat: '예방접종', name: '대상포진 백신 · 스카이조스터', code: '3Z5200301', price: '140,000원', note: '생백신 1회' },
+            { cat: '예방접종', name: '대상포진 백신 · 싱그릭스주', code: '650003220', price: '220,000원', note: '사백신 (1회 기준)' },
+            { cat: '예방접종', name: '독감백신 · 지씨플루프리필드시린지주', code: '643603630', price: '30,000원', note: '' },
+
+            // 초음파
+            { cat: '초음파', name: '손가락 초음파', code: 'EB461', price: '30,000원', note: '' },
+            { cat: '초음파', name: '발가락 초음파', code: 'EB462', price: '30,000원', note: '' },
+            { cat: '초음파', name: '팔꿈치 초음파', code: 'EB463', price: '30,000원', note: '' },
+            { cat: '초음파', name: '무릎 초음파', code: 'EB464', price: '30,000원', note: '' },
+            { cat: '초음파', name: '어깨 초음파', code: 'EB466', price: '30,000원', note: '' },
+            { cat: '초음파', name: '고관절 초음파', code: 'EB467', price: '30,000원', note: '' },
+            { cat: '초음파', name: '발목 초음파', code: 'EB468', price: '30,000원', note: '' },
+            { cat: '초음파', name: '연부조직 초음파', code: 'EB470', price: '30,000원', note: '' },
+            { cat: '초음파', name: '근골격, 연부조직 초음파-정밀', code: 'EB471', price: '50,000원', note: '' },
+            { cat: '초음파', name: '가이드 초음파', code: 'EB402', price: '20,000원', note: '' },
+            { cat: '초음파', name: '단순 초음파', code: '-', price: '10,000원', note: '' },
+
+            // 서류
+            { cat: '서류', name: '일반진단서 (병명기재)', code: 'PDZ010000', price: '15,000원', note: '' },
+            { cat: '서류', name: '소견서', code: '-', price: '5,000원', note: '' },
+            { cat: '서류', name: '초진챠트', code: 'PDZ110101', price: '1,000원', note: '' },
+            { cat: '서류', name: '통원확인서 (병명 미포함)', code: 'PDZ090004', price: '1,000원', note: '' },
+            { cat: '서류', name: '진료확인서', code: 'PDZ090007', price: '3,000원', note: '' },
+            { cat: '서류', name: '진료기록지 (5장 이하)', code: 'PDZ110101', price: '1,000원', note: '5장 이하' },
+            { cat: '서류', name: '진료기록지 (5장 초과 · 장당)', code: 'PDZ110102', price: '장당 100원', note: '5장 초과' },
+            { cat: '서류', name: 'CD 복사', code: 'PDZ110004', price: '10,000원', note: '' },
+
+            // 치료재료·처방
+            { cat: '치료재료·처방', name: '보호대', code: '-', price: '5,000 ~ 50,000원', note: '종류에 따라 다름' },
+            { cat: '치료재료·처방', name: '비급여처방전 (1회)', code: '-', price: '10,000 ~ 50,000원', note: '종류 및 기간에 따라 다름' }
         ];
 
         /* =====================================================================
-           4. 렌더링 및 인터랙션 로직
+           4. 렌더링 및 인터랙션
         ===================================================================== */
         let currentHeroIdx = 0;
         let currentFeeCat = 'all';
@@ -1756,7 +2105,7 @@
             stage.innerHTML = `
                 <div class="proc-visual" style="border-bottom:none;">
                     ${p.svg}
-                    <img class="real-photo" src="${p.photo}" alt="${p.title}" style="object-position:center 20%;" onerror="if(!this.dataset.pngTried){this.dataset.pngTried=1;this.src=this.src.replace(/\.jpg$/i,'.png');}else{this.remove();}">
+                    <img class="real-photo" src="${p.photoBase}.jpg" data-base="${p.photoBase}" alt="${p.title}" onerror="handleImgFallback(this)">
                 </div>
                 <div class="hero-stage-caption">
                     <span>${p.shortTitle}</span>
@@ -1768,9 +2117,7 @@
             });
         }
 
-        function setHeroScene(idx) {
-            renderHeroScene(idx);
-        }
+        function setHeroScene(idx) { renderHeroScene(idx); }
 
         function renderProcCards(targetId) {
             const container = document.getElementById(targetId);
@@ -1779,7 +2126,7 @@
                     <div class="proc-visual">
                         <span class="proc-badge">${p.badge}</span>
                         ${p.svg}
-                        <img class="real-photo" src="${p.photo}" alt="${p.title}" style="object-position:center 20%;" onerror="if(!this.dataset.pngTried){this.dataset.pngTried=1;this.src=this.src.replace(/\.jpg$/i,'.png');}else{this.remove();}">
+                        <img class="real-photo" src="${p.photoBase}.jpg" data-base="${p.photoBase}" alt="${p.title}" onerror="handleImgFallback(this)">
                     </div>
                     <div class="proc-body">
                         <h3>${p.title}</h3>
@@ -1790,6 +2137,15 @@
                     </div>
                 </article>
             `).join('');
+        }
+
+        function renderStemVisuals() {
+            const markup = `
+                ${STEM_FALLBACK_SVG}
+                <img src="img/stemcell_hero.jpg" data-base="img/stemcell_hero" alt="항노화 줄기세포 치료센터 이뉴셀" onerror="handleImgFallback(this)">
+            `;
+            document.getElementById('homeStemThumb').innerHTML = markup;
+            document.getElementById('stemHeroVisual').innerHTML = markup;
         }
 
         function filterDiseases(part, scope) {
@@ -1825,21 +2181,26 @@
             const q = (document.getElementById('feeSearchInput').value || '').trim().toLowerCase();
             const filtered = FEE_ITEMS.filter(item => {
                 const catOk = currentFeeCat === 'all' || item.cat === currentFeeCat;
-                const qOk = !q || item.name.toLowerCase().includes(q) || item.cat.toLowerCase().includes(q) || item.note.toLowerCase().includes(q);
+                const qOk = !q ||
+                    item.name.toLowerCase().includes(q) ||
+                    item.cat.toLowerCase().includes(q) ||
+                    item.code.toLowerCase().includes(q) ||
+                    item.note.toLowerCase().includes(q);
                 return catOk && qOk;
             });
 
             const tbody = document.getElementById('feeTableBody');
             if (!filtered.length) {
-                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:34px; color:var(--text-muted);">검색 결과가 없습니다.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:34px; color:var(--text-muted);">검색 결과가 없습니다.</td></tr>';
                 return;
             }
             tbody.innerHTML = filtered.map(item => `
                 <tr>
                     <td><span class="fee-cat-pill">${item.cat}</span></td>
                     <td><strong>${item.name}</strong></td>
-                    <td class="price-col">${item.price}원</td>
-                    <td style="color:var(--text-muted); font-size:0.96rem;">${item.note}</td>
+                    <td class="code-col">${item.code}</td>
+                    <td class="price-col">${item.price}</td>
+                    <td style="color:var(--text-muted); font-size:0.94rem;">${item.note || '-'}</td>
                 </tr>
             `).join('');
         }
@@ -1887,11 +2248,11 @@
         renderHeroScene(0);
         renderProcCards('homeProcGrid');
         renderProcCards('treatProcGrid');
+        renderStemVisuals();
         filterDiseases('all', 'home');
         filterDiseases('all', 'clinic');
         renderFeeTable();
 
-        // 히어로 시술 장면 자동 순환 (6초)
         setInterval(() => {
             if (document.getElementById('page-home').classList.contains('active')) {
                 renderHeroScene((currentHeroIdx + 1) % PROCEDURES.length);
