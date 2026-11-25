@@ -5,7 +5,7 @@
  [SYSTEM & MAINTENANCE ARCHITECTURE LOG - SOO PAIN CLINIC (soopain.com)]
  * Project Name   : 수마취통증의학과 공식 웹사이트 통합 SPA 시스템
  * Initial Build  : 2024.05.14 - 2024.12.20 (Core Architecture, Responsive UI, SSL & SEO)
- * Last Modified  : 2026.11.24 (v4.0.0 Stem Cell Anti-Aging Center, Official Fee Schedule, Collagen Therapy)
+ * Last Modified  : 2026.11.25 (v4.1.0 Pain-Specialized Stem Cell Regeneration Infographics, Radar Chart & 2-Track Therapy)
  * Powered By     : SeHyeong AD.
 =========================================================================================
  [CHRONOLOGICAL REVISION HISTORY]
@@ -1103,6 +1103,217 @@
         }
         .footer-powered strong { color: #ffffff; font-weight: 800; }
 
+        
+        /* 통증의학과 특화 줄기세포 도식화 & 그래프 전용 스타일 */
+        .stem-diagram-card {
+            background: #ffffff;
+            border: 1.5px solid #e2d5bc;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 32px;
+        }
+        .stem-diagram-media {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #14192e;
+            overflow: hidden;
+            border-bottom: 1.5px solid #e6dcc8;
+        }
+        .stem-diagram-media img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 2;
+        }
+        .stem-diagram-caption {
+            padding: 20px 28px;
+            background: linear-gradient(135deg, #ffffff 0%, #faf6ee 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .stem-diagram-caption strong { font-size: 1.16rem; color: var(--navy); font-weight: 900; }
+        .stem-diagram-caption span { font-size: 0.96rem; color: var(--text-muted); font-weight: 600; }
+
+        .domain-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+        .domain-card {
+            background: #ffffff;
+            border: 1.5px solid var(--border);
+            border-left: 6px solid var(--navy);
+            border-radius: 14px;
+            padding: 26px 28px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .domain-card.dc-blue { border-left-color: var(--blue); }
+        .domain-card.dc-green { border-left-color: var(--green); }
+        .domain-card.dc-plum { border-left-color: #6d28d9; }
+        .domain-card.dc-gold { border-left-color: #b88b3d; }
+        .domain-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .domain-badge {
+            font-size: 0.84rem;
+            font-weight: 800;
+            padding: 4px 11px;
+            border-radius: 999px;
+            background: var(--bg-soft);
+            color: var(--navy);
+        }
+        .domain-card h3 {
+            font-size: 1.38rem;
+            font-weight: 900;
+            color: var(--navy);
+            margin: 0;
+        }
+        .domain-card p {
+            font-size: 1.04rem;
+            color: var(--text-body);
+            margin: 0;
+            line-height: 1.7;
+        }
+        .domain-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 6px;
+        }
+        .domain-tags span {
+            font-size: 0.9rem;
+            font-weight: 700;
+            background: #f3f6fa;
+            border: 1px solid #d7e2ee;
+            color: var(--navy);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .track-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 24px;
+        }
+        .track-card {
+            background: #ffffff;
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .track-card.track-local { border-top: 6px solid var(--blue); }
+        .track-card.track-iv { border-top: 6px solid #b88b3d; }
+        .track-label {
+            display: inline-block;
+            font-size: 0.86rem;
+            font-weight: 900;
+            padding: 4px 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        .track-local .track-label { background: var(--blue-light); color: var(--blue); }
+        .track-iv .track-label { background: #fbf1da; color: #8a621c; }
+        .track-card h3 { font-size: 1.42rem; font-weight: 900; color: var(--navy); margin: 0 0 10px 0; }
+        .track-card p { font-size: 1.04rem; color: var(--text-body); margin: 0 0 14px 0; line-height: 1.7; }
+        .track-list li {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            padding: 5px 0 5px 18px;
+            position: relative;
+        }
+        .track-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: 900;
+        }
+
+        .radar-panel {
+            background: #ffffff;
+            border: 1.5px solid #e2d5bc;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 32px;
+            align-items: center;
+        }
+        .radar-svg-wrap {
+            width: 100%;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+        .radar-legend {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 10px;
+            font-size: 0.92rem;
+            font-weight: 800;
+        }
+        .legend-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+        .score-bars { display: flex; flex-direction: column; gap: 15px; margin-top: 16px; }
+        .score-item-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 5px;
+        }
+        .score-item-top small { color: #8a621c; font-weight: 800; }
+        .score-track {
+            width: 100%;
+            height: 14px;
+            background: #edf2f7;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        .score-fill {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #0b66b2 0%, #c99a45 100%);
+        }
+        .med-disclaimer {
+            margin-top: 24px;
+            padding: 16px 20px;
+            background: #f8fafc;
+            border: 1px solid #dde5ef;
+            border-radius: 10px;
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
+        @media (max-width: 960px) {
+            .domain-grid, .track-grid, .radar-panel { grid-template-columns: 1fr; }
+        }
+
         /* ================= 14. 반응형 ================= */
         @media (max-width: 1120px) {
             .nav-btn { padding: 10px 10px; font-size: 1rem; }
@@ -1252,8 +1463,8 @@
                         <span class="stem-eyebrow" style="margin-bottom:8px;">NEW · PREMIUM ANTI-AGING CENTER</span>
                         <h3>수마취통증의학과 <span>항노화 줄기세포 치료센터</span></h3>
                         <p>
-                            내 혈액에서 고농축 추출한 자가 줄기세포 유래 재생성분 <strong>이뉴셀(INjucell)</strong>.<br>
-                            인위적인 약물 없이 세포 회복·재생·항염 3중 시너지와 호밍효과로 전신 활력, 면역 밸런스, 수면의 질, 피부 저속노화까지 한 번에 케어합니다.
+                            마취통증의학과 전문의가 시행하는 자가혈 고농축 재생 솔루션 <strong>이뉴셀(INjucell)</strong>.<br>
+                            <strong>항노화 저속노화</strong>는 물론, 약해지고 손상된 <strong>전신 관절의 인대·힘줄 재생</strong>, <strong>퇴행성 관절염</strong> 염증 완화, <strong>만성피로·두통</strong> 개선까지 다방면으로 회복을 돕습니다.
                         </p>
                         <button type="button" class="btn-gold" onclick="switchPage('stemcell')">이뉴셀 항노화 솔루션 자세히 보기 →</button>
                     </div>
@@ -1511,120 +1722,255 @@
     </main>
 
     <!-- =========================================================================
-         PAGE 5: 항노화 줄기세포 치료센터 (STEM CELL ANTI-AGING CENTER - INjucell)
+         PAGE 5: 항노화·관절재생 줄기세포 치료센터 (PAIN & ANTI-AGING CELL CENTER)
     ========================================================================= -->
     <main id="page-stemcell" class="page-view">
         <!-- 5-1. 프리미엄 히어로 -->
         <section class="stem-hero">
             <div class="container stem-hero-grid">
                 <div>
-                    <span class="stem-eyebrow">PREMIUM SLOW-AGING SOLUTION · INJUCELL</span>
-                    <h1>항노화 줄기세포 치료센터<br><span>이뉴셀(INjucell)</span> 저속노화 케어</h1>
+                    <span class="stem-eyebrow">PAIN MEDICINE × PREMIUM ANTI-AGING · INJUCELL</span>
+                    <h1>통증의학과 <span>자가혈 줄기세포</span><br>관절·인대 재생 &amp; 항노화 센터</h1>
                     <p>
-                        라틴어 <em>injuvenésco(다시 젊어지다)</em>에서 유래한 <strong>이뉴셀(INjucell)</strong>은 환자 본인의 혈액에서 줄기세포 유래 재생성분과 성장인자 복합체를 고농축 추출해 정맥 또는 국소 부위에 투여하는 하이엔드 자가 바이오 치료입니다.
+                        단순 미용 목적을 넘어, 마취통증의학과 전문의의 시각으로 설계한 <strong>전신 통합 재생 솔루션</strong>입니다.<br>
+                        환자 본인의 혈액에서 줄기세포 유래 재생인자와 8대 성장인자를 고농축 추출(이뉴셀)하여 <strong>손상된 전신 관절의 인대·힘줄 재생, 퇴행성 관절 보호, 만성피로·두통 완화, 저속노화</strong>까지 다방면의 회복을 돕습니다.
                     </p>
                     <div class="stem-pills">
-                        <span class="stem-pill">✓ 100% 자가혈 성분 · 면역 거부반응 최소화</span>
-                        <span class="stem-pill">✓ 국내 특허 원심분리 키트 (제10-1827783호)</span>
-                        <span class="stem-pill">✓ 전혈 대비 혈소판 5.35~7.42배 고농축</span>
+                        <span class="stem-pill">✓ 전신 관절 인대·힘줄 재생</span>
+                        <span class="stem-pill">✓ 퇴행성 관절 염증 완화</span>
+                        <span class="stem-pill">✓ 만성피로·두통·수면 개선</span>
+                        <span class="stem-pill">✓ 100% 자가혈 · 특허 키트 (제10-1827783호)</span>
                     </div>
                 </div>
                 <div class="stem-visual-frame" id="stemHeroVisual"></div>
             </div>
         </section>
 
-        <!-- 5-2. 3대 핵심 작용 메커니즘 (호밍효과 · 자가재생 · 다분화) -->
+        <!-- 5-2. 통증의학과 다방면 4대 효과 도식화 -->
         <section class="section">
             <div class="container">
                 <div class="sec-head">
-                    <span class="sec-tag sec-tag-gold">TRIPLE CELL SOLUTION</span>
-                    <h2 class="sec-title">세포 케어 · 재생 · 항염 3중 트리플 솔루션</h2>
-                    <p class="sec-sub">인위적인 화학 약물이 아닌 내 몸이 가진 순수 자가 재생인자로 전신의 세포가 스스로 회복하는 힘을 되살립니다.</p>
+                    <span class="sec-tag sec-tag-gold">MULTIFACETED REGENERATION MAP</span>
+                    <h2 class="sec-title">왜 통증의학과에서 줄기세포 재생치료를 받을까요?</h2>
+                    <p class="sec-sub">혈류를 타고 손상 부위를 스스로 찾아가는 호밍효과(Homing Effect)와 초음파 정밀 시술이 만나 근골격계 통증부터 전신 항노화까지 다방면으로 작용합니다.</p>
                 </div>
 
-                <div class="stem-triple-grid">
-                    <div class="stem-card">
-                        <span class="stem-card-num">MECHANISM 01</span>
-                        <h3>호밍효과 (Homing Effect)</h3>
-                        <p>고농축 셀 성장인자들이 혈류를 타고 순환하다 체내에서 손상되거나 노화된 조직을 스스로 감지해 해당 부위로 정확히 이동·작용하는 생체 반응입니다.</p>
+                <!-- 전신 다방면 재생 도식 이미지 -->
+                <div class="stem-diagram-card">
+                    <div class="stem-diagram-media" id="stemMultifacetVisual"></div>
+                    <div class="stem-diagram-caption">
+                        <strong>전신 관절·인대·힘줄 재생부터 만성피로·두통·항노화까지 4-in-1 통합 도식</strong>
+                        <span>자가혈 고농축 성장인자 복합체가 혈관과 관절 조직의 손상 신호를 감지해 집중 작용합니다.</span>
                     </div>
-                    <div class="stem-card">
-                        <span class="stem-card-num">MECHANISM 02</span>
-                        <h3>자가재생능력 (Self-Renewal)</h3>
-                        <p>줄기세포 유래 재생인자와 사이토카인이 염증 반응을 조절하고 조직 항상성을 회복시켜, 세포가 스스로 활력을 되찾고 건강하게 증식하도록 돕습니다.</p>
+                </div>
+
+                <!-- 4대 핵심 영역 상세 카드 -->
+                <div class="domain-grid">
+                    <div class="domain-card dc-blue">
+                        <div class="domain-head">
+                            <h3>01. 약해지고 손상된 전신 인대·힘줄 재생</h3>
+                            <span class="domain-badge">근골격 조직 복구</span>
+                        </div>
+                        <p>반복 사용이나 노화로 미세 파열되고 느슨해진 전신 관절 주변의 인대·힘줄에 PDGF, FGF-2, TGF-β 등 고농축 성장인자가 작용해 콜라겐 합성과 조직 강화를 촉진합니다.</p>
+                        <div class="domain-tags">
+                            <span># 어깨 회전근개</span>
+                            <span># 골프·테니스엘보</span>
+                            <span># 척추·골반 인대</span>
+                            <span># 손목·발목 힘줄</span>
+                        </div>
                     </div>
-                    <div class="stem-card">
-                        <span class="stem-card-num">MECHANISM 03</span>
-                        <h3>다분화 · 조직 리모델링</h3>
-                        <p>피부 진피층의 섬유아세포와 혈관 내피세포, 근육·관절 조직에 폭넓게 작용해 콜라겐 합성과 미세혈류 개선, 전반적인 신체 기능 향상을 지원합니다.</p>
+
+                    <div class="domain-card dc-green">
+                        <div class="domain-head">
+                            <h3>02. 퇴행성 관절염 환경 개선 및 보호</h3>
+                            <span class="domain-badge">관절 염증·연골 케어</span>
+                        </div>
+                        <p>만성 염증으로 붓고 시큰거리는 퇴행성 관절(무릎·어깨·고관절) 내 염증성 사이토카인을 조절하고 미세혈류 순환을 개선해 관절 통증 완화와 기능 유지를 돕습니다.</p>
+                        <div class="domain-tags">
+                            <span># 무릎 퇴행성관절염</span>
+                            <span># 연골 주변 환경 개선</span>
+                            <span># 관절 부종·염증 완화</span>
+                            <span># 수술 지연·보존 치료</span>
+                        </div>
+                    </div>
+
+                    <div class="domain-card dc-plum">
+                        <div class="domain-head">
+                            <h3>03. 만성피로 · 두통 · 수면 컨디션 회복</h3>
+                            <span class="domain-badge">혈류·신경·활력 케어</span>
+                        </div>
+                        <p>VEGF를 통한 미세혈류 및 산소 공급 개선과 전신 염증 밸런스 조절로, 검사상 뚜렷한 이상은 없으나 지속되는 만성피로, 긴장성·혈관성 두통, 수면의 질 저하를 완화하는 데 도움을 줍니다.</p>
+                        <div class="domain-tags">
+                            <span># 만성피로 증후군</span>
+                            <span># 잦은 두통·어지럼</span>
+                            <span># 수면의 질 개선</span>
+                            <span># 자율신경·컨디션 균형</span>
+                        </div>
+                    </div>
+
+                    <div class="domain-card dc-gold">
+                        <div class="domain-head">
+                            <h3>04. 전신 저속노화 · 항노화 &amp; 면역 밸런스</h3>
+                            <span class="domain-badge">프리미엄 항노화</span>
+                        </div>
+                        <p>노화로 저하된 세포 회복 능력을 보완하여 면역 세포 균형을 정돈하고, 피부 진피층 섬유아세포 활성화를 통해 탄력·장벽·안색 등 전신적인 저속노화 루틴을 지원합니다.</p>
+                        <div class="domain-tags">
+                            <span># 세포 활력 회복</span>
+                            <span># 면역 밸런스</span>
+                            <span># 피부 콜라겐·탄력</span>
+                            <span># 건강한 저속노화</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 5-3. 이뉴셀 8대 핵심 성장인자 -->
+        <!-- 5-3. 통증의학과 특화 2-Track 맞춤 시술 + 관절 재생 3단계 도식 -->
         <section class="section section-soft">
             <div class="container">
                 <div class="sec-head">
-                    <span class="sec-tag sec-tag-gold">8 CORE GROWTH FACTORS</span>
-                    <h2 class="sec-title">혈액 속 8가지 핵심 성장인자 고농축 추출</h2>
-                    <p class="sec-sub">세포 재생 활성부터 콜라겐 리모델링, 피부 장벽 강화, 혈류 개선까지 복합적으로 작용합니다.</p>
+                    <span class="sec-tag">2-TRACK PAIN &amp; WELLNESS PROTOCOL</span>
+                    <h2 class="sec-title">통증의학과 특화 2-Track 투여 &amp; 관절 재생 메커니즘</h2>
+                    <p class="sec-sub">초음파 정밀 국소 주입으로 아픈 관절·인대를 직접 살리고, 정맥(IV) 순환 케어로 전신 피로·두통·항노화까지 동시에 잡습니다.</p>
                 </div>
 
-                <div class="gf-grid">
-                    <div class="gf-card gf-green">
-                        <div class="gf-code">HGF</div>
-                        <div class="gf-name">간세포 성장인자 · 세포 재생 활성</div>
-                        <p class="gf-desc">조직 재생을 유도하고 저하된 세포의 활력을 회복합니다.</p>
+                <!-- 2-Track 시술 도식 이미지 -->
+                <div class="stem-diagram-card">
+                    <div class="stem-diagram-media" id="stemSynergyVisual"></div>
+                    <div class="stem-diagram-caption">
+                        <strong>초음파 가이드 국소 주입(Track A) × 정맥(IV) 전신 순환 케어(Track B)</strong>
+                        <span>환자의 통증 부위와 전신 컨디션에 따라 단독 또는 병합 프로토콜을 전문의가 직접 설계합니다.</span>
                     </div>
-                    <div class="gf-card gf-green">
-                        <div class="gf-code">EGF</div>
-                        <div class="gf-name">상피세포 성장인자 · 세포 재생 활성</div>
-                        <p class="gf-desc">상피세포 재생을 돕고 손상 조직의 빠른 회복을 촉진합니다.</p>
+                </div>
+
+                <div class="track-grid" style="margin-bottom:34px;">
+                    <div class="track-card track-local">
+                        <span class="track-label">TRACK A · 초음파 가이드 국소 주입</span>
+                        <h3>손상 관절 · 인대 · 힘줄 직접 재생</h3>
+                        <p>고해상도 근골격계 초음파로 병변을 실시간 확인하며, 고농축 자가 재생인자를 손상된 인대·힘줄·관절강 내부에 오차 없이 주입합니다.</p>
+                        <ul class="track-list">
+                            <li>무릎 퇴행성관절염 및 반월상연골 주변 통증</li>
+                            <li>어깨 회전근개 부분파열·오십견·석회성건염</li>
+                            <li>만성 골프엘보·테니스엘보·족저근막염</li>
+                        </ul>
                     </div>
-                    <div class="gf-card gf-rose">
-                        <div class="gf-code">FGF-2</div>
-                        <div class="gf-name">섬유아세포 성장인자 · 탄력 리모델링</div>
-                        <p class="gf-desc">진피 내 콜라겐 생성을 촉진하고 주름·탄력을 개선합니다.</p>
+
+                    <div class="track-card track-iv">
+                        <span class="track-label">TRACK B · 정맥(IV) 전신 순환 케어</span>
+                        <h3>전신 항노화 · 만성피로 · 두통 완화</h3>
+                        <p>정맥을 통해 투여된 고농축 셀 재생성분이 전신 혈류를 순환하며, 호밍효과(Homing Effect)로 회복이 필요한 혈관·신경·관절·피부에 폭넓게 작용합니다.</p>
+                        <ul class="track-list">
+                            <li>전신 다발성 관절 뻐근함 및 회복력 저하</li>
+                            <li>원인 모를 만성피로·두통·수면장애 개선</li>
+                            <li>면역력 강화 및 30~60대 맞춤 저속노화 관리</li>
+                        </ul>
                     </div>
-                    <div class="gf-card gf-rose">
-                        <div class="gf-code">GDF11</div>
-                        <div class="gf-name">성장분화인자 · 탄력 리모델링</div>
-                        <p class="gf-desc">세포 노화 속도를 조절하고 건강한 탄력 구조를 회복합니다.</p>
-                    </div>
-                    <div class="gf-card gf-rose">
-                        <div class="gf-code">TGF-β</div>
-                        <div class="gf-name">형질변화 성장인자 · 사이토카인</div>
-                        <p class="gf-desc">피부 속밀도를 강화하고 만성 염증 반응을 완화합니다.</p>
-                    </div>
-                    <div class="gf-card gf-amber">
-                        <div class="gf-code">KGF</div>
-                        <div class="gf-name">각질세포 성장인자 · 장벽 강화</div>
-                        <p class="gf-desc">피부 장벽 기능을 강화하고 민감해진 조직을 진정·회복합니다.</p>
-                    </div>
-                    <div class="gf-card gf-amber">
-                        <div class="gf-code">PDGF</div>
-                        <div class="gf-name">혈소판유래 성장인자 · 손상 복구</div>
-                        <p class="gf-desc">손상된 조직을 복원하고 진피·혈관 구조 재건을 유도합니다.</p>
-                    </div>
-                    <div class="gf-card gf-red">
-                        <div class="gf-code">VEGF</div>
-                        <div class="gf-name">혈관내피 성장인자 · 혈류 톤업</div>
-                        <p class="gf-desc">미세 혈류 순환을 개선하고 조직 내 산소 공급을 촉진합니다.</p>
+                </div>
+
+                <!-- 3단계 관절·인대 재생 도식 이미지 -->
+                <div class="stem-diagram-card" style="margin-bottom:0;">
+                    <div class="stem-diagram-media" id="stemJointRegenVisual"></div>
+                    <div class="stem-diagram-caption">
+                        <strong>퇴행성 관절 및 손상 인대·힘줄의 3단계 재생 메커니즘</strong>
+                        <span>만성 염증 차단 → 자가 성장인자 호밍 작용 → 콜라겐 리모델링 및 관절 기능 회복</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 5-4. 특허 기술 & 삼광의료재단 농축 데이터 -->
+        <!-- 5-4. 다방면 작용 스펙트럼 그래프 (SVG 레이더 차트 + 지표 바 + 삼광의료재단 데이터) -->
         <section class="section">
             <div class="container">
+                <div class="sec-head">
+                    <span class="sec-tag sec-tag-gold">MULTIDIMENSIONAL IMPACT GRAPH</span>
+                    <h2 class="sec-title">다방면 작용 스펙트럼 &amp; 고농축 임상 데이터</h2>
+                    <p class="sec-sub">단일 증상만 일시적으로 억제하는 일반 주사와 달리, 관절 재생부터 전신 활력·항노화까지 6대 핵심 영역에 균형 있게 작용합니다.</p>
+                </div>
+
+                <!-- 6대 영역 SVG 방사형 그래프 + 지표 막대 -->
+                <div class="radar-panel" style="margin-bottom:32px;">
+                    <div>
+                        <div class="radar-svg-wrap">
+                            <svg viewBox="0 0 420 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="자가혈 줄기세포 6대 다방면 작용 영역 그래프">
+                                <!-- 배경 육각형 그리드 (3단계) -->
+                                <g fill="none" stroke="#d5e0ec" stroke-width="1.4">
+                                    <polygon points="210,45 322,110 322,240 210,305 98,240 98,110"/>
+                                    <polygon points="210,88 285,131 285,219 210,262 135,219 135,131" stroke-dasharray="4 3"/>
+                                    <polygon points="210,131 247,153 247,197 210,219 173,197 173,153" stroke-dasharray="3 3"/>
+                                    <line x1="210" y1="45" x2="210" y2="305"/>
+                                    <line x1="98" y1="110" x2="322" y2="240"/>
+                                    <line x1="322" y1="110" x2="98" y2="240"/>
+                                </g>
+                                <!-- 일반 단일 통증주사 영역 (비교 기준) -->
+                                <polygon points="210,122 268,141 245,195 210,210 175,195 162,147"
+                                         fill="rgba(148, 163, 184, 0.28)" stroke="#64748b" stroke-width="2" stroke-dasharray="5 3"/>
+                                <!-- 이뉴셀 자가혈 고농축 다방면 케어 영역 -->
+                                <polygon points="210,56 312,116 306,230 210,290 112,232 108,116"
+                                         fill="rgba(201, 154, 69, 0.26)" stroke="#0f294a" stroke-width="3"/>
+                                <!-- 꼭짓점 포인트 -->
+                                <g fill="#c99a45" stroke="#0f294a" stroke-width="2">
+                                    <circle cx="210" cy="56" r="5.5"/>
+                                    <circle cx="312" cy="116" r="5.5"/>
+                                    <circle cx="306" cy="230" r="5.5"/>
+                                    <circle cx="210" cy="290" r="5.5"/>
+                                    <circle cx="112" cy="232" r="5.5"/>
+                                    <circle cx="108" cy="116" r="5.5"/>
+                                </g>
+                                <!-- 6대 축 한글 라벨 -->
+                                <text x="210" y="28" text-anchor="middle" fill="#0f294a" font-size="13.5" font-weight="900">인대·힘줄 조직 재생</text>
+                                <text x="334" y="106" text-anchor="start" fill="#0f294a" font-size="13" font-weight="900">퇴행성 관절</text>
+                                <text x="334" y="123" text-anchor="start" fill="#0b66b2" font-size="11.5" font-weight="700">염증 완화·보호</text>
+                                <text x="334" y="242" text-anchor="start" fill="#0f294a" font-size="13" font-weight="900">만성피로·활력</text>
+                                <text x="334" y="259" text-anchor="start" fill="#0b66b2" font-size="11.5" font-weight="700">대사·컨디션 회복</text>
+                                <text x="210" y="330" text-anchor="middle" fill="#0f294a" font-size="13.5" font-weight="900">전신 항노화·저속노화</text>
+                                <text x="86" y="242" text-anchor="end" fill="#0f294a" font-size="13" font-weight="900">면역·수면의 질</text>
+                                <text x="86" y="259" text-anchor="end" fill="#0b66b2" font-size="11.5" font-weight="700">세포 항상성 균형</text>
+                                <text x="86" y="106" text-anchor="end" fill="#0f294a" font-size="13" font-weight="900">만성두통·혈류</text>
+                                <text x="86" y="123" text-anchor="end" fill="#0b66b2" font-size="11.5" font-weight="700">미세순환·산소공급</text>
+                            </svg>
+                        </div>
+                        <div class="radar-legend">
+                            <span><i class="legend-dot" style="background:#c99a45; border:1.5px solid #0f294a;"></i>이뉴셀 자가혈 통합 재생 케어</span>
+                            <span style="color:#64748b;"><i class="legend-dot" style="background:#94a3b8;"></i>일반 단일 대증 주사</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="sec-tag sec-tag-gold">TARGET SYNERGY INDEX</span>
+                        <h3 style="font-size:1.5rem; font-weight:900; color:var(--navy); margin:8px 0 8px;">통증·관절·전신 항노화 6대 기대 영역</h3>
+                        <p style="font-size:1.01rem; color:var(--text-body); margin:0;">자가혈 속 8대 성장인자(PDGF, TGF-β, FGF-2, VEGF, HGF, EGF, GDF11, KGF)가 각 타겟 조직에 복합적으로 관여합니다.</p>
+                        <div class="score-bars">
+                            <div>
+                                <div class="score-item-top"><span>인대·힘줄 미세손상 재생 (PDGF · FGF-2)</span><small>핵심 타겟</small></div>
+                                <div class="score-track"><div class="score-fill" style="width:94%;"></div></div>
+                            </div>
+                            <div>
+                                <div class="score-item-top"><span>퇴행성 관절 염증 조절 (TGF-β · 사이토카인)</span><small>핵심 타겟</small></div>
+                                <div class="score-track"><div class="score-fill" style="width:91%;"></div></div>
+                            </div>
+                            <div>
+                                <div class="score-item-top"><span>전신 미세혈류·두통 완화 (VEGF · 산소공급)</span><small>전신 순환</small></div>
+                                <div class="score-track"><div class="score-fill" style="width:86%;"></div></div>
+                            </div>
+                            <div>
+                                <div class="score-item-top"><span>만성피로 해소·수면 컨디션 (HGF · CELL 회복)</span><small>컨디션 균형</small></div>
+                                <div class="score-track"><div class="score-fill" style="width:88%;"></div></div>
+                            </div>
+                            <div>
+                                <div class="score-item-top"><span>피부 탄력·전신 저속노화 (GDF11 · EGF · KGF)</span><small>항노화 케어</small></div>
+                                <div class="score-track"><div class="score-fill" style="width:90%;"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 삼광의료재단 혈소판 농축 그래프 + 특허 키트 -->
                 <div class="two-col-grid">
                     <div class="data-box">
                         <span class="sec-tag sec-tag-gold">CLINICAL DATA · 삼광의료재단 검사</span>
-                        <h3 style="font-size:1.52rem; font-weight:900; color:var(--navy); margin:8px 0 10px;">전혈 대비 혈소판(PLT) 최대 7.42배 고농축</h3>
+                        <h3 style="font-size:1.5rem; font-weight:900; color:var(--navy); margin:8px 0 10px;">전혈 대비 혈소판(PLT) 최대 7.42배 고농축</h3>
                         <p style="font-size:1.02rem; color:var(--text-body); margin:0 0 16px;">
-                            자가혈 재생치료의 핵심은 성장인자가 응축된 혈소판(PLT) 농축 수치입니다. 이뉴셀은 안정적이고 높은 농축 데이터를 입증했습니다.
+                            관절·인대 재생과 항노화 효과를 좌우하는 핵심은 성장인자가 응축된 혈소판(PLT) 농축 수치입니다.
                         </p>
                         <div class="bar-chart">
                             <div>
@@ -1649,20 +1995,20 @@
 
                     <div class="panel-card">
                         <span class="sec-tag">PATENTED CLOSED SYSTEM</span>
-                        <h3 style="font-size:1.52rem; font-weight:900; color:var(--navy); margin:8px 0 10px;">혈액을 옮길 필요 없는 특허 키트</h3>
+                        <h3 style="font-size:1.5rem; font-weight:900; color:var(--navy); margin:8px 0 10px;">혈액을 옮길 필요 없는 국내 특허 키트</h3>
                         <p style="font-size:1.02rem; color:var(--text-body); margin:0 0 16px;">
-                            국내 특허(제10-1827783호)를 받은 '분리형 플랜지 구비 혈액 원심분리 겸용 주사기 키트'를 사용하여, 혈액을 여러 번 옮기는 과정에서 발생할 수 있는 외부 공기 노출·감염 위험을 원천적으로 최소화했습니다.
+                            국내 특허(제10-1827783호) 원심분리 겸용 주사기 키트로 외부 공기 노출·감염 위험을 최소화하고, 채혈부터 투여까지 안전하고 빠르게 진행합니다.
                         </p>
                         <div class="step-flow" style="grid-template-columns: repeat(2, 1fr);">
                             <div class="step-box">
                                 <span class="step-num">1</span>
-                                <strong>전문의 상담</strong>
-                                <span>컨디션·목적별 용량 설계</span>
+                                <strong>통증·항노화 상담</strong>
+                                <span>관절 초음파·전신 상태 평가</span>
                             </div>
                             <div class="step-box">
                                 <span class="step-num">2</span>
-                                <strong>간편 채혈</strong>
-                                <span>특허 전용 키트로 직접 채혈</span>
+                                <strong>특허 키트 채혈</strong>
+                                <span>감염 노출 차단 밀폐 채혈</span>
                             </div>
                             <div class="step-box">
                                 <span class="step-num">3</span>
@@ -1671,23 +2017,88 @@
                             </div>
                             <div class="step-box">
                                 <span class="step-num">4</span>
-                                <strong>정맥·국소 투여</strong>
-                                <span>20분~1시간 내 편안한 시술</span>
+                                <strong>맞춤 투여 완료</strong>
+                                <span>초음파 관절주입 / 정맥(IV)</span>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- 5-5. 8대 핵심 성장인자 (관절·인대·혈류·항노화 역할 매핑) -->
+        <section class="section section-soft">
+            <div class="container">
+                <div class="sec-head">
+                    <span class="sec-tag sec-tag-gold">8 CORE GROWTH FACTORS</span>
+                    <h2 class="sec-title">자가혈 속 8대 핵심 성장인자 &amp; 조직별 작용</h2>
+                    <p class="sec-sub">인대·힘줄의 콜라겐 재생부터 퇴행성 관절 염증 완화, 두통·피로와 직결된 미세혈류 개선까지 유기적으로 작용합니다.</p>
+                </div>
+
+                <div class="gf-grid">
+                    <div class="gf-card gf-green">
+                        <div class="gf-code">PDGF</div>
+                        <div class="gf-name">혈소판유래 성장인자 · 인대·힘줄 복구</div>
+                        <p class="gf-desc">손상된 인대·힘줄·진피 조직의 복원과 세포 증식을 직접 유도합니다.</p>
+                    </div>
+                    <div class="gf-card gf-rose">
+                        <div class="gf-code">FGF-2</div>
+                        <div class="gf-name">섬유아세포 성장인자 · 콜라겐 강화</div>
+                        <p class="gf-desc">약해진 힘줄·인대와 피부 진피의 콜라겐 생성 및 구조 강화를 돕습니다.</p>
+                    </div>
+                    <div class="gf-card gf-rose">
+                        <div class="gf-code">TGF-β</div>
+                        <div class="gf-name">형질변화 성장인자 · 관절 염증 완화</div>
+                        <p class="gf-desc">퇴행성 관절과 조직의 만성 염증 반응을 조절하고 속밀도를 강화합니다.</p>
+                    </div>
+                    <div class="gf-card gf-red">
+                        <div class="gf-code">VEGF</div>
+                        <div class="gf-name">혈관내피 성장인자 · 두통·혈류 개선</div>
+                        <p class="gf-desc">신생 미세혈관 형성과 혈류 순환을 도와 관절·뇌·전신 산소 공급을 촉진합니다.</p>
+                    </div>
+                    <div class="gf-card gf-green">
+                        <div class="gf-code">HGF</div>
+                        <div class="gf-name">간세포 성장인자 · 조직·피로 회복</div>
+                        <p class="gf-desc">전신 조직 재생을 유도하고 만성피로로 저하된 세포 활력을 되살립니다.</p>
+                    </div>
+                    <div class="gf-card gf-rose">
+                        <div class="gf-code">GDF11</div>
+                        <div class="gf-name">성장분화인자 · 저속노화 조절</div>
+                        <p class="gf-desc">세포 노화 속도를 완만하게 조절하고 탄력 있는 조직 구조 회복을 돕습니다.</p>
+                    </div>
+                    <div class="gf-card gf-amber">
+                        <div class="gf-code">EGF</div>
+                        <div class="gf-name">상피세포 성장인자 · 손상 회복 촉진</div>
+                        <p class="gf-desc">상피세포 재생을 활성화하고 미세 손상 부위의 빠른 회복을 지원합니다.</p>
+                    </div>
+                    <div class="gf-card gf-amber">
+                        <div class="gf-code">KGF</div>
+                        <div class="gf-name">각질세포 성장인자 · 장벽·진정 케어</div>
+                        <p class="gf-desc">피부 및 점막 장벽 기능을 강화하고 민감해진 조직을 진정시킵니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5-6. 용량별 맞춤 프로그램 & 홈케어 & Q&A -->
+        <section class="section">
+            <div class="container">
+                <div class="sec-head">
+                    <span class="sec-tag sec-tag-gold">PROGRAM · HOME-CARE · FAQ</span>
+                    <h2 class="sec-title">맞춤 용량 프로그램 &amp; 자주 묻는 질문</h2>
+                    <p class="sec-sub">환자의 관절 상태, 피로도, 항노화 목적에 따라 20ml~80ml 단계별 프로그램을 설계합니다.</p>
+                </div>
 
                 <!-- 용량별 맞춤 프로그램 비교표 -->
-                <div class="fee-table-wrap" style="margin-top:30px;">
+                <div class="fee-table-wrap" style="margin-bottom:36px;">
                     <table class="fee-table">
                         <thead>
                             <tr>
                                 <th>프로그램 구분</th>
-                                <th>이뉴셀 20ml (기본)</th>
-                                <th>이뉴셀 40ml (20ml×2)</th>
-                                <th>이뉴셀 60ml (20ml×3)</th>
-                                <th>이뉴셀 80ml (20ml×4)</th>
+                                <th>이뉴셀 20ml (1키트)</th>
+                                <th>이뉴셀 40ml (2키트)</th>
+                                <th>이뉴셀 60ml (3키트)</th>
+                                <th>이뉴셀 80ml (4키트)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1714,66 +2125,61 @@
                             </tr>
                             <tr>
                                 <td><strong>추천 대상</strong></td>
-                                <td>입문·정기 예방 케어</td>
-                                <td>피로·피부 탄력 집중</td>
-                                <td>면역·만성피로·수면</td>
-                                <td>프리미엄 전신 저속노화</td>
+                                <td>국소 관절·인대 / 예방 입문</td>
+                                <td>관절통·만성피로·두통 집중</td>
+                                <td>퇴행성 관절 + 전신 면역·수면</td>
+                                <td>프리미엄 전신 관절·저속노화</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </section>
 
-        <!-- 5-5. 적용 분야 & 시술 후 남은 혈장 홈케어 & Q&A -->
-        <section class="section section-soft">
-            <div class="container">
-                <div class="sec-head">
-                    <span class="sec-tag sec-tag-gold">AFTER-CARE &amp; FAQ</span>
-                    <h2 class="sec-title">시술 후 남은 자가 혈장 홈케어 &amp; 자주 묻는 질문</h2>
-                    <p class="sec-sub">이뉴셀 시술 후 남는 자가 혈장까지 버리지 않고 피부·두피·비강·안구 홈케어 용기로 맞춤 제공해 드립니다.</p>
-                </div>
-
+                <!-- 시술 후 남은 혈장 홈케어 -->
                 <div class="homecare-grid" style="margin-bottom:36px;">
                     <div class="homecare-card">
                         <span class="homecare-tag"># 바르세요</span>
                         <h4>피부 탄력 케어</h4>
-                        <p>세포 재생을 촉진하고 피부 장벽 강화 및 속건조·탄력 개선을 돕습니다.</p>
+                        <p>시술 후 남은 자가 혈장을 활용해 피부 장벽 강화 및 탄력 개선을 돕습니다.</p>
                     </div>
                     <div class="homecare-card">
                         <span class="homecare-tag"># 도포하세요</span>
                         <h4>두피 · 모근 케어</h4>
-                        <p>손상되고 민감해진 두피를 진정시키고 건강한 모근 환경 재생을 돕습니다.</p>
+                        <p>민감해진 두피를 진정시키고 건강한 모근 환경 재생을 돕습니다.</p>
                     </div>
                     <div class="homecare-card">
                         <span class="homecare-tag"># 분무하세요</span>
                         <h4>비염 · 호흡 케어</h4>
-                        <p>비강 점막의 염증을 부드럽게 완화하고 편안한 호흡 컨디션을 돕습니다.</p>
+                        <p>비강 점막의 염증을 완화하고 편안한 호흡 컨디션을 돕습니다.</p>
                     </div>
                     <div class="homecare-card">
                         <span class="homecare-tag"># 점안하세요</span>
                         <h4>촉촉한 눈 케어</h4>
-                        <p>안구 건조감을 줄이고 눈 표면의 수분 유지와 편안함을 돕습니다.</p>
+                        <p>안구 건조감을 줄이고 눈 표면의 촉촉한 수분 유지를 돕습니다.</p>
                     </div>
                 </div>
 
+                <!-- Q&A -->
                 <div class="qa-list">
                     <div class="qa-item">
-                        <div class="qa-q">Q. 내 몸에서 나온 혈액을 다시 넣는데 정말 효과가 있나요?</div>
-                        <p class="qa-a">A. 일반 혈액을 그대로 넣는 것이 아니라, 특허 원심분리 키트를 통해 혈액 속 핵심 줄기세포 유래 재생인자와 혈소판 성장인자만 최대 5~7배 고농축 분리하여 투여함으로써 신체가 스스로 회복하도록 돕습니다.</p>
+                        <div class="qa-q">Q. 퇴행성 무릎 관절염이나 만성 인대·힘줄 통증에도 도움이 되나요?</div>
+                        <p class="qa-a">A. 네. 통증의학과 특화 초음파 가이드를 통해 손상된 무릎·어깨·팔꿈치 관절 및 인대·힘줄 부위에 고농축 자가 성장인자를 정확히 주입하거나 전신 순환 케어를 병행하면, 만성 염증을 완화하고 약해진 조직의 회복 환경을 조성하는 데 큰 도움이 됩니다.</p>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-q">Q. 만성피로나 잦은 두통이 있을 때 받아도 효과가 있나요?</div>
+                        <p class="qa-a">A. 정맥(IV) 투여를 통해 혈관내피 성장인자(VEGF)와 다양한 자가 재생인자가 전신을 순환하면 미세혈류 개선, 산소 공급 촉진, 만성 염증 밸런스 회복을 도와 만성피로·두통·수면 컨디션 개선에 긍정적인 도움을 줍니다.</p>
                     </div>
                     <div class="qa-item">
                         <div class="qa-q">Q. 몇 회 정도, 어떤 주기로 받는 것이 좋나요?</div>
-                        <p class="qa-a">A. 1회 시술만으로도 컨디션 회복을 경험하실 수 있으며, 지속적인 저속노화 관리를 위해 <strong>2~3개월에 1회(연 4회 이상)</strong> 정기적인 케어를 권장합니다.</p>
-                    </div>
-                    <div class="qa-item">
-                        <div class="qa-q">Q. 연령대별로 어떤 효과를 기대할 수 있나요?</div>
-                        <p class="qa-a">A. <strong>20~30대</strong>는 조기 노화 예방 및 피로·피부 관리, <strong>40~50대</strong>는 주름·탄력 개선 및 면역 밸런스 강화, <strong>60대 이상</strong>은 만성 피로 해소·수면의 질 개선 및 전신 활력 회복 목적으로 폭넓게 시행합니다.</p>
+                        <p class="qa-a">A. 관절 손상 정도나 전신 컨디션에 따라 전문의 상담 후 결정하며, 지속적인 저속노화 및 관절·면역 관리를 위해 보통 <strong>2~3개월에 1회(연 4회 이상)</strong> 정기 케어를 권장합니다.</p>
                     </div>
                 </div>
 
-                <div class="call-banner" style="margin-top:28px; background:#faf3e3; border-color:#e2c68b;">
-                    <span style="color:#6e4e1c;">항노화 줄기세포 치료센터 (이뉴셀) 1:1 전문의 상담 및 예약</span>
+                <div class="med-disclaimer">
+                    * 본 센터의 이뉴셀(INjucell) 치료는 환자 본인의 혈액에서 유효 재생성분 및 혈소판 유래 성장인자를 원심분리·농축하여 사용하는 자가혈 기반 시술입니다. 시술 효과와 회복 속도는 개인의 연령, 관절 퇴행 정도, 전신 건강 상태에 따라 차이가 있을 수 있으며, 드물게 주사 부위의 일시적 멍·뻐근함이 동반될 수 있습니다. 반드시 마취통증의학과 전문의와의 충분한 상담 후 진행합니다.
+                </div>
+
+                <div class="call-banner" style="margin-top:26px; background:#faf3e3; border-color:#e2c68b;">
+                    <span style="color:#6e4e1c;">수마취통증의학과 항노화·관절재생 줄기세포 센터 1:1 전문의 상담 및 예약</span>
                     <a href="tel:041-427-7711" style="color:#24193d;">☎ 041-427-7711</a>
                 </div>
             </div>
@@ -2139,13 +2545,55 @@
             `).join('');
         }
 
+        function buildDiagramFallback(title, subtitle, filename) {
+            return `
+                <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+                    <defs>
+                        <linearGradient id="dgBg" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#121c33"/>
+                            <stop offset="100%" stop-color="#2c2440"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="640" height="360" fill="url(#dgBg)"/>
+                    <rect x="44" y="44" width="552" height="272" rx="16" fill="none" stroke="#d4af6a" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.55"/>
+                    <text x="320" y="160" text-anchor="middle" fill="#f4d692" font-size="22" font-weight="900">${title}</text>
+                    <text x="320" y="196" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="700">${subtitle}</text>
+                    <text x="320" y="256" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="600">img/${filename}.jpg 업로드 시 고화질 도식 이미지 자동 적용</text>
+                </svg>
+            `;
+        }
+
         function renderStemVisuals() {
-            const markup = `
+            const heroMarkup = `
                 ${STEM_FALLBACK_SVG}
                 <img src="img/stemcell_hero.jpg" data-base="img/stemcell_hero" alt="항노화 줄기세포 치료센터 이뉴셀" onerror="handleImgFallback(this)">
             `;
-            document.getElementById('homeStemThumb').innerHTML = markup;
-            document.getElementById('stemHeroVisual').innerHTML = markup;
+            document.getElementById('homeStemThumb').innerHTML = heroMarkup;
+            document.getElementById('stemHeroVisual').innerHTML = heroMarkup;
+
+            const multiEl = document.getElementById('stemMultifacetVisual');
+            if (multiEl) {
+                multiEl.innerHTML = `
+                    ${buildDiagramFallback('통증의학과 자가혈 줄기세포 4-in-1 재생 도식', '인대·힘줄 재생 · 퇴행성 관절 · 만성피로·두통 · 전신 항노화', 'stemcell_multifacet')}
+                    <img src="img/stemcell_multifacet.jpg" data-base="img/stemcell_multifacet" alt="통증의학과 자가혈 줄기세포 다방면 재생 도식" onerror="handleImgFallback(this)">
+                `;
+            }
+
+            const synEl = document.getElementById('stemSynergyVisual');
+            if (synEl) {
+                synEl.innerHTML = `
+                    ${buildDiagramFallback('통증의학과 특화 2-Track 맞춤 재생 치료', '초음파 가이드 국소 관절·인대 주입 × 정맥(IV) 전신 항노화·피로·두통 케어', 'stemcell_pain_synergy')}
+                    <img src="img/stemcell_pain_synergy.jpg" data-base="img/stemcell_pain_synergy" alt="2-Track 맞춤 재생 치료 도식" onerror="handleImgFallback(this)">
+                `;
+            }
+
+            const jointEl = document.getElementById('stemJointRegenVisual');
+            if (jointEl) {
+                jointEl.innerHTML = `
+                    ${buildDiagramFallback('퇴행성 관절 · 손상 인대·힘줄 3단계 재생 메커니즘', '손상·염증 → 자가혈 고농축 성장인자 호밍 작용 → 조직 재생 및 관절 기능 회복', 'stemcell_joint_regen')}
+                    <img src="img/stemcell_joint_regen.jpg" data-base="img/stemcell_joint_regen" alt="퇴행성 관절 및 인대 힘줄 3단계 재생 도식" onerror="handleImgFallback(this)">
+                `;
+            }
         }
 
         function filterDiseases(part, scope) {
